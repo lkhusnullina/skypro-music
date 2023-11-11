@@ -1,6 +1,27 @@
 import Playlist from './Playlist'
 import './Sidebar.css'
 
+const playlists = [
+  {
+    id: 1,
+    name: `day's playlist`,
+    img: 'img/playlist01.png',
+    link: '#',
+  },
+  {
+    id: 2,
+    name: `day's playlist`,
+    img: 'img/playlist02.png',
+    link: '#',
+  },
+  {
+    id: 3,
+    name: `day's playlist`,
+    img: 'img/playlist03.png',
+    link: '#',
+  },
+]
+
 function Sidebar() {
   return (
     <div className="main__sidebar sidebar">
@@ -14,27 +35,9 @@ function Sidebar() {
       </div>
       <div className="sidebar__block">
         <div className="sidebar__list">
-          <Playlist />
-          <Playlist />
-          <Playlist />
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
-              <img
-                className="sidebar__img"
-                src="img/playlist02.png"
-                alt="day's playlist"
-              />
-            </a>
-          </div>
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
-              <img
-                className="sidebar__img"
-                src="img/playlist03.png"
-                alt="day's playlist"
-              />
-            </a>
-          </div>
+          {playlists.map((p) => (
+            <Playlist playlist={p} />
+          ))}
         </div>
       </div>
     </div>
