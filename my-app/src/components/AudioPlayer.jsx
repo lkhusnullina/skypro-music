@@ -1,3 +1,5 @@
+import './AudioPlayer.css'
+
 function AudioPlayer() {
   return (
     <div className="bar">

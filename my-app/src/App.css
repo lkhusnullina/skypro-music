@@ -120,10 +120,10 @@ body {
   padding: 20px 40px 20px 111px;
 }
 
-.main__sidebar {
+/* .main__sidebar {
   max-width: 418px;
   padding: 20px 90px 20px 78px;
-}
+} */
 
 .nav__logo {
   width: 113.33px;
@@ -498,7 +498,7 @@ body {
   color: #696969;
 } */
 
-.sidebar__personal {
+/* .sidebar__personal {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -577,9 +577,9 @@ body {
 .sidebar__img {
   width: 100%;
   height: auto;
-}
+} */
 
-.bar {
+/* .bar {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -878,4 +878,4 @@ body {
 
 .volume__progress-line {
   width: 109px;
-}
+} */

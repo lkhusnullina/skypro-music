@@ -577,16 +577,21 @@ function Tracklist() {
                   </svg>
                 </div>
                 <div className="track__title-text">
-                  <a className="track__title-link" href="http://">
-                    <span className="track__title-span" />
+                  <a className="track__title-link" href="#">
+                    guib <span className="track__title-span" />
                   </a>
                 </div>
               </div>
               <div className="track__author">
-                <a className="track__author-link" href="http://" />
+                <a className="track__author-link" href="http://">
+                  dd
+                </a>
+                /
               </div>
               <div className="track__album">
-                <a className="track__album-link" href="http://" />
+                <a className="track__album-link" href="http://">
+                  dd
+                </a>
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
