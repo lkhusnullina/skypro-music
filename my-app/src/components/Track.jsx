@@ -13,7 +13,9 @@ function Track(props) {
           <div className="track__title-text">
             <a className="track__title-link" href={props.track.trackNamelink}>
               {props.track.trackName}
-              <span className="track__title-span" />
+              <span className="track__title-span">
+                {props.track.trackTitlespan}
+              </span>
             </a>
           </div>
         </div>
