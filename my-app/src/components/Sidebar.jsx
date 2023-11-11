@@ -36,7 +36,7 @@ function Sidebar() {
       <div className="sidebar__block">
         <div className="sidebar__list">
           {playlists.map((p) => (
-            <Playlist playlist={p} />
+            <Playlist key={p.id} playlist={p} />
           ))}
         </div>
       </div>

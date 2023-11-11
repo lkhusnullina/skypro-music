@@ -1,6 +1,29 @@
 import Track from './Track'
 import './Tracklist.css'
 
+const tracks = [
+  {
+    id: 1,
+    trackName: 'Guilt',
+    trackNamelink: '#',
+    author: 'Nero',
+    authorLink: '#',
+    album: 'Welcome Reality',
+    albumLink: '#',
+    time: '4:44',
+  },
+  {
+    id: 2,
+    trackName: 'Guilt',
+    trackNamelink: '#',
+    author: 'Nero',
+    authorLink: '#',
+    album: 'Welcome Reality',
+    albumLink: '#',
+    time: '4:44',
+  },
+]
+
 function Tracklist() {
   return (
     <div className="main__centerblock centerblock">
@@ -36,7 +59,10 @@ function Tracklist() {
           </div>
         </div>
         <div className="content__playlist playlist">
-          <Track />
+          {tracks.map((t) => (
+            <Track key={t.id} track={t} />
+          ))}
+
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
