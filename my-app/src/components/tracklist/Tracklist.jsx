@@ -1,4 +1,4 @@
-import Track from './Track'
+import Track from '../track/Track'
 import './Tracklist.css'
 
 const tracks = [

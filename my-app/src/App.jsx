@@ -1,8 +1,8 @@
 import './App.css'
-import AudioPlayer from './components/AudioPlayer'
-import NavMenu from './components/NavMenu'
-import Sidebar from './components/Sidebar'
-import Tracklist from './components/Tracklist'
+import AudioPlayer from './components/player/AudioPlayer'
+import NavMenu from './components/menu/NavMenu'
+import Sidebar from './components/sidebar/Sidebar'
+import Tracklist from './components/tracklist/Tracklist'
 
 function App() {
   return (
