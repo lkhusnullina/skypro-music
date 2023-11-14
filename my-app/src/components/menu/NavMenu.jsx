@@ -18,7 +18,7 @@ function NavMenu() {
         <span className="burger__line" />
         <span className="burger__line" />
       </div>
-      <div className={isOpen ? 'nav__menu menu' : 'nav__menu__hidden'}>
+      <div className={isOpen ? 'nav__menu menu' : 'nav__menu__hidden menu'}>
         <ul className="menu__list">
           <li className="menu__item">
             <a className="menu__link" xlinkHref="#">
