@@ -23,7 +23,7 @@
 .track__title {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  /* display: flex; */
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
@@ -120,4 +120,8 @@
   line-height: 24px;
   text-align: right;
   color: #696969;
+}
+
+.skelet {
+  flex: 1;
 }

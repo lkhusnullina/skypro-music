@@ -1,7 +1,7 @@
 import './Track.css'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 function Track(props) {
@@ -25,7 +25,9 @@ function Track(props) {
           <div className="track__title-text">
             <div>
               {isLoading ? (
-                <Skeleton />
+                <div className="skelet">
+                  <Skeleton />
+                </div>
               ) : (
                 <a
                   className="track__title-link"
@@ -42,7 +44,9 @@ function Track(props) {
         </div>
         <div className="track__author">
           {isLoading ? (
-            <Skeleton />
+            <div className="skelet">
+              <Skeleton />
+            </div>
           ) : (
             <a className="track__author-link" href={props.track.authorLink}>
               {props.track.author}
@@ -51,7 +55,9 @@ function Track(props) {
         </div>
         <div className="track__album">
           {isLoading ? (
-            <Skeleton />
+            <SkeletonTheme baseColor="#202020" highlightColor="#444">
+              <Skeleton />
+            </SkeletonTheme>
           ) : (
             <a className="track__album-link" href={props.track.albumLink}>
               {props.track.album}
