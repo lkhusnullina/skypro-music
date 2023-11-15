@@ -23,7 +23,7 @@
 .track__title {
   display: -webkit-box;
   display: -ms-flexbox;
-  /* display: flex; */
+  display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
@@ -57,6 +57,10 @@
   fill: transparent;
   stroke: #4e4e4e;
 }
+
+/* .track__title-text {
+  display: flex;
+} */
 
 .track__title-link {
   font-style: normal;
@@ -124,4 +128,8 @@
 
 .skelet {
   flex: 1;
+}
+
+.skelet-author {
+  flex: 0.5;
 }

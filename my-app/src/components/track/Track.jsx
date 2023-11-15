@@ -22,25 +22,20 @@ function Track(props) {
               <use xlinkHref="img/icon/sprite.svg#icon-note" />
             </svg>
           </div>
-          <div className="track__title-text">
-            <div>
-              {isLoading ? (
-                <div className="skelet">
-                  <Skeleton />
-                </div>
-              ) : (
-                <a
-                  className="track__title-link"
-                  href={props.track.trackNamelink}
-                >
-                  {props.track.trackName}
-                  <span className="track__title-span">
-                    {props.track.trackTitlespan}
-                  </span>
-                </a>
-              )}
+          {isLoading ? (
+            <div className="skelet-author">
+              <Skeleton />
             </div>
-          </div>
+          ) : (
+            <div className="track__title-text">
+              <a className="track__title-link" href={props.track.trackNamelink}>
+                {props.track.trackName}
+                <span className="track__title-span">
+                  {props.track.trackTitlespan}
+                </span>
+              </a>
+            </div>
+          )}
         </div>
         <div className="track__author">
           {isLoading ? (
