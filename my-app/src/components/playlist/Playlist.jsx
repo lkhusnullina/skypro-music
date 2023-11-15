@@ -18,7 +18,7 @@ function Playlist(props) {
     <div className="sidebar__item">
       <a className="sidebar__link" href={props.playlist.link}>
         {isLoading ? (
-          <Skeleton />
+          <div className="skeleton__audioPlayer"></div>
         ) : (
           <img
             className="sidebar__img"

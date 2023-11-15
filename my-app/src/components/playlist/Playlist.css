@@ -16,3 +16,9 @@
   width: 100%;
   height: auto;
 }
+
+.skeleton__audioPlayer {
+  height: 150px;
+  width: 250px;
+  background: #313131;
+}
