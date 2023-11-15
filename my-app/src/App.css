@@ -105,3 +105,9 @@ body {
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
+.skeleton__audioPlayer {
+  width: 59px;
+  height: 15px;
+  background: #313131;
+}
