@@ -1,8 +1,6 @@
 import './Playlist.css'
-
 import { useState } from 'react'
 import { useEffect } from 'react'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 function Playlist(props) {
