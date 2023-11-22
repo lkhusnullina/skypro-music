@@ -1,8 +1,5 @@
-import AuthorButton from './AuthorButton'
 import './FilterBlock.css'
 import { useState } from 'react'
-import GengeButton from './GengeButton'
-import YearButton from './YearButton'
 import List from './List'
 
 const authors = [
