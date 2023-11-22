@@ -44,7 +44,7 @@
   width: 248px;
   position: absolute;
   background-color: #353333;
-  padding: 20px;
+  padding: 34px;
   border-radius: 10px;
 }
 
@@ -53,7 +53,7 @@
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 28px;
 }
 
 .popup::-webkit-scrollbar {
@@ -69,11 +69,10 @@
 }
 
 .popup-item {
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-  padding: 5px;
 }
 
 .popup-item:hover {
