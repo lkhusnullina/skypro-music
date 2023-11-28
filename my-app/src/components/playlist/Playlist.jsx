@@ -1,7 +1,7 @@
-import './Playlist.css'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import 'react-loading-skeleton/dist/skeleton.css'
+import * as S from './Playlist.styles'
 
 function Playlist(props) {
   const [isLoading, setIsLoading] = useState(true)
@@ -13,19 +13,15 @@ function Playlist(props) {
   }, [])
 
   return (
-    <div className="sidebar__item">
-      <a className="sidebar__link" href={props.playlist.link}>
+    <S.SidebarItem>
+      <S.SidebarLink href={props.playlist.link}>
         {isLoading ? (
-          <div className="skeleton__audioPlayer"></div>
+          <S.SkeletonAudioPlayer />
         ) : (
-          <img
-            className="sidebar__img"
-            src={props.playlist.img}
-            alt={props.playlist.name}
-          />
+          <S.SidebarImg src={props.playlist.img} alt={props.playlist.name} />
         )}
-      </a>
-    </div>
+      </S.SidebarLink>
+    </S.SidebarItem>
   )
 }
 
