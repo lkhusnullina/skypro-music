@@ -1,4 +1,4 @@
-import Playlist from './Playlist'
+import Playlist from '../playlist/Playlist'
 import './Sidebar.css'
 
 const playlists = [

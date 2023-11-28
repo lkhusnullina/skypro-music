@@ -1,20 +1,24 @@
 import './App.css'
-import AudioPlayer from './components/AudioPlayer'
-import NavMenu from './components/NavMenu'
-import Sidebar from './components/Sidebar'
-import Tracklist from './components/Tracklist'
+
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import AudioPlayer from './components/player/AudioPlayer'
+import NavMenu from './components/menu/NavMenu'
+import Sidebar from './components/sidebar/Sidebar'
+import Tracklist from './components/tracklist/Tracklist'
 
 function App() {
   return (
     <div className="wrapper">
       <div className="container">
-        <main className="main">
-          <NavMenu />
-          <Tracklist />
-          <Sidebar />
-        </main>
-        <AudioPlayer />
-        <footer className="footer" />
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <main className="main">
+            <NavMenu />
+            <Tracklist />
+            <Sidebar />
+          </main>
+          <AudioPlayer />
+          <footer className="footer" />
+        </SkeletonTheme>
       </div>
     </div>
   )
