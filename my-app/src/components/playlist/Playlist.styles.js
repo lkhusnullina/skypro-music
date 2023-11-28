@@ -8,7 +8,6 @@ export const SidebarItem = styled.div`
     color: red;
   }
 `
-
 export const SidebarLink = styled.a`
   width: 100%;
   height: 100%;

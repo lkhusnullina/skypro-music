@@ -1,5 +1,5 @@
 import Playlist from '../playlist/Playlist'
-import './Sidebar.css'
+import * as S from './Sidebar.styles'
 
 const playlists = [
   {
@@ -24,23 +24,23 @@ const playlists = [
 
 function Sidebar() {
   return (
-    <div className="main__sidebar sidebar">
-      <div className="sidebar__personal">
-        <p className="sidebar__personal-name">Sergey.Ivanov</p>
-        <div className="sidebar__icon">
+    <S.MainSidebar>
+      <S.SidebarPersonal>
+        <S.SidebarName>Sergey.Ivanov</S.SidebarName>
+        <S.SidebarIcon>
           <svg alt="logout">
             <use xlinkHref="img/icon/sprite.svg#logout" />
           </svg>
-        </div>
-      </div>
-      <div className="sidebar__block">
-        <div className="sidebar__list">
+        </S.SidebarIcon>
+      </S.SidebarPersonal>
+      <S.SidebarBlock>
+        <S.SidebarList>
           {playlists.map((p) => (
             <Playlist key={p.id} playlist={p} />
           ))}
-        </div>
-      </div>
-    </div>
+        </S.SidebarList>
+      </S.SidebarBlock>
+    </S.MainSidebar>
   )
 }
 
