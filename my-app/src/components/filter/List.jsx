@@ -1,15 +1,15 @@
+import * as S from './List.styles'
+
 function List({ items }) {
   const list = items.map((item) => (
-    <li className="popup-item" key={item.id}>
-      {item.name}
-    </li>
+    <S.PopupItem key={item.id}>{item.name}</S.PopupItem>
   ))
   return (
-    <div className="popupBlock">
-      <div className="popupContainer">
-        <ul className="popup">{list}</ul>
-      </div>
-    </div>
+    <S.PopupBlock>
+      <S.PopupContainer>
+        <S.Popup>{list}</S.Popup>
+      </S.PopupContainer>
+    </S.PopupBlock>
   )
 }
 
