@@ -49,6 +49,11 @@ export const GlobalStyle = createGlobalStyle`
     color: #ffffff;
     }
 
+    code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+    }
+
     ._btn-text:hover {
     border-color: #d9b6ff;
     color: #d9b6ff;

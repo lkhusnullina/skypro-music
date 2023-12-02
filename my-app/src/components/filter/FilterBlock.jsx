@@ -1,7 +1,7 @@
 import './FilterBlock.css'
 import { useState } from 'react'
-import List from './List'
-import styled from 'styled-components'
+import List from '../listFilter/List'
+import * as S from './FilterBlock.styles'
 
 const authors = [
   {
@@ -60,27 +60,6 @@ const genres = [
   },
 ]
 
-const StyledCentralblockFilter = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 51px;
-`
-const StyledFilterTitle = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  margin-right: 15px;
-`
-
 function FilterBlock() {
   const [visibleFilter, setVisibleFilter] = useState(null)
   const toggleVisibleFilter = (filter) => {
@@ -88,8 +67,8 @@ function FilterBlock() {
   }
 
   return (
-    <StyledCentralblockFilter>
-      <StyledFilterTitle>Искать по:</StyledFilterTitle>
+    <S.CentralblockFilter>
+      <S.FilterTitle>Искать по:</S.FilterTitle>
       <div
         className="filter__button button-author _btn-text"
         onClick={() => toggleVisibleFilter('author')}
@@ -112,7 +91,7 @@ function FilterBlock() {
         жанру
       </div>
       {visibleFilter === 'genre' && <List items={genres}></List>}
-    </StyledCentralblockFilter>
+    </S.CentralblockFilter>
   )
 }
 
