@@ -1,6 +1,5 @@
 import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
-import './Tracklist.css'
 import * as S from './Tracklist.styles'
 
 const tracks = [
@@ -110,14 +109,14 @@ function Tracklist() {
       <FilterBlock />
       <S.CenterblockContent>
         <S.ContentTitle>
-          <div className="playlist-title__col col01">Трек</div>
-          <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-          <div className="playlist-title__col col03">АЛЬБОМ</div>
-          <div className="playlist-title__col col04">
+          <S.Col01 className="playlist-title__col col01">Трек</S.Col01>
+          <S.Col02 className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</S.Col02>
+          <S.Col03 className="playlist-title__col col03">АЛЬБОМ</S.Col03>
+          <S.Col04 className="playlist-title__col col04">
             <S.PlaylistTitleSvg alt="time">
               <use xlinkHref="img/icon/sprite.svg#icon-watch" />
             </S.PlaylistTitleSvg>
-          </div>
+          </S.Col04>
         </S.ContentTitle>
         <S.ContentPlaylist>
           {tracks.map((t) => (

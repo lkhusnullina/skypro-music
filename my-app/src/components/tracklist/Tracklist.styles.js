@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const MainCenterblock = styled.div`
   width: auto;
@@ -119,7 +119,7 @@ export const ContentPlaylist = styled.div`
   flex-direction: column;
   overflow-y: auto;
 `
-export const PlaylistTitleCol = styled.div`
+const PlaylistTitleColMixin = css`
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -133,4 +133,22 @@ export const PlaylistTitleSvg = styled.svg`
   height: 12px;
   fill: transparent;
   stroke: #696969;
+`
+
+export const Col01 = styled.div`
+  ${PlaylistTitleColMixin}
+  width: 447px;
+`
+export const Col02 = styled.div`
+  ${PlaylistTitleColMixin}
+  width: 321px;
+`
+export const Col03 = styled.div`
+  ${PlaylistTitleColMixin}
+  width: 245px;
+`
+export const Col04 = styled.div`
+  ${PlaylistTitleColMixin}
+  width: 60px;
+  text-align: end;
 `
