@@ -1,5 +1,14 @@
 import styled, { css } from 'styled-components'
 
+const PlaylistTitleColMixin = css`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  color: #696969;
+  text-transform: uppercase;
+`
 export const MainCenterblock = styled.div`
   width: auto;
   -webkit-box-flex: 3;
@@ -119,15 +128,7 @@ export const ContentPlaylist = styled.div`
   flex-direction: column;
   overflow-y: auto;
 `
-const PlaylistTitleColMixin = css`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 2px;
-  color: #696969;
-  text-transform: uppercase;
-`
+
 export const PlaylistTitleSvg = styled.svg`
   width: 12px;
   height: 12px;

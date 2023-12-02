@@ -3,48 +3,12 @@
 .player__btn-next,
 .player__btn-repeat,
 .player__btn-shuffle {
-  padding: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.player__btn-play {
-  margin-right: 23px;
-}
-
-.player__btn-repeat {
-  margin-right: 24px;
-}
-
-.player__btn-repeat-svg {
-}
-
-.player__btn-shuffle {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.track-play__like,
-.track-play__dislike {
-  padding: 5px;
-}
-
-.track-play__dislike {
-  margin-left: 28.5px;
 }
 
 /* .volume__progress {
   обрати внимание на второй класс работа не завершена по этому эелементу и остальным
 } */
 
-.volume__progress-line {
+/* .volume__progress-line {
   width: 109px;
-}
+} */

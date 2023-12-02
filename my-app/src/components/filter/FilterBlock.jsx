@@ -1,4 +1,3 @@
-import './FilterBlock.css'
 import { useState } from 'react'
 import List from '../listFilter/List'
 import * as S from './FilterBlock.styles'
@@ -69,27 +68,27 @@ function FilterBlock() {
   return (
     <S.CentralblockFilter>
       <S.FilterTitle>Искать по:</S.FilterTitle>
-      <div
+      <S.FilterButton
         className="filter__button button-author _btn-text"
         onClick={() => toggleVisibleFilter('author')}
       >
         исполнителю
-      </div>
+      </S.FilterButton>
       {visibleFilter === 'author' && <List items={authors}></List>}
-      <div
+      <S.FilterButton
         className="filter__button button-year _btn-text"
         onClick={() => toggleVisibleFilter('year')}
       >
         году выпуска
-      </div>
+      </S.FilterButton>
       {visibleFilter === 'year' && <List items={years}></List>}
 
-      <div
+      <S.FilterButton
         className="filter__button button-genre _btn-text"
         onClick={() => toggleVisibleFilter('genre')}
       >
         жанру
-      </div>
+      </S.FilterButton>
       {visibleFilter === 'genre' && <List items={genres}></List>}
     </S.CentralblockFilter>
   )
