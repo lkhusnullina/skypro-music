@@ -200,7 +200,40 @@ const StyledVolumeSvg = styled.div`
 const StyledVolumeProgress = styled.div`
   width: 109px;
 `
-// const Styled = styled.div``
+const StyledPlayerBtnPrev = styled.div`
+  margin-right: 23px;
+`
+const StyledPlayerBtnPrevSvg = styled.svg`
+  width: 15px;
+  height: 14px;
+`
+const StyledPlayerBtnPlaySvg = styled.svg`
+  width: 22px;
+  height: 20px;
+  fill: #d9d9d9;
+`
+const StyledPlayerBtnNext = styled.div`
+  margin-right: 28px;
+  fill: #a53939;
+`
+const StyledPlayerBtnNextSvg = styled.svg`
+  width: 15px;
+  height: 14px;
+  fill: inherit;
+  stroke: #d9d9d9;
+`
+const StyledPlayerBtnRepeatSvg = styled.svg`
+  width: 18px;
+  height: 12px;
+  fill: transparent;
+  stroke: #696969;
+`
+const StyledPlayerBtnShuffleSvg = styled.svg`
+  width: 19px;
+  height: 12px;
+  fill: transparent;
+  stroke: #696969;
+`
 
 function AudioPlayer() {
   const [isLoading, setIsLoading] = useState(true)
@@ -218,30 +251,30 @@ function AudioPlayer() {
         <StyledBarPlayerBlock>
           <StyledBarPlayer>
             <StyledPlayerControls>
-              <div className="player__btn-prev">
-                <svg className="player__btn-prev-svg" alt="prev">
+              <StyledPlayerBtnPrev>
+                <StyledPlayerBtnPrevSvg alt="prev">
                   <use xlinkHref="img/icon/sprite.svg#icon-prev" />
-                </svg>
-              </div>
+                </StyledPlayerBtnPrevSvg>
+              </StyledPlayerBtnPrev>
               <div className="player__btn-play _btn">
-                <svg className="player__btn-play-svg" alt="play">
+                <StyledPlayerBtnPlaySvg alt="play">
                   <use xlinkHref="img/icon/sprite.svg#icon-play" />
-                </svg>
+                </StyledPlayerBtnPlaySvg>
               </div>
-              <div className="player__btn-next">
-                <svg className="player__btn-next-svg" alt="next">
+              <StyledPlayerBtnNext>
+                <StyledPlayerBtnNextSvg alt="next">
                   <use xlinkHref="img/icon/sprite.svg#icon-next" />
-                </svg>
-              </div>
+                </StyledPlayerBtnNextSvg>
+              </StyledPlayerBtnNext>
               <div className="player__btn-repeat _btn-icon">
-                <svg className="player__btn-repeat-svg" alt="repeat">
+                <StyledPlayerBtnRepeatSvg alt="repeat">
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
-                </svg>
+                </StyledPlayerBtnRepeatSvg>
               </div>
               <div className="player__btn-shuffle _btn-icon">
-                <svg className="player__btn-shuffle-svg" alt="shuffle">
+                <StyledPlayerBtnShuffleSvg alt="shuffle">
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
-                </svg>
+                </StyledPlayerBtnShuffleSvg>
               </div>
             </StyledPlayerControls>
             <StyledPlayerTrackPlay>

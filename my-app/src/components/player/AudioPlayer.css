@@ -1,24 +1,3 @@
-.bar {
-}
-
-.bar__content {
-}
-
-.bar__player-progress {
-}
-
-.bar__player-block {
-}
-
-.bar__player {
-}
-
-.bar__volume-block {
-}
-
-.player__controls {
-}
-
 .player__btn-prev,
 .player__btn-play,
 .player__btn-next,
@@ -33,35 +12,8 @@
   align-items: center;
 }
 
-.player__btn-prev {
-  margin-right: 23px;
-}
-
-.player__btn-prev-svg {
-  width: 15px;
-  height: 14px;
-}
-
 .player__btn-play {
   margin-right: 23px;
-}
-
-.player__btn-play-svg {
-  width: 22px;
-  height: 20px;
-  fill: #d9d9d9;
-}
-
-.player__btn-next {
-  margin-right: 28px;
-  fill: #a53939;
-}
-
-.player__btn-next-svg {
-  width: 15px;
-  height: 14px;
-  fill: inherit;
-  stroke: #d9d9d9;
 }
 
 .player__btn-repeat {
@@ -69,10 +21,6 @@
 }
 
 .player__btn-repeat-svg {
-  width: 18px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
 }
 
 .player__btn-shuffle {
@@ -84,62 +32,13 @@
   align-items: center;
 }
 
-.player__btn-shuffle-svg {
-  width: 19px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
-}
-
-.player__track-play {
-}
-
-.track-play__contain {
-}
-
-.track-play__image {
-}
-
-.track-play__svg {
-}
-
-.track-play__author {
-}
-
-.track-play__author-link {
-}
-
-.track-play__album {
-}
-
-.track-play__album-link {
-}
-
-.track-play__like-dis {
-}
-
 .track-play__like,
 .track-play__dislike {
   padding: 5px;
 }
 
-.track-play__like-svg {
-}
-
 .track-play__dislike {
   margin-left: 28.5px;
-}
-
-.track-play__dislike-svg {
-}
-
-.volume__content {
-}
-
-.volume__image {
-}
-
-.volume__svg {
 }
 
 /* .volume__progress {
