@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import List from '../listFilter/List'
 import * as S from './FilterBlock.styles'
+import { BtnText } from '../../App.styles'
 
 const authors = [
   {
@@ -68,27 +69,18 @@ function FilterBlock() {
   return (
     <S.CentralblockFilter>
       <S.FilterTitle>Искать по:</S.FilterTitle>
-      <S.FilterButton
-        className="filter__button button-author _btn-text"
-        onClick={() => toggleVisibleFilter('author')}
-      >
+      <BtnText onClick={() => toggleVisibleFilter('author')}>
         исполнителю
-      </S.FilterButton>
+      </BtnText>
       {visibleFilter === 'author' && <List items={authors}></List>}
-      <S.FilterButton
-        className="filter__button button-year _btn-text"
-        onClick={() => toggleVisibleFilter('year')}
-      >
+      <BtnText onClick={() => toggleVisibleFilter('year')}>
         году выпуска
-      </S.FilterButton>
+      </BtnText>
       {visibleFilter === 'year' && <List items={years}></List>}
 
-      <S.FilterButton
-        className="filter__button button-genre _btn-text"
-        onClick={() => toggleVisibleFilter('genre')}
-      >
+      <BtnText onClick={() => toggleVisibleFilter('genre')}>
         жанру
-      </S.FilterButton>
+      </BtnText>
       {visibleFilter === 'genre' && <List items={genres}></List>}
     </S.CentralblockFilter>
   )

@@ -6,6 +6,8 @@ import {
   TrackPlayDislike,
 } from './components/player/AudioPlayer.styles'
 
+import { FilterButton } from './components/filter/FilterBlock.styles'
+
 export const GlobalStyle = createGlobalStyle`
   * {
   margin: 0;
@@ -27,8 +29,7 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     }
 
-    button,
-    ._btn {
+    button {
     cursor: pointer;
     }
 
@@ -60,11 +61,11 @@ export const GlobalStyle = createGlobalStyle`
     monospace;
     }
 
-    ._btn-text:hover {
+    /* ._btn-text:hover {
     border-color: #d9b6ff;
     color: #d9b6ff;
     cursor: pointer;
-    }
+    } */
 
     /* ._btn-icon:hover svg {
     fill: transparent;
@@ -72,11 +73,11 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     } */
 
-    ._btn-text:active {
+    /* ._btn-text:active {
     border-color: #ad61ff;
     color: #ad61ff;
     cursor: pointer;
-    }
+    } */
 
     /* ._btn-icon:active svg {
     fill: transparent;
@@ -109,23 +110,17 @@ export const BtnIcon = styled(PlayerBtnRepeat,PlayerBtnShuffle,TrackPlayLike,Tra
     cursor: pointer;
   }
 `
-export const BtnText = styled(PlayerBtnRepeat,PlayerBtnShuffle,TrackPlayLike,TrackPlayDislike)`
-  &:hover svg {
-    fill: transparent;
-    stroke: #acacac;
+export const BtnText = styled(FilterButton)`
+  &:hover {
+    border-color: #d9b6ff;
+    color: #d9b6ff;
     cursor: pointer;
   }
-  &:active svg {
-    fill: transparent;
-    stroke: #ffffff;
+  ._btn-text:active {
+    border-color: #ad61ff;
+    color: #ad61ff;
     cursor: pointer;
-  }
-
-  &:active {
-    fill: #696969;
-    stroke: #ffffff;
-    cursor: pointer;
-  }
+    }
 `
 
 export const Wrapper = styled.div`
