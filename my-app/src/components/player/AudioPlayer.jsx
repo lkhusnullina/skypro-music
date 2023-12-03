@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayer.styles'
+import { BtnIcon } from '../../App.styles'
 
 function AudioPlayer() {
   const [isLoading, setIsLoading] = useState(true)
@@ -35,16 +36,30 @@ function AudioPlayer() {
                   <use xlinkHref="img/icon/sprite.svg#icon-next" />
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtnNext>
-              <S.PlayerBtnRepeat className="player__btn-repeat _btn-icon">
+
+              {/* <S.PlayerBtnRepeat className="player__btn-repeat _btn-icon">
                 <S.PlayerBtnRepeatSvg alt="repeat">
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
                 </S.PlayerBtnRepeatSvg>
-              </S.PlayerBtnRepeat>
-              <S.PlayerBtnShuffle className="player__btn-shuffle _btn-icon">
+              </S.PlayerBtnRepeat> */}
+
+              <BtnIcon>
+                <S.PlayerBtnRepeatSvg alt="repeat">
+                  <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+                </S.PlayerBtnRepeatSvg>
+              </BtnIcon>
+
+              {/* <S.PlayerBtnShuffle className="player__btn-shuffle _btn-icon">
                 <S.PlayerBtnShuffleSvg alt="shuffle">
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
                 </S.PlayerBtnShuffleSvg>
-              </S.PlayerBtnShuffle>
+              </S.PlayerBtnShuffle> */}
+
+              <BtnIcon>
+                <S.PlayerBtnShuffleSvg alt="shuffle">
+                  <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
+                </S.PlayerBtnShuffleSvg>
+              </BtnIcon>
             </S.PlayerControls>
             <S.PlayerTrackPlay>
               <S.TrackPlayContain>
@@ -78,16 +93,30 @@ function AudioPlayer() {
               </S.TrackPlayContain>
 
               <S.TrackPlayLikeDis>
-                <S.TrackPlayLike className="track-play__like _btn-icon">
+                {/* <S.TrackPlayLike className="track-play__like _btn-icon">
                   <S.TrackPlayLikeSvg alt="like">
                     <use xlinkHref="img/icon/sprite.svg#icon-like" />
                   </S.TrackPlayLikeSvg>
-                </S.TrackPlayLike>
-                <S.TrackPlayDislike className="track-play__dislike _btn-icon">
+                </S.TrackPlayLike> */}
+
+                <BtnIcon>
+                  <S.TrackPlayLikeSvg alt="like">
+                    <use xlinkHref="img/icon/sprite.svg#icon-like" />
+                  </S.TrackPlayLikeSvg>
+                </BtnIcon>
+
+                {/* <S.TrackPlayDislike className="track-play__dislike _btn-icon">
                   <S.TrackPlayDislikeSvg alt="dislike">
                     <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
                   </S.TrackPlayDislikeSvg>
-                </S.TrackPlayDislike>
+                </S.TrackPlayDislike> */}
+
+                <BtnIcon>
+                  <S.TrackPlayDislikeSvg alt="dislike">
+                    <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
+                  </S.TrackPlayDislikeSvg>
+                </BtnIcon>
+
               </S.TrackPlayLikeDis>
             </S.PlayerTrackPlay>
           </S.BarPlayer>

@@ -1,4 +1,10 @@
 import styled, { createGlobalStyle } from 'styled-components'
+import {
+  PlayerBtnRepeat,
+  PlayerBtnShuffle,
+  TrackPlayLike,
+  TrackPlayDislike,
+} from './components/player/AudioPlayer.styles'
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -60,11 +66,11 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     }
 
-    ._btn-icon:hover svg {
+    /* ._btn-icon:hover svg {
     fill: transparent;
     stroke: #acacac;
     cursor: pointer;
-    }
+    } */
 
     ._btn-text:active {
     border-color: #ad61ff;
@@ -72,19 +78,38 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     }
 
-    ._btn-icon:active svg {
+    /* ._btn-icon:active svg {
     fill: transparent;
     stroke: #ffffff;
     cursor: pointer;
-    }
+    } */
 
-    ._btn-icon:active .track-play__like-svg,
+    /* ._btn-icon:active .track-play__like-svg,
     ._btn-icon:active .track-play__dislike-svg {
     fill: #696969;
     stroke: #ffffff;
     cursor: pointer;
-    }
+    } */
 `
+export const BtnIcon = styled(PlayerBtnRepeat,PlayerBtnShuffle,TrackPlayLike,TrackPlayDislike,)`
+  &:hover svg {
+    fill: transparent;
+    stroke: #acacac;
+    cursor: pointer;
+  }
+  &:active svg {
+    fill: transparent;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+
+  &:active {
+    fill: #696969;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+`
+
 export const Wrapper = styled.div`
   width: 100%;
   min-height: 100%;
