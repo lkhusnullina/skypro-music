@@ -91,7 +91,25 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     } */
 `
-export const BtnIcon = styled(PlayerBtnRepeat,PlayerBtnShuffle,TrackPlayLike,TrackPlayDislike,)`
+export const BtnIcon = styled(PlayerBtnRepeat,PlayerBtnShuffle,TrackPlayLike,TrackPlayDislike)`
+  &:hover svg {
+    fill: transparent;
+    stroke: #acacac;
+    cursor: pointer;
+  }
+  &:active svg {
+    fill: transparent;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+
+  &:active {
+    fill: #696969;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+`
+export const BtnText = styled(PlayerBtnRepeat,PlayerBtnShuffle,TrackPlayLike,TrackPlayDislike)`
   &:hover svg {
     fill: transparent;
     stroke: #acacac;

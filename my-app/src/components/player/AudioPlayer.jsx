@@ -26,7 +26,7 @@ function AudioPlayer() {
                   <use xlinkHref="img/icon/sprite.svg#icon-prev" />
                 </S.PlayerBtnPrevSvg>
               </S.PlayerBtnPrev>
-              <S.PlayerBtnPlay className="player__btn-play _btn">
+              <S.PlayerBtnPlay>
                 <S.PlayerBtnPlaySvg alt="play">
                   <use xlinkHref="img/icon/sprite.svg#icon-play" />
                 </S.PlayerBtnPlaySvg>
@@ -36,25 +36,11 @@ function AudioPlayer() {
                   <use xlinkHref="img/icon/sprite.svg#icon-next" />
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtnNext>
-
-              {/* <S.PlayerBtnRepeat className="player__btn-repeat _btn-icon">
-                <S.PlayerBtnRepeatSvg alt="repeat">
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
-                </S.PlayerBtnRepeatSvg>
-              </S.PlayerBtnRepeat> */}
-
               <BtnIcon>
                 <S.PlayerBtnRepeatSvg alt="repeat">
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
                 </S.PlayerBtnRepeatSvg>
               </BtnIcon>
-
-              {/* <S.PlayerBtnShuffle className="player__btn-shuffle _btn-icon">
-                <S.PlayerBtnShuffleSvg alt="shuffle">
-                  <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
-                </S.PlayerBtnShuffleSvg>
-              </S.PlayerBtnShuffle> */}
-
               <BtnIcon>
                 <S.PlayerBtnShuffleSvg alt="shuffle">
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
@@ -93,30 +79,16 @@ function AudioPlayer() {
               </S.TrackPlayContain>
 
               <S.TrackPlayLikeDis>
-                {/* <S.TrackPlayLike className="track-play__like _btn-icon">
-                  <S.TrackPlayLikeSvg alt="like">
-                    <use xlinkHref="img/icon/sprite.svg#icon-like" />
-                  </S.TrackPlayLikeSvg>
-                </S.TrackPlayLike> */}
-
                 <BtnIcon>
                   <S.TrackPlayLikeSvg alt="like">
                     <use xlinkHref="img/icon/sprite.svg#icon-like" />
                   </S.TrackPlayLikeSvg>
                 </BtnIcon>
-
-                {/* <S.TrackPlayDislike className="track-play__dislike _btn-icon">
-                  <S.TrackPlayDislikeSvg alt="dislike">
-                    <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
-                  </S.TrackPlayDislikeSvg>
-                </S.TrackPlayDislike> */}
-
                 <BtnIcon>
                   <S.TrackPlayDislikeSvg alt="dislike">
                     <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
                   </S.TrackPlayDislikeSvg>
                 </BtnIcon>
-
               </S.TrackPlayLikeDis>
             </S.PlayerTrackPlay>
           </S.BarPlayer>
@@ -127,12 +99,8 @@ function AudioPlayer() {
                   <use xlinkHref="img/icon/sprite.svg#icon-volume" />
                 </S.VolumeSvg>
               </S.VolumeImage>
-              <S.VolumeProgress className="volume__progress _btn">
-                <S.VolumeProgressLine
-                  className="volume__progress-line _btn"
-                  type="range"
-                  name="range"
-                />
+              <S.VolumeProgress>
+                <S.VolumeProgressLine type="range" name="range"/>
               </S.VolumeProgress>
             </S.VolumeContent>
           </S.BarVolumeBlock>

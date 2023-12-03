@@ -210,10 +210,12 @@ export const VolumeSvg = styled.div`
   fill: transparent;
 `
 export const VolumeProgress = styled.div`
+  cursor: pointer;
   width: 109px;
 `
 
 export const VolumeProgressLine = styled.input`
+  cursor: pointer;
   width: 109px;
 `
 export const PlayerBtnPrev = styled.div`
@@ -225,6 +227,7 @@ export const PlayerBtnPrevSvg = styled.svg`
   height: 14px;
 `
 export const PlayerBtnPlay = styled.div`
+    cursor: pointer;
   margin-right: 23px;
   ${PlayerBtnMixin}
 `
