@@ -69,16 +69,16 @@ function FilterBlock() {
   return (
     <S.CentralblockFilter>
       <S.FilterTitle>Искать по:</S.FilterTitle>
-      <BtnText onClick={() => toggleVisibleFilter('author')}>
+      <BtnText onClick={() => toggleVisibleFilter('author')} isActive={visibleFilter === 'author'}>
         исполнителю
-      </BtnText>
+      </BtnText> 
       {visibleFilter === 'author' && <List items={authors}></List>}
-      <BtnText onClick={() => toggleVisibleFilter('year')}>
+      <BtnText onClick={() => toggleVisibleFilter('year')} isActive={visibleFilter === 'year'}>
         году выпуска
       </BtnText>
       {visibleFilter === 'year' && <List items={years}></List>}
 
-      <BtnText onClick={() => toggleVisibleFilter('genre')}>
+      <BtnText onClick={() => toggleVisibleFilter('genre')} isActive={visibleFilter === 'genre'}>
         жанру
       </BtnText>
       {visibleFilter === 'genre' && <List items={genres}></List>}

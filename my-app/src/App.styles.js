@@ -111,16 +111,18 @@ export const BtnIcon = styled(PlayerBtnRepeat,PlayerBtnShuffle,TrackPlayLike,Tra
   }
 `
 export const BtnText = styled(FilterButton)`
+    border-color: ${props => props.isActive ? "#AD61FF" : '#FFFFFF'};
+    color: ${(props) => (props.isActive ? "#AD61FF" : "#FFFFFF")};
   &:hover {
     border-color: #d9b6ff;
     color: #d9b6ff;
     cursor: pointer;
   }
-  ._btn-text:active {
-    border-color: #ad61ff;
-    color: #ad61ff;
+  &:active {
+    border-color: ${props => props.isActive ? "#AD61FF" : "#d9b6ff"};
+    color: ${props => props.isActive ? "#AD61FF" : "#d9b6ff"};
     cursor: pointer;
-    }
+  }
 `
 
 export const Wrapper = styled.div`
