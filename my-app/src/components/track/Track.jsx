@@ -1,8 +1,8 @@
-import './Track.css'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import * as S from './Track.styles'
 
 function Track(props) {
   const [isLoading, setIsLoading] = useState(true)
@@ -14,63 +14,63 @@ function Track(props) {
   }, [])
 
   return (
-    <div className="playlist__item" key={props.track.id}>
-      <div className="playlist__track track">
-        <div className="track__title">
-          <div className="track__title-image">
-            <svg className="track__title-svg" alt="music">
+    <S.PlaylistItem key={props.track.id}>
+      <S.PlaylistTrack>
+        <S.TrackTitle>
+          <S.TrackTitleImage>
+            <S.TrackTitleSvg alt="music">
               <use xlinkHref="img/icon/sprite.svg#icon-note" />
-            </svg>
-          </div>
+            </S.TrackTitleSvg>
+          </S.TrackTitleImage>
           {isLoading ? (
-            <div className="skelet-author">
+            <S.SkeletAuthor>
               <Skeleton />
-            </div>
+            </S.SkeletAuthor>
           ) : (
-            <div className="track__title-text">
-              <a className="track__title-link" href={props.track.trackNamelink}>
+            <div>
+              <S.TrackTitleLink href={props.track.trackNamelink}>
                 {props.track.trackName}
-                <span className="track__title-span">
+                <S.TrackTitleSpan>
                   {props.track.trackTitlespan}
-                </span>
-              </a>
+                </S.TrackTitleSpan>
+              </S.TrackTitleLink>
             </div>
           )}
-        </div>
-        <div className="track__author">
+        </S.TrackTitle>
+        <S.TrackAuthor>
           {isLoading ? (
-            <div className="skelet">
+            <S.SkeletBlock>
               <Skeleton />
-            </div>
+            </S.SkeletBlock>
           ) : (
-            <a className="track__author-link" href={props.track.authorLink}>
+            <S.TrackAuthorLink href={props.track.authorLink}>
               {props.track.author}
-            </a>
+            </S.TrackAuthorLink>
           )}
-        </div>
-        <div className="track__album">
+        </S.TrackAuthor>
+        <S.TrackAlbum>
           {isLoading ? (
             <SkeletonTheme baseColor="#202020" highlightColor="#444">
               <Skeleton />
             </SkeletonTheme>
           ) : (
-            <a className="track__album-link" href={props.track.albumLink}>
+            <S.TrackAlbumLink href={props.track.albumLink}>
               {props.track.album}
-            </a>
+            </S.TrackAlbumLink>
           )}
-        </div>
-        <div className="track__time">
-          <svg className="track__time-svg" alt="time">
+        </S.TrackAlbum>
+        <div>
+          <S.TrackTimeSvg alt="time">
             <use xlinkHref="img/icon/sprite.svg#icon-like" />
-          </svg>
+          </S.TrackTimeSvg>
           {isLoading ? (
-            <span className="track__time-text">0:00</span>
+            <S.TrackTimeText>0:00</S.TrackTimeText>
           ) : (
-            <span className="track__time-text">{props.track.time}</span>
+            <S.TrackTimeText>{props.track.time}</S.TrackTimeText>
           )}
         </div>
-      </div>
-    </div>
+      </S.PlaylistTrack>
+    </S.PlaylistItem>
   )
 }
 

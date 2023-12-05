@@ -1,6 +1,7 @@
-import './FilterBlock.css'
 import { useState } from 'react'
-import List from './List'
+import List from '../listFilter/List'
+import * as S from './FilterBlock.styles'
+import { BtnText } from '../../App.styles'
 
 const authors = [
   {
@@ -66,31 +67,22 @@ function FilterBlock() {
   }
 
   return (
-    <div className="centerblock__filter filter">
-      <div className="filter__title">Искать по:</div>
-      <div
-        className="filter__button button-author _btn-text"
-        onClick={() => toggleVisibleFilter('author')}
-      >
+    <S.CentralblockFilter>
+      <S.FilterTitle>Искать по:</S.FilterTitle>
+      <BtnText onClick={() => toggleVisibleFilter('author')} isActive={visibleFilter === 'author'}>
         исполнителю
-      </div>
+      </BtnText> 
       {visibleFilter === 'author' && <List items={authors}></List>}
-      <div
-        className="filter__button button-year _btn-text"
-        onClick={() => toggleVisibleFilter('year')}
-      >
+      <BtnText onClick={() => toggleVisibleFilter('year')} isActive={visibleFilter === 'year'}>
         году выпуска
-      </div>
+      </BtnText>
       {visibleFilter === 'year' && <List items={years}></List>}
 
-      <div
-        className="filter__button button-genre _btn-text"
-        onClick={() => toggleVisibleFilter('genre')}
-      >
+      <BtnText onClick={() => toggleVisibleFilter('genre')} isActive={visibleFilter === 'genre'}>
         жанру
-      </div>
+      </BtnText>
       {visibleFilter === 'genre' && <List items={genres}></List>}
-    </div>
+    </S.CentralblockFilter>
   )
 }
 
