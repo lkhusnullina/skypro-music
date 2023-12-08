@@ -1,4 +1,4 @@
-export const CategoryPage = () => {
+export const PlaylistPage = () => {
     return (
         <div>
             <h1>playlist</h1>
