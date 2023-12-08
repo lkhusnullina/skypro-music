@@ -5,6 +5,8 @@ import AudioPlayer from './components/player/AudioPlayer'
 import NavMenu from './components/menu/NavMenu'
 import Sidebar from './components/sidebar/Sidebar'
 import Tracklist from './components/tracklist/Tracklist'
+import { AppRoutes } from './routes'
+import { NavBar } from './components/nav-bar'
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <S.GlobalStyle />
       <S.Wrapper>
         <S.Container>
+          <NavBar></NavBar>
+          <AppRoutes/>
           <SkeletonTheme baseColor="#202020" highlightColor="#444">
             <S.Main>
               <NavMenu />
