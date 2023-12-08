@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { MainPage } from "./pages/main/MainPage";
-import { About } from "./pages/about";
+import { PlaylistPage } from "./pages/favorites/PlaylistPage";
 import { NotFound } from "./pages/not-found";
 
 export const AppRoutes = () => {
@@ -8,7 +8,7 @@ export const AppRoutes = () => {
         <Routes>
             <Route path="/" element={<MainPage/>}/> 
             {/* Внимательно смотри адрес */}
-            <Route path="/about" element={<About/>}/>
+            <Route path="/favorites" element={<PlaylistPage/>}/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     )

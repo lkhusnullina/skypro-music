@@ -11,7 +11,7 @@ function App() {
       <S.Wrapper>
         <S.Container>
           <SkeletonTheme baseColor="#202020" highlightColor="#444">
-          <NavBar></NavBar>
+          {/* <NavBar></NavBar> */}
           <AppRoutes/>
           </SkeletonTheme>
         </S.Container>
