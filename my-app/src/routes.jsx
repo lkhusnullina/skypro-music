@@ -21,6 +21,7 @@ export const AppRoutes = ({ user }) => {
                     </ProtectedRoute>
                 }
             />
+            <Route path="/login" element={<LoginPage/>}/>
             <Route path="/registration" element={<RegistationPage/>}/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
