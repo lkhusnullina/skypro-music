@@ -8,10 +8,10 @@ function OpenMenu({ isOpen }) {
       <S.MenuNav>
         <S.MenuList>
           <S.MenuItem>
-            <Link to="/"><S.MenuLink>Главное</S.MenuLink></Link>
+            <S.MenuLink to="/">Главное</S.MenuLink>
           </S.MenuItem>
           <S.MenuItem>
-            <Link to="/favorites"><S.MenuLink>Мой плейлист</S.MenuLink></Link> 
+            <S.MenuLink to="/favorites">Мой плейлист</S.MenuLink>
           </S.MenuItem>
           <S.MenuItem>
             <S.MenuLink to="../signin.html">Войти</S.MenuLink>

@@ -1,24 +1,25 @@
 import Playlist from '../playlist/Playlist'
 import * as S from './Sidebar.styles'
+import { Categories } from '../../constans.js'
 
 const playlists = [
   {
     id: 1,
     name: `day's playlist`,
     img: 'img/playlist01.png',
-    link: '#',
+    link: '/category',
   },
   {
     id: 2,
     name: `day's playlist`,
     img: 'img/playlist02.png',
-    link: '#',
+    link: '/category',
   },
   {
     id: 3,
     name: `day's playlist`,
     img: 'img/playlist03.png',
-    link: '#',
+    link: '/category',
   },
 ]
 
@@ -35,8 +36,8 @@ function Sidebar() {
       </S.SidebarPersonal>
       <S.SidebarBlock>
         <S.SidebarList>
-          {playlists.map((p) => (
-            <Playlist key={p.id} playlist={p} />
+          {Categories.map((category) => (
+            <Playlist key={category.id} category={category} />
           ))}
         </S.SidebarList>
       </S.SidebarBlock>

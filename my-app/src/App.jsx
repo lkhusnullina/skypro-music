@@ -1,8 +1,6 @@
-// import './App.css'
 import { SkeletonTheme } from 'react-loading-skeleton'
 import * as S from './App.styles'
 import { AppRoutes } from './routes'
-import { NavBar } from './components/nav-bar'
 
 function App() {
   return (
@@ -11,7 +9,6 @@ function App() {
       <S.Wrapper>
         <S.Container>
           <SkeletonTheme baseColor="#202020" highlightColor="#444">
-          {/* <NavBar></NavBar> */}
           <AppRoutes/>
           </SkeletonTheme>
         </S.Container>

@@ -14,11 +14,11 @@ function Playlist(props) {
 
   return (
     <S.SidebarItem>
-      <S.SidebarLink href={props.playlist.link}>
+      <S.SidebarLink id={props.category.id} to={`/category/${props.category.id}`} >
         {isLoading ? (
           <S.SkeletonAudioPlayer />
         ) : (
-          <S.SidebarImg src={props.playlist.img} alt={props.playlist.name} />
+          <S.SidebarImg src={props.category.img} alt={props.category.name} />
         )}
       </S.SidebarLink>
     </S.SidebarItem>
