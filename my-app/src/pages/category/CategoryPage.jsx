@@ -1,8 +1,6 @@
 import { Categories } from '../../constans.js'
 import { useParams } from "react-router-dom";
 
-
-
 export const CategoryPage = () => {
 
     const params = useParams();
