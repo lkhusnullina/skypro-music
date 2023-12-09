@@ -7,7 +7,7 @@ export const LoginPage = () => {
             <h1>Страница логина</h1>
             <div className="modal__block">
                 <form className="modal__form-login" action="#">
-                    <a href="../">
+                    {/* <a href="../">
                     <div className="modal__logo">
                         <img src="../img/logo_modal.png" alt="logo" />
                     </div>
@@ -23,7 +23,7 @@ export const LoginPage = () => {
                     type="password"
                     name="password"
                     placeholder="Пароль"
-                    />
+                    /> */}
                     <button className="modal__btn-enter">
                         <Link to="/">Войти</Link>
                     </button>

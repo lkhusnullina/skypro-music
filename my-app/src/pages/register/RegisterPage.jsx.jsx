@@ -6,7 +6,7 @@ export const RegistationPage = () => {
                 <div className="container-signup">
                 <div className="modal__block">
                     <form className="modal__form-login">
-                    <a href="../">
+                    {/* <a href="../">
                         <div className="modal__logo">
                         <img src="../img/logo_modal.png" alt="logo" />
                         </div>
@@ -28,7 +28,7 @@ export const RegistationPage = () => {
                         type="password"
                         name="password"
                         placeholder="Повторите пароль"
-                    />
+                    /> */}
                     <button className="modal__btn-signup-ent">
                         <a href="../index.html">Зарегистрироваться</a>
                     </button>

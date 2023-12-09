@@ -5,11 +5,14 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import Tracklist from '../../components/tracklist/Tracklist'
 import * as S from '../../App.styles'
 
-export const MainPage = () => {
+export const MainPage = ({ user }) => {
+    
+console.log(user);
     return (
         <>
             <S.Main>
-              <NavMenu />
+              <NavMenu 
+                user={user} />
               <Tracklist />
               <Sidebar />
             </S.Main>

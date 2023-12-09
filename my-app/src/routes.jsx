@@ -10,17 +10,12 @@ import { ProtectedRoute } from "./components/protected-route/index.jsx";
 export const AppRoutes = ({ user }) => {
     return(
         <Routes>
-            <Route path="/" element={<MainPage/>}/> 
-            <Route path="/favorites" element={<MyPlaylistPage/>}/>
-            <Route path="/category/:id" element={<CategoryPage/>}/>
-            <Route 
-                path="/" 
-                element={
-                    <ProtectedRoute isAllowed={Boolean(user)}>
-                        <Route path="/login" element={<LoginPage/>}/>
-                    </ProtectedRoute>
-                }
-            />
+            <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
+                <Route path="/" element={<MainPage user={user}/>}/> 
+                <Route path="/favorites" element={<MyPlaylistPage/>}/>
+                <Route path="/category/:id" element={<CategoryPage/>}/>
+            </Route>
+
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/registration" element={<RegistationPage/>}/>
             <Route path="*" element={<NotFound/>}/>
