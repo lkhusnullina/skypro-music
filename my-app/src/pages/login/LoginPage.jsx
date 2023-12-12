@@ -1,7 +1,10 @@
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const LoginPage = () => {
+
+
+
     return (
         <div>
             <h1>Страница логина</h1>
@@ -25,10 +28,10 @@ export const LoginPage = () => {
                     placeholder="Пароль"
                     /> */}
                     <button className="modal__btn-enter">
-                        <Link to="/">Войти</Link>
+                        <NavLink to="/" onClick={() => {localStorage.setItem('token', 'token12iu183y')}}>Войти</NavLink>
                     </button>
                     <button className="modal__btn-signup">
-                        <Link to="/registration">Зарегистрироваться</Link>
+                        <NavLink to="/registration">Зарегистрироваться</NavLink>
                     </button>
                 </form>
             </div> 

@@ -6,8 +6,6 @@ import Tracklist from '../../components/tracklist/Tracklist'
 import * as S from '../../App.styles'
 
 export const MainPage = ({ user }) => {
-    
-console.log(user);
     return (
         <>
             <S.Main>
@@ -19,6 +17,5 @@ console.log(user);
             <AudioPlayer />
             <footer className="footer" />
         </>
-
     )
 }

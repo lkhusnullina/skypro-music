@@ -2,8 +2,9 @@ import { useState } from 'react'
 import * as S from './NavMenu.styles'
 import cn from "classnames";
 
-function OpenMenu({ isOpen, user, onAuthButtonClick }) {
+function OpenMenu({ isOpen, user}) {
   const activeClassName = "underline";
+
   if (isOpen) {
     return (
       <S.MenuNav>
@@ -12,30 +13,14 @@ function OpenMenu({ isOpen, user, onAuthButtonClick }) {
             <S.MenuLink to="/">Главное</S.MenuLink>
           </S.MenuItem>
           <S.MenuItem>
-            <S.MenuLink to="/favorites" 
-                        className={({ isActive }) =>
-                          cn("App-link", {
-                            [activeClassName]: isActive,
-                          })
-                        }
-                      >
-                        Мой плейлист</S.MenuLink>
+            <S.MenuLink to="/favorites">Мой плейлист</S.MenuLink>
           </S.MenuItem>
           <S.MenuItem>
-            <S.MenuLink 
-                  to="/login" 
-                  className={({ isActive }) =>
-                  cn("App-link", {
-                    [activeClassName]: isActive,
-                  })
-                }
-              >
+            <S.MenuLink to="/login" onClick={() => user ? localStorage.removeItem('token') : localStorage.setItem('token', 'token12iu183y') }>
                 {user ? "Выйти" : "Войти"}
             </S.MenuLink>
           </S.MenuItem>
         </S.MenuList>
-
-        
       </S.MenuNav>
     )
   }
