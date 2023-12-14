@@ -7,7 +7,7 @@ import { RegistationPage } from "./pages/register/RegisterPage.jsx";
 import { LoginPage } from "./pages/login/LoginPage.jsx";
 import { ProtectedRoute } from "./components/protected-route/index.jsx";
 
-export const AppRoutes = ({ user }) => {
+export const AppRoutes = ({ user, setUser }) => {
     return(
         <Routes>
             <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
@@ -16,7 +16,7 @@ export const AppRoutes = ({ user }) => {
                 <Route path="/category/:id" element={<CategoryPage/>}/>
             </Route>
 
-            <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/login" element={<LoginPage setUser={setUser}/>}/>
             <Route path="/registration" element={<RegistationPage/>}/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>

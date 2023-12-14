@@ -29,9 +29,9 @@ export const RegistationPage = () => {
                         name="password"
                         placeholder="Повторите пароль"
                     /> */}
-                    <button className="modal__btn-signup-ent">
-                        <a href="../index.html">Зарегистрироваться</a>
-                    </button>
+                    {/* <button className="modal__btn-signup-ent">
+                        <h1>Зарегистрироваться</h1>
+                    </button> */}
                     </form>
                 </div>
                 </div>

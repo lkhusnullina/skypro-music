@@ -12,7 +12,7 @@ function App() {
       <S.Wrapper>
         <S.Container>
           <SkeletonTheme baseColor="#202020" highlightColor="#444">
-          <AppRoutes user={user}/>
+          <AppRoutes user={user} setUser={setUser}/>
           </SkeletonTheme>
         </S.Container>
       </S.Wrapper>

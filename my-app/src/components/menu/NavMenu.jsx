@@ -1,9 +1,14 @@
 import { useState } from 'react'
 import * as S from './NavMenu.styles'
-import cn from "classnames";
+import { useNavigate } from "react-router-dom";
 
 function OpenMenu({ isOpen, user}) {
-  const activeClassName = "underline";
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   if (isOpen) {
     return (
@@ -16,9 +21,7 @@ function OpenMenu({ isOpen, user}) {
             <S.MenuLink to="/favorites">Мой плейлист</S.MenuLink>
           </S.MenuItem>
           <S.MenuItem>
-            <S.MenuLink to="/login" onClick={() => user ? localStorage.removeItem('token') : localStorage.setItem('token', 'token12iu183y') }>
-                {user ? "Выйти" : "Войти"}
-            </S.MenuLink>
+            <S.Button onClick={handleLogout}>Выйти</S.Button>
           </S.MenuItem>
         </S.MenuList>
       </S.MenuNav>

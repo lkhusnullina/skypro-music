@@ -1,9 +1,16 @@
 
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export const LoginPage = () => {
+export const LoginPage = ({ setUser }) => {
 
+    const navigate = useNavigate();
 
+    const onSubmit = () => {
+        localStorage.setItem('token', 'token12iu183y');
+        setUser({ login: "token12iu183y" });
+        navigate('/');
+    };
 
     return (
         <div>
@@ -27,9 +34,7 @@ export const LoginPage = () => {
                     name="password"
                     placeholder="Пароль"
                     /> */}
-                    <button className="modal__btn-enter">
-                        <NavLink to="/" onClick={() => {localStorage.setItem('token', 'token12iu183y')}}>Войти</NavLink>
-                    </button>
+                    <button className="modal__btn-enter" onClick={onSubmit}>Войти</button>
                     <button className="modal__btn-signup">
                         <NavLink to="/registration">Зарегистрироваться</NavLink>
                     </button>
