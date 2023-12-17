@@ -5,22 +5,25 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import Tracklist from '../../components/tracklist/Tracklist'
 import * as S from '../../App.styles'
 import { getTrackAll } from '../../api'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export const MainPage = ({ user }) => {
+  const [tracks, setTracks] = useState([{},{},{},{},{},{},{},{},{},{}]);
 
-  // useEffect(() => {
-  //   console.log('useEffect');
-  //   getTrackAll().then((all) => console.log(all))
-  // }, [])
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    getTrackAll().then((all) => {
+      setTracks(all);
+      setIsLoading(false);
+    });
+  }, [])
   
 
     return (
         <>
             <S.Main>
-              <NavMenu 
-                user={user} />
-              <Tracklist />
+              <NavMenu user={user} />
+              <Tracklist tracks={tracks} isLoading={isLoading} />
               <Sidebar />
             </S.Main>
             <AudioPlayer />

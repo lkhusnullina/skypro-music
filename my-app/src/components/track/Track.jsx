@@ -5,18 +5,17 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './Track.styles'
 
 function Track(props) {
-  const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 5000)
-  }, [])
-  
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false)
+  //   }, 5000)
+  // }, [])
+
   const time = props.track.duration_in_seconds;
   const minutes = Math.trunc(time / 60);
   const seconds = time - (minutes * 60);
-  const timeTrack = `${minutes}:${seconds<= 9 ? '0' + seconds : seconds}`
+  const timeTrack = `${minutes}:${seconds <= 9 ? '0' + seconds : seconds}`
   
   return (
     <S.PlaylistItem key={props.track.id}>
@@ -27,7 +26,7 @@ function Track(props) {
               <use xlinkHref="img/icon/sprite.svg#icon-note" />
             </S.TrackTitleSvg>
           </S.TrackTitleImage>
-          {isLoading ? (
+          {props.isLoading ? (
             <S.SkeletAuthor>
               <Skeleton />
             </S.SkeletAuthor>
@@ -43,7 +42,7 @@ function Track(props) {
           )}
         </S.TrackTitle>
         <S.TrackAuthor>
-          {isLoading ? (
+          {props.isLoading ? (
             <S.SkeletBlock>
               <Skeleton />
             </S.SkeletBlock>
@@ -54,7 +53,7 @@ function Track(props) {
           )}
         </S.TrackAuthor>
         <S.TrackAlbum>
-          {isLoading ? (
+          {props.isLoading ? (
             <SkeletonTheme baseColor="#202020" highlightColor="#444">
               <Skeleton />
             </SkeletonTheme>
@@ -68,7 +67,7 @@ function Track(props) {
           <S.TrackTimeSvg alt="time">
             <use xlinkHref="img/icon/sprite.svg#icon-like" />
           </S.TrackTimeSvg>
-          {isLoading ? (
+          {props.isLoading ? (
             <S.TrackTimeText>0:00</S.TrackTimeText>
           ) : (
             <S.TrackTimeText>{timeTrack}</S.TrackTimeText>

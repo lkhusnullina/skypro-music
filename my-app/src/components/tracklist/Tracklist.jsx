@@ -94,40 +94,7 @@ import { getTrackAll } from '../../api'
 //   },
 // ]
 
-function Tracklist() {
-  const [tracks, setTrack] = useState([])
-  //   [
-  //   {
-  //     id: 1,
-  //     trackName: 'Guilt',
-  //     trackNamelink: '#',
-  //     author: 'Nero',
-  //     authorLink: '#',
-  //     album: 'Welcome Reality',
-  //     albumLink: '#',
-  //     time: '4:44',
-  //   },
-  //   {
-  //     id: 2,
-  //     trackName: 'Elektro',
-  //     trackNamelink: '#',
-  //     trackTitlespan: '',
-  //     author: 'Dynoro, Outwork, Mr. Gee',
-  //     authorLink: '#',
-  //     album: 'Elektro',
-  //     albumLink: '#',
-  //     time: '2:22',
-  //   },
-  // ]
-  
-
-  useEffect(() => {
-    console.log('useEffect');
-    getTrackAll().then((all) => { 
-      console.log(all)
-      setTrack(all)
-    });
-  }, [])
+function Tracklist(props) {
 
   return (
     <S.MainCenterblock>
@@ -151,8 +118,8 @@ function Tracklist() {
           </S.Col04>
         </S.ContentTitle>
         <S.ContentPlaylist>
-          {tracks.map((track) => (
-            <Track key={track.id} track={track} />
+          {props.tracks.map((track) => (
+            <Track key={track.id} track={track} isLoading={props.isLoading} />
           ))}
         </S.ContentPlaylist>
       </S.CenterblockContent>
