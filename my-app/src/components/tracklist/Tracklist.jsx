@@ -1,9 +1,10 @@
+// import { useState } from 'react';
 import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
 import * as S from './Tracklist.styles'
 
 function Tracklist(props) {
-
+  
   return (
     <S.MainCenterblock>
       <S.CenterblockSearch>
@@ -25,11 +26,12 @@ function Tracklist(props) {
             </S.PlaylistTitleSvg>
           </S.Col04>
         </S.ContentTitle>
+        {props.error ? <p>Не удалось загрузить плейлист, попробуйте позже: {props.error}</p> : 
         <S.ContentPlaylist>
           {props.tracks.map((track) => (
             <Track key={track.id} track={track} isLoading={props.isLoading} />
           ))}
-        </S.ContentPlaylist>
+        </S.ContentPlaylist>}
       </S.CenterblockContent>
     </S.MainCenterblock>
   )

@@ -9,13 +9,18 @@ import { useEffect, useState } from 'react'
 
 export const MainPage = ({ user }) => {
   const [tracks, setTracks] = useState([{},{},{},{},{},{},{},{},{},{}]);
-
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    getTrackAll().then((all) => {
+    getTrackAll().then((all) => { 
       setTracks(all);
       setIsLoading(false);
-    });
+      throw new Error("Ошибка!")
+    }).catch ((error) => {
+      alert(error.message)
+      setError(error.message)
+    })
   }, [])
   
 
@@ -23,7 +28,7 @@ export const MainPage = ({ user }) => {
         <>
             <S.Main>
               <NavMenu user={user} />
-              <Tracklist tracks={tracks} isLoading={isLoading} />
+              <Tracklist tracks={tracks} isLoading={isLoading} error={error}/>
               <Sidebar isLoading={isLoading}/>
             </S.Main>
             <AudioPlayer />
