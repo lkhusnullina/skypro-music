@@ -5,6 +5,10 @@ export async function getTrackAll() {
         Authorization: ``,
       },
    })
+
+   if(!response.ok) {
+    throw new Error('ошибка сервера')
+   }
    const data = await response.json();
    return data;    
 } 

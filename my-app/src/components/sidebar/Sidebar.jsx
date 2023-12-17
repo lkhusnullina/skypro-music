@@ -2,28 +2,7 @@ import Playlist from '../playlist/Playlist'
 import * as S from './Sidebar.styles'
 import { Categories } from '../../constans.js'
 
-const playlists = [
-  {
-    id: 1,
-    name: `day's playlist`,
-    img: 'img/playlist01.png',
-    link: '/category',
-  },
-  {
-    id: 2,
-    name: `day's playlist`,
-    img: 'img/playlist02.png',
-    link: '/category',
-  },
-  {
-    id: 3,
-    name: `day's playlist`,
-    img: 'img/playlist03.png',
-    link: '/category',
-  },
-]
-
-function Sidebar() {
+function Sidebar(props) {
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
@@ -37,7 +16,7 @@ function Sidebar() {
       <S.SidebarBlock>
         <S.SidebarList>
           {Categories.map((category) => (
-            <Playlist key={category.id} category={category} />
+            <Playlist key={category.id} category={category} isLoading={props.isLoading}/>
           ))}
         </S.SidebarList>
       </S.SidebarBlock>

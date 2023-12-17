@@ -24,7 +24,7 @@ export const MainPage = ({ user }) => {
             <S.Main>
               <NavMenu user={user} />
               <Tracklist tracks={tracks} isLoading={isLoading} />
-              <Sidebar />
+              <Sidebar isLoading={isLoading}/>
             </S.Main>
             <AudioPlayer />
             <footer className="footer" />

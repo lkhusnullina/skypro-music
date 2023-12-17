@@ -1,16 +1,8 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './Track.styles'
 
 function Track(props) {
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false)
-  //   }, 5000)
-  // }, [])
 
   const time = props.track.duration_in_seconds;
   const minutes = Math.trunc(time / 60);
@@ -68,7 +60,7 @@ function Track(props) {
             <use xlinkHref="img/icon/sprite.svg#icon-like" />
           </S.TrackTimeSvg>
           {props.isLoading ? (
-            <S.TrackTimeText>0:00</S.TrackTimeText>
+            <S.TrackTimeText>00:00</S.TrackTimeText>
           ) : (
             <S.TrackTimeText>{timeTrack}</S.TrackTimeText>
           )}
