@@ -12,7 +12,12 @@ function Track(props) {
       setIsLoading(false)
     }, 5000)
   }, [])
-
+  
+  const time = props.track.duration_in_seconds;
+  const minutes = Math.trunc(time / 60);
+  const seconds = time - (minutes * 60);
+  const timeTrack = `${minutes}:${seconds<= 9 ? '0' + seconds : seconds}`
+  
   return (
     <S.PlaylistItem key={props.track.id}>
       <S.PlaylistTrack>
@@ -28,8 +33,8 @@ function Track(props) {
             </S.SkeletAuthor>
           ) : (
             <div>
-              <S.TrackTitleLink href={props.track.trackNamelink}>
-                {props.track.trackName}
+              <S.TrackTitleLink href={props.track.track_file}>
+                {props.track.name}
                 <S.TrackTitleSpan>
                   {props.track.trackTitlespan}
                 </S.TrackTitleSpan>
@@ -43,7 +48,7 @@ function Track(props) {
               <Skeleton />
             </S.SkeletBlock>
           ) : (
-            <S.TrackAuthorLink href={props.track.authorLink}>
+            <S.TrackAuthorLink href={props.track.track_file}>
               {props.track.author}
             </S.TrackAuthorLink>
           )}
@@ -66,7 +71,7 @@ function Track(props) {
           {isLoading ? (
             <S.TrackTimeText>0:00</S.TrackTimeText>
           ) : (
-            <S.TrackTimeText>{props.track.time}</S.TrackTimeText>
+            <S.TrackTimeText>{timeTrack}</S.TrackTimeText>
           )}
         </div>
       </S.PlaylistTrack>
