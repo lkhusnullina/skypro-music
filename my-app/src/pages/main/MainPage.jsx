@@ -16,9 +16,8 @@ export const MainPage = ({ user }) => {
     getTrackAll().then((all) => { 
       setTracks(all);
       setIsLoading(false);
-      throw new Error("Ошибка!")
+      //throw new Error("Ошибка!")
     }).catch ((error) => {
-      alert(error.message)
       setError(error.message)
     })
   }, [])
@@ -31,7 +30,7 @@ export const MainPage = ({ user }) => {
               <Tracklist tracks={tracks} isLoading={isLoading} error={error}/>
               <Sidebar isLoading={isLoading}/>
             </S.Main>
-            <AudioPlayer />
+            {/* <AudioPlayer /> */}
             <footer className="footer" />
         </>
     )

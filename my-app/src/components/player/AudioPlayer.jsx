@@ -5,14 +5,14 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayer.styles'
 import { BtnIcon } from '../../App.styles'
 
-function AudioPlayer() {
-  const [isLoading, setIsLoading] = useState(true)
+function AudioPlayer(props) {
+  const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 5000)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false)
+  //   }, 5000)
+  // }, [])
 
   return (
     <S.Bar>
@@ -60,7 +60,7 @@ function AudioPlayer() {
                       <Skeleton />
                     ) : (
                       <S.TrackPlayAuthorLink href="http://">
-                        Ты та...
+                        {props.track.name}
                       </S.TrackPlayAuthorLink>
                     )}
                   </div>
@@ -71,7 +71,7 @@ function AudioPlayer() {
                       <Skeleton />
                     ) : (
                       <S.TrackPlayAlbumLink href="http://">
-                        Баста
+                        {props.track.author}
                       </S.TrackPlayAlbumLink>
                     )}
                   </div>

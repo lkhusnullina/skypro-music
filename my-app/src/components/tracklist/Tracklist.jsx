@@ -1,10 +1,14 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
 import * as S from './Tracklist.styles'
+import AudioPlayer from '../player/AudioPlayer';
 
 function Tracklist(props) {
-  
+  const [currentTrack, setCurrentTrack] = useState(null)
+  const trackClick = (track) => {
+    setCurrentTrack(track)
+  }
   return (
     <S.MainCenterblock>
       <S.CenterblockSearch>
@@ -29,10 +33,12 @@ function Tracklist(props) {
         {props.error ? <p>Не удалось загрузить плейлист, попробуйте позже: {props.error}</p> : 
         <S.ContentPlaylist>
           {props.tracks.map((track) => (
-            <Track key={track.id} track={track} isLoading={props.isLoading} />
+            <Track onClick={() => {trackClick(track)}} key={track.id} track={track} isLoading={props.isLoading} />
           ))}
         </S.ContentPlaylist>}
       </S.CenterblockContent>
+      {currentTrack ? <AudioPlayer track={currentTrack} /> : null}
+      
     </S.MainCenterblock>
   )
 }

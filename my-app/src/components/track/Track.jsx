@@ -10,7 +10,7 @@ function Track(props) {
   const timeTrack = `${minutes}:${seconds <= 9 ? '0' + seconds : seconds}`
   
   return (
-    <S.PlaylistItem key={props.track.id}>
+    <S.PlaylistItem key={props.track.id} onClick={props.onClick}>
       <S.PlaylistTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>
@@ -24,7 +24,7 @@ function Track(props) {
             </S.SkeletAuthor>
           ) : (
             <div>
-              <S.TrackTitleLink href={props.track.track_file}>
+              <S.TrackTitleLink href='#'>
                 {props.track.name}
                 <S.TrackTitleSpan>
                   {props.track.trackTitlespan}
@@ -39,7 +39,7 @@ function Track(props) {
               <Skeleton />
             </S.SkeletBlock>
           ) : (
-            <S.TrackAuthorLink href={props.track.track_file}>
+            <S.TrackAuthorLink href='#'>
               {props.track.author}
             </S.TrackAuthorLink>
           )}
