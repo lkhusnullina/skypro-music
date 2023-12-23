@@ -10,7 +10,9 @@ const PlayerBtnMixin = css`
   align-items: center;
 `
 export const Bar = styled.div`
-  position: absolute;
+  //position: absolute;
+  //выходит за пределы контейнера
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -25,7 +27,7 @@ export const Content = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
 `
-export const BarPlayerProgress = styled.div`
+export const BarPlayerProgress = styled.input`
   width: 100%;
   height: 5px;
   background: #2e2e2e;

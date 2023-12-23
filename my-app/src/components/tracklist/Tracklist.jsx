@@ -33,7 +33,6 @@ function Tracklist(props) {
         {props.error ? <p>Не удалось загрузить плейлист, попробуйте позже: {props.error}</p> : 
         <S.ContentPlaylist >
           {props.tracks.map((track) => {
-            console.log(track);
             return <Track onClick={() => {trackClick(track)}} key={track.id} track={track} isLoading={props.isLoading} />
         })}
         </S.ContentPlaylist>}
