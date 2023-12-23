@@ -1,12 +1,42 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayer.styles'
 import { BtnIcon } from '../../App.styles'
 
-function AudioPlayer(props) {
+function AudioPlayer({track}) {
   const [isLoading, setIsLoading] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  const handleStart = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+    console.log(111111);
+  };
+
+  const handleStop = () => {
+    audioRef.current.pause();
+    setIsPlaying(false);
+  };
+
+  //handleLoop  isLoop setIsLoop true false
+
+  const togglePlay = isPlaying ? handleStop : handleStart;
+
+  useEffect(() => {
+    console.log(audioRef);
+    console.log(track.track_file);
+    audioRef.current.load();
+    
+  }, [track])
+  
+
+  useEffect(() => {
+    console.log('rerender');
+    audioRef.current.addEventListener('loadedmetadata',() => {audioRef.current.play()});
+  }, [])
 
   // useEffect(() => {
   //   setTimeout(() => {
@@ -15,6 +45,10 @@ function AudioPlayer(props) {
   // }, [])
 
   return (
+    <>
+     <audio controls ref={audioRef}>
+        <source src={track.track_file} type="audio/mpeg" />
+      </audio>
     <S.Bar>
       <S.Content>
         <S.BarPlayerProgress />
@@ -26,7 +60,7 @@ function AudioPlayer(props) {
                   <use xlinkHref="img/icon/sprite.svg#icon-prev" />
                 </S.PlayerBtnPrevSvg>
               </S.PlayerBtnPrev>
-              <S.PlayerBtnPlay>
+              <S.PlayerBtnPlay onClick={togglePlay}>
                 <S.PlayerBtnPlaySvg alt="play">
                   <use xlinkHref="img/icon/sprite.svg#icon-play" />
                 </S.PlayerBtnPlaySvg>
@@ -60,7 +94,7 @@ function AudioPlayer(props) {
                       <Skeleton />
                     ) : (
                       <S.TrackPlayAuthorLink href="http://">
-                        {props.track.name}
+                        {track.name}
                       </S.TrackPlayAuthorLink>
                     )}
                   </div>
@@ -71,7 +105,7 @@ function AudioPlayer(props) {
                       <Skeleton />
                     ) : (
                       <S.TrackPlayAlbumLink href="http://">
-                        {props.track.author}
+                        {track.author}
                       </S.TrackPlayAlbumLink>
                     )}
                   </div>
@@ -107,6 +141,7 @@ function AudioPlayer(props) {
         </S.BarPlayerBlock>
       </S.Content>
     </S.Bar>
+    </>
   )
 }
 

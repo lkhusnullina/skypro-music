@@ -31,10 +31,11 @@ function Tracklist(props) {
           </S.Col04>
         </S.ContentTitle>
         {props.error ? <p>Не удалось загрузить плейлист, попробуйте позже: {props.error}</p> : 
-        <S.ContentPlaylist>
-          {props.tracks.map((track) => (
-            <Track onClick={() => {trackClick(track)}} key={track.id} track={track} isLoading={props.isLoading} />
-          ))}
+        <S.ContentPlaylist >
+          {props.tracks.map((track) => {
+            console.log(track);
+            return <Track onClick={() => {trackClick(track)}} key={track.id} track={track} isLoading={props.isLoading} />
+        })}
         </S.ContentPlaylist>}
       </S.CenterblockContent>
       {currentTrack ? <AudioPlayer track={currentTrack} /> : null}

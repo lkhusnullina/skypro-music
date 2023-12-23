@@ -10,7 +10,7 @@ function Track(props) {
   const timeTrack = `${minutes}:${seconds <= 9 ? '0' + seconds : seconds}`
   
   return (
-    <S.PlaylistItem key={props.track.id} onClick={props.onClick}>
+    <S.PlaylistItem onClick={props.onClick}>
       <S.PlaylistTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>
