@@ -6,9 +6,11 @@ import AudioPlayer from '../player/AudioPlayer';
 
 function Tracklist(props) {
   const [currentTrack, setCurrentTrack] = useState(null)
+  let i = 0;
   const trackClick = (track) => {
     setCurrentTrack(track)
   }
+
   return (
     <S.MainCenterblock>
       <S.CenterblockSearch>
@@ -31,9 +33,10 @@ function Tracklist(props) {
           </S.Col04>
         </S.ContentTitle>
         {props.error ? <p>Не удалось загрузить плейлист, попробуйте позже: {props.error}</p> : 
-        <S.ContentPlaylist >
+        <S.ContentPlaylist>
+
           {props.tracks.map((track) => {
-            return <Track onClick={() => {trackClick(track)}} key={track.id} track={track} isLoading={props.isLoading} />
+            return (<Track key={`${track.id}${i++}`} onClick={() => {trackClick(track)}} track={track} isLoading={props.isLoading} />)
         })}
         </S.ContentPlaylist>}
       </S.CenterblockContent>

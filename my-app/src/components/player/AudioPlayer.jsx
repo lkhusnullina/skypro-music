@@ -18,6 +18,7 @@ function AudioPlayer({track}) {
   const handleStart = () => {
     audioRef.current.play();
     setIsPlaying(true);
+    setDuration(audioRef.current.duration);
   };
 
   const handleStop = () => {
@@ -39,10 +40,12 @@ function AudioPlayer({track}) {
 
   const toggleLoop = isLoop ? handleOffLoop : handleOnLoop;
  
+  const changeTime = (val) => {
+    setCurrentTime(val);
+    audioRef.current.currentTime = val;
+  }
 
   useEffect(() => {
-    // console.log(audioRef);
-    // console.log(track.track_file);
     audioRef.current.load();
     
   }, [track])
@@ -50,7 +53,9 @@ function AudioPlayer({track}) {
 
   useEffect(() => {
     // console.log('rerender');
-    audioRef.current.addEventListener('loadedmetadata',() => {audioRef.current.play()});
+    audioRef.current.addEventListener('loadedmetadata',() => {
+      handleStart();
+    });
   }, []);
 
   const handleVolumeChange = (event) => {
@@ -68,8 +73,9 @@ function AudioPlayer({track}) {
 
   return (
     <>
-     <audio controls ref={audioRef}>
+     <audio controls ref={audioRef} onTimeUpdate={(val) => setCurrentTime(val.target.currentTime)}>
         <source src={track.track_file} type="audio/mpeg" />
+        
       </audio>
     <S.Bar>
       <S.Content>
@@ -78,7 +84,7 @@ function AudioPlayer({track}) {
           max={duration}
           value={currentTime}
           step={0.01}
-          onChange={(event) => setCurrentTime(event.target.value)}/>
+          onChange={(event) => changeTime(event.target.value)}/>
         <S.BarPlayerBlock>
           <S.BarPlayer>
             <S.PlayerControls>
