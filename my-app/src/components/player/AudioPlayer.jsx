@@ -81,7 +81,7 @@ function AudioPlayer({track}) {
           max={duration}
           value={currentTime}
           step={0.01}
-          onChange={(event) => changeTime(event.target.value)}/>
+          onChange={(event) => changeTime(event.target.value)} />
         <S.BarPlayerBlock>
           <S.BarPlayer>
             <S.PlayerControls>
@@ -106,6 +106,7 @@ function AudioPlayer({track}) {
               <BtnIcon>
                 <S.PlayerBtnRepeatSvg alt="repeat"  onClick={toggleLoop} isLoop={isLoop}>
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+                  
                 </S.PlayerBtnRepeatSvg>
               </BtnIcon>
               <BtnIcon>
@@ -163,7 +164,7 @@ function AudioPlayer({track}) {
             <S.VolumeContent>
               <S.VolumeImage>
                 <S.VolumeSvg alt="volume">
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume" />
+                <use xlinkHref="img/icon/sprite.svg#icon-volume" />
                 </S.VolumeSvg>
               </S.VolumeImage>
               <S.VolumeProgress>
