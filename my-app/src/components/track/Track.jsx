@@ -2,12 +2,12 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './Track.styles'
 
-function Track(props) {
 
+function Track(props) {
   const time = props.track.duration_in_seconds;
   const minutes = Math.trunc(time / 60);
   const seconds = time - (minutes * 60);
-  const timeTrack = `${minutes}:${seconds <= 9 ? '0' + seconds : seconds}`
+  const timeTrack = `${minutes <= 9 ? '0' + minutes : minutes}:${seconds <= 9 ? '0' + seconds : seconds}`
   
   return (
     <S.PlaylistItem onClick={props.onClick}>

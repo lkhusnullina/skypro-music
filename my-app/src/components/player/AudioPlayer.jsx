@@ -5,6 +5,16 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './AudioPlayer.styles'
 import { BtnIcon } from '../../App.styles'
 
+function secondsToTimeString(seconds) {
+  return (
+    Math.floor(Math.round(seconds) / 60)
+      .toString()
+      .padStart(2, '0') +
+    ':' +
+    (Math.round(seconds) % 60).toString().padStart(2, '0')
+  )
+}
+
 function AudioPlayer({track}) {
   const [isLoading, setIsLoading] = useState(false)
   const [isPlaying, setIsPlaying] = useState(true);
@@ -64,7 +74,6 @@ function AudioPlayer({track}) {
     audioRef.current.volume = newVolume;
     setVolume(newVolume);
   }
- 
   
   // useEffect(() => {
   //   setTimeout(() => {
@@ -80,7 +89,7 @@ function AudioPlayer({track}) {
     <S.Bar>
       <S.Content>
         <S.AudioTrackTime>
-          {currentTime} / {duration}
+        {secondsToTimeString(currentTime)} / {secondsToTimeString(duration)}
         </S.AudioTrackTime>
         <S.BarPlayerProgress type="range"
           min={0}
