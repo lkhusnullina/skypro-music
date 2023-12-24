@@ -14,6 +14,10 @@ function AudioPlayer({track}) {
   const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef(null);
 
+  const Realize = () => {
+    alert('Еще не реализовано!')
+  }
+
   const handleStart = () => {
     audioRef.current.play();
     setIsPlaying(true);
@@ -70,12 +74,14 @@ function AudioPlayer({track}) {
 
   return (
     <>
-     <audio controls ref={audioRef} onTimeUpdate={(val) => setCurrentTime(val.target.currentTime)}>
-        <source src={track.track_file} type="audio/mpeg" />
-        
-      </audio>
+    <S.TegAudio controls ref={audioRef} onTimeUpdate={(val) => setCurrentTime(val.target.currentTime)}>
+      <source src={track.track_file} type="audio/mpeg" />
+    </S.TegAudio>
     <S.Bar>
       <S.Content>
+        <S.AudioTrackTime>
+          {currentTime} / {duration}
+        </S.AudioTrackTime>
         <S.BarPlayerProgress type="range"
           min={0}
           max={duration}
@@ -86,7 +92,7 @@ function AudioPlayer({track}) {
           <S.BarPlayer>
             <S.PlayerControls>
               <S.PlayerBtnPrev>
-                <S.PlayerBtnPrevSvg alt="prev">
+                <S.PlayerBtnPrevSvg alt="prev" onClick={Realize}>
                   <use xlinkHref="img/icon/sprite.svg#icon-prev" />
                 </S.PlayerBtnPrevSvg>
               </S.PlayerBtnPrev>
@@ -99,18 +105,17 @@ function AudioPlayer({track}) {
                 </S.PlayerBtnPlaySvg>
               </S.PlayerBtnPlay>
               <S.PlayerBtnNext>
-                <S.PlayerBtnNextSvg alt="next">
+                <S.PlayerBtnNextSvg alt="next" onClick={Realize}>
                   <use xlinkHref="img/icon/sprite.svg#icon-next" />
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtnNext>
               <BtnIcon>
                 <S.PlayerBtnRepeatSvg alt="repeat"  onClick={toggleLoop} isLoop={isLoop}>
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
-                  
                 </S.PlayerBtnRepeatSvg>
               </BtnIcon>
               <BtnIcon>
-                <S.PlayerBtnShuffleSvg alt="shuffle">
+                <S.PlayerBtnShuffleSvg alt="shuffle" onClick={Realize}>
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
                 </S.PlayerBtnShuffleSvg>
               </BtnIcon>

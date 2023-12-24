@@ -1,5 +1,9 @@
 import styled, { css } from 'styled-components'
 
+export const TegAudio = styled.audio`
+  display: none;
+`;
+
 const PlayerBtnMixin = css`
   padding: 5px;
   display: -webkit-box;
@@ -316,7 +320,7 @@ export const PlayerBtnRepeatSvg = styled.svg`
     stroke: ${(props) => (props.isLoop ? "#fff" : "#acacac")};
   }
   &:active {
-    stroke: #fff;
+    stroke: "#fff";
   }
 `
 
@@ -388,4 +392,16 @@ export const BarPlayerProgress = styled.input`
     background-color: var(--progress-color);
     height: var(--progress-height);
   }
+`;
+
+export const AudioTrackTime = styled.div`
+  position: absolute;
+  top: 0;
+  right: 30px;
+  // color: #696969;
+  // margin-bottom: 10px;
+  // margin-right: 10px;
+  background: red;
+  // display: flex;
+  // justify-content: flex-end;
 `;
