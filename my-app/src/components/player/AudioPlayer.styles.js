@@ -257,7 +257,13 @@ export const PlayerBtnRepeatSvg = styled.svg`
   width: 18px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: ${(props) => (props.isLoop ? "#fff" : "#696969")};
+  &:hover {
+    stroke: ${(props) => (props.isLoop ? "#fff" : "#acacac")};
+  }
+  &:active {
+    stroke: #fff;
+  }
 `
 
 export const PlayerBtnShuffle = styled.div`

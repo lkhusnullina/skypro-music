@@ -13,7 +13,6 @@ function AudioPlayer({track}) {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef(null);
-  // const duration = 230;
 
   const handleStart = () => {
     audioRef.current.play();
@@ -29,12 +28,12 @@ function AudioPlayer({track}) {
   const togglePlay = isPlaying ? handleStop : handleStart;
 
   const handleOnLoop = () => {
-    audioRef.current.loop;
+    audioRef.current.loop = true;
     setIsLoop(true);
   }
 
   const handleOffLoop = () => {
-    audioRef.current.loop;
+    audioRef.current.loop = false;
     setIsLoop(false);
   }
 
@@ -47,12 +46,10 @@ function AudioPlayer({track}) {
 
   useEffect(() => {
     audioRef.current.load();
-    
   }, [track])
   
 
   useEffect(() => {
-    // console.log('rerender');
     audioRef.current.addEventListener('loadedmetadata',() => {
       handleStart();
     });
@@ -95,12 +92,10 @@ function AudioPlayer({track}) {
               </S.PlayerBtnPrev>
               <S.PlayerBtnPlay>
                 <S.PlayerBtnPlaySvg alt="play" onClick={togglePlay}>
-                  {isPlaying ? (<svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <g id="Group 48096409">
-                                  <rect id="Rectangle 3769" width="5" height="19" fill="#696969"/>
-                                  <rect id="Rectangle 3770" x="10" width="5" height="19" fill="#696969"/>
-                                  </g>
-                              </svg>) : (<use xlinkHref="img/icon/sprite.svg#icon-play" />)}
+                  {isPlaying ? (<svg xmlns="http://www.w3.org/2000/svg" width="15" height="19" viewBox="0 0 15 19" fill="none">
+                                  <rect width="5" height="19" fill="#D9D9D9"/>
+                                  <rect x="10" width="5" height="19" fill="#D9D9D9"/>
+                                </svg>) : (<use xlinkHref="img/icon/sprite.svg#icon-play" />)}
                 </S.PlayerBtnPlaySvg>
               </S.PlayerBtnPlay>
               <S.PlayerBtnNext>
@@ -108,8 +103,8 @@ function AudioPlayer({track}) {
                   <use xlinkHref="img/icon/sprite.svg#icon-next" />
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtnNext>
-              <BtnIcon onClick={toggleLoop}>
-                <S.PlayerBtnRepeatSvg alt="repeat">
+              <BtnIcon>
+                <S.PlayerBtnRepeatSvg alt="repeat"  onClick={toggleLoop} isLoop={isLoop}>
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
                 </S.PlayerBtnRepeatSvg>
               </BtnIcon>
