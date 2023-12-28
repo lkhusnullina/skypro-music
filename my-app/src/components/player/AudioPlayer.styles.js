@@ -1,5 +1,9 @@
 import styled, { css } from 'styled-components'
 
+export const TegAudio = styled.audio`
+  display: none;
+`;
+
 const PlayerBtnMixin = css`
   padding: 5px;
   display: -webkit-box;
@@ -10,7 +14,9 @@ const PlayerBtnMixin = css`
   align-items: center;
 `
 export const Bar = styled.div`
-  position: absolute;
+  //position: absolute;
+  //выходит за пределы контейнера
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -25,11 +31,12 @@ export const Content = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
 `
-export const BarPlayerProgress = styled.div`
-  width: 100%;
-  height: 5px;
-  background: #2e2e2e;
-`
+// export const BarPlayerProgress = styled.input`
+//   cursor: pointer;
+//   width: 100%;
+//   height: 5px;
+//   background: #B672FF;
+// `
 export const BarPlayerBlock = styled.div`
   height: 73px;
   display: -webkit-box;
@@ -204,7 +211,7 @@ export const VolumeImage = styled.div`
   height: 18px;
   margin-right: 17px;
 `
-export const VolumeSvg = styled.div`
+export const VolumeSvg = styled.svg`
   width: 13px;
   height: 18px;
   fill: transparent;
@@ -217,6 +224,58 @@ export const VolumeProgress = styled.div`
 export const VolumeProgressLine = styled.input`
   cursor: pointer;
   width: 109px;
+
+  --progress-height: 8px;
+  --progress-color: #ffffff;
+  --progress-bg-color: #2e2e2e;
+
+  margin: 0;
+  // width: 100%;
+  height: var(--progress-height);
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+
+  &::-webkit-slider-runnable-track {
+    position: relative;
+    height: var(--progress-height);
+    background: var(--progress-bg-color);
+  }
+  &::-webkit-slider-thumb {
+    --thumb-height: 1px;
+    --thumb-width: 1px;
+    position: relative;
+    -webkit-appearance: none;
+    width: var(--thumb-width, var(--thumb-height));
+    box-shadow: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
+      100vmax var(--progress-color);
+  }
+
+  &::-webkit-slider-runnable-track {
+    background: var(--progress-bg-color);
+  }
+
+  /* FF */
+  &::-moz-range-track {
+    width: 100%;
+    height: var(--progress-height);
+    background: var(--progress-bg-color);
+    border: none;
+    border-radius: 0px;
+  }
+  &::-moz-range-thumb {
+    border: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: transparent;
+  }
+  &::-moz-range-progress {
+    background-color: var(--progress-color);
+    height: var(--progress-height);
+  }
 `
 export const PlayerBtnPrev = styled.div`
   margin-right: 23px;
@@ -252,10 +311,17 @@ export const PlayerBtnRepeat = styled.div`
   ${PlayerBtnMixin}
 `
 export const PlayerBtnRepeatSvg = styled.svg`
+  cursor: pointer;
   width: 18px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: ${(props) => (props.isLoop ? "#fff" : "#696969")};
+  &:hover {
+    stroke: ${(props) => (props.isLoop ? "#fff" : "#acacac")};
+  }
+  &:active {
+    stroke: ${(props) => (props.isLoop ? "#acacac" : "#fff")};
+  }
 `
 
 export const PlayerBtnShuffle = styled.div`
@@ -273,3 +339,63 @@ export const PlayerBtnShuffleSvg = styled.svg`
   fill: transparent;
   stroke: #696969;
 `
+
+export const BarPlayerProgress = styled.input`
+  --progress-height: 8px;
+  --progress-color: #b672ff;
+  --progress-bg-color: #2e2e2e;
+
+  margin: 0;
+  width: 100%;
+  height: var(--progress-height);
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+
+  &::-webkit-slider-runnable-track {
+    position: relative;
+    height: var(--progress-height);
+    background: var(--progress-bg-color);
+  }
+  &::-webkit-slider-thumb {
+    --thumb-height: 1px;
+    --thumb-width: 1px;
+    position: relative;
+    -webkit-appearance: none;
+    width: var(--thumb-width, var(--thumb-height));
+    box-shadow: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
+      100vmax var(--progress-color);
+  }
+
+  &::-webkit-slider-runnable-track {
+    background: var(--progress-bg-color);
+  }
+
+  /* FF */
+  &::-moz-range-track {
+    width: 100%;
+    height: var(--progress-height);
+    background: var(--progress-bg-color);
+    border: none;
+    border-radius: 0px;
+  }
+  &::-moz-range-thumb {
+    border: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: transparent;
+  }
+  &::-moz-range-progress {
+    background-color: var(--progress-color);
+    height: var(--progress-height);
+  }
+`;
+
+export const AudioTrackTime = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  color: #696969;
+`;
