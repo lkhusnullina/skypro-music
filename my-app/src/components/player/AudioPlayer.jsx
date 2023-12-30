@@ -119,7 +119,7 @@ function AudioPlayer({track}) {
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtnNext>
               <BtnIcon>
-                <S.PlayerBtnRepeatSvg alt="repeat"  onClick={toggleLoop} isLoop={isLoop}>
+                <S.PlayerBtnRepeatSvg alt="repeat"  onClick={toggleLoop} $isLoop={isLoop}>
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
                 </S.PlayerBtnRepeatSvg>
               </BtnIcon>
