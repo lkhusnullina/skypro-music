@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as S from "./AuthPage.styles";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/user";
@@ -6,82 +6,116 @@ import { loginUser, registerUser } from "../../api";
 
 export default function AuthPage({ isLoginMode = false }) {
   const {login} = useUserContext();
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [username, setUsername] = useState("");
-//   const navigate = useNavigate();
 
   const handleLogin = async ({ email, password }) => {
-    if (!email) {
-        setError("Укажите почту");
-        return;
-      }
-  
-      if (!password) {
-        setError("Укажите пароль");
-        return;
-      }
-
-    loginUser({
-        email: email,
-        password: password,
-    }).then((user) => {
-        isLoginMode(true)
-        setEmail(user.email)
-    }).catch((error) => {
-        console.warn(error);
-        alert(`Выполняется вход: ${email} ${password}`);
-        setError("Неизвестная ошибка входа");
-    })
-    // api login
-    // api.login(fcghfghfhg).then().catch(=>setError)
-
-    login(email)
-    
-  };
-
-  const handleRegister = async ({ email, password, username }) => {
+    setIsLoading(true);
     setError("");
     
     if (!email) {
-        setError("Укажите почту");
-        return;
+      setError("Укажите почту");
+      setIsLoading(false);
+      return;
+    }
+  
+    if (!password) {
+      setError("Укажите пароль");
+      setIsLoading(false);
+      return;
+    }
+
+    const user = await loginUser({
+      email: email,
+      password: password,
+    });
+
+    if (user.error) {
+      setError("Пользователь с таким email или паролем не найден");
+    } else {
+      setEmail(user.email);
+      login(email);
+    }
+
+
+    setIsLoading(false);
+     
+    //   console.log(user);
+    //   isLoginMode = true;
+    //   setEmail(user.email);
+    //   login(email);
+    // }).catch((error) => {
+    //   console.log(error);
+    //   // alert(`Выполняется вход: ${email} ${password}`);
+    //   setError(error.detail ? error.detail : "Неизвестная ошибка входа");
+    // }).finally(() => {
+    //   setIsLoading(false);
+    // })
+  };
+
+  const handleRegister = async ({ email, password, username }) => {
+    setIsLoading(true);
+    setError("");
+
+    if (!username) {
+      setError("Укажите имя");
+      setIsLoading(false);
+      return;
+    }
+
+    if (!email) {
+      setError("Укажите почту");
+      setIsLoading(false);
+      return;
     }
 
     if (!password) {
-        setError("Укажите пароль");
-        return;
+      setError("Укажите пароль");
+      setIsLoading(false);
+      return;
     }
 
     if (!repeatPassword) {
-        setError("Укажите повторный пароль");
-        return;
+      setError("Укажите повторный пароль");
+      setIsLoading(false);
+      return;
     }
 
     if (password !== repeatPassword) {
-        setError("Пароли не совпадают");
-        return;
+      setError("Пароли не совпадают");
+      setIsLoading(false);
+      return;
     }
     
-    registerUser({
-        email: email, 
-        password: password, 
-        username: username,
-    })
-    .then((user) => {
-        console.log(111);
-        console.log(user);
-        isLoginMode(true)
-        setEmail(user.email)
-    })
-    .catch((error) => {
-        console.warn(error);
-        // alert(`Выполняется регистрация: ${email} ${password}`);
-        setError("Неизвестная ошибка регистрации");
-    })
-    
+    const user = await registerUser({
+      email: email, 
+      password: password, 
+      username: username,
+    });
+
+    // isLoginMode(true);
+
+    if (user.error) {
+      let text = "";
+      if (user.username){
+        text += user.username.join(" ");
+      }
+      if (user.email){
+        text += user.email.join(" ");
+      }
+      if (user.password){
+        text += user.password.join(" ");
+      }
+      setError(text ? text : "Неизвестная ошибка регистрации");
+    } else {
+      setEmail(user.email)
+    }
+
+    setIsLoading(false);
   };
 
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
@@ -121,8 +155,8 @@ export default function AuthPage({ isLoginMode = false }) {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={() => handleLogin({ email, password })}>
-                Войти
+              <S.PrimaryButton disabled={isLoading} onClick={() => handleLogin({ email, password })}>
+                {isLoading ? "Загрузка...": "Войти"}
               </S.PrimaryButton>
               <Link to="/registration">
                 <S.SecondaryButton>Зарегистрироваться</S.SecondaryButton>
@@ -171,8 +205,8 @@ export default function AuthPage({ isLoginMode = false }) {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={() => handleRegister({ email, password, username })}>
-                Зарегистрироваться
+              <S.PrimaryButton disabled={isLoading} onClick={() => handleRegister({ email, password, username })}>
+              {isLoading ? "Регистрация..." : "Зарегистрироваться"}
               </S.PrimaryButton>
             </S.Buttons>
           </>
