@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import * as S from './NavMenu.styles'
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from '../../context/user';
 
-function OpenMenu({ isOpen, user}) {
+function OpenMenu({ isOpen}) {
+  const {logout} = useUserContext();
 
-  const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
+    logout();
   };
 
   if (isOpen) {

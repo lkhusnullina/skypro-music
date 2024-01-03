@@ -2,6 +2,7 @@ import { SkeletonTheme } from 'react-loading-skeleton'
 import * as S from './App.styles'
 import { AppRoutes } from './routes'
 import { useState } from "react";
+import { UserProvider } from './context/user';
 
 function App() {
   const [user, setUser] = useState(localStorage.getItem("token"));
@@ -12,7 +13,9 @@ function App() {
       <S.Wrapper>
         <S.Container>
           <SkeletonTheme baseColor="#202020" highlightColor="#444">
-          <AppRoutes user={user} setUser={setUser}/>
+            <UserProvider>
+               <AppRoutes user={user} setUser={setUser}/>
+            </UserProvider>
           </SkeletonTheme>
         </S.Container>
       </S.Wrapper>

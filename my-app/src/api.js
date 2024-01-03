@@ -1,3 +1,4 @@
+const logHost = 'https://skypro-music-api.skyeng.tech/user/';
 
 export async function getTrackAll() {
    const response =  await fetch('https://skypro-music-api.skyeng.tech/catalog/track/all/', {
@@ -13,3 +14,45 @@ export async function getTrackAll() {
    return data;    
 } 
 
+export async function registerUser({ email, password, username }) {
+   const response = await fetch(logHost + 'signup/', {
+     method: 'POST',
+     body: JSON.stringify({
+      email,
+      password,
+      username,
+     }),
+     headers: {
+       "content-type": "application/json",
+     },
+   })
+
+   const data = await response.json();
+
+   if (!response.ok) {
+      return {...data, error: true};
+   }
+
+   return data;
+};
+ 
+export async function loginUser({ email, password }) {
+   const response = await fetch(logHost + 'login/', {
+     method: 'POST',
+     body: JSON.stringify({
+       email,
+       password,
+     }),
+     headers: {
+      "content-type": "application/json",
+     },
+   })
+   const data = await response.json();
+
+   if (!response.ok) {
+      return {...data, error: true};
+   }
+
+   return data;
+};
+ 

@@ -315,12 +315,12 @@ export const PlayerBtnRepeatSvg = styled.svg`
   width: 18px;
   height: 12px;
   fill: transparent;
-  stroke: ${(props) => (props.isLoop ? "#fff" : "#696969")};
+  stroke: ${(props) => (props.$isLoop ? "#fff" : "#696969")};
   &:hover {
-    stroke: ${(props) => (props.isLoop ? "#fff" : "#acacac")};
+    stroke: ${(props) => (props.$isLoop ? "#fff" : "#acacac")};
   }
   &:active {
-    stroke: ${(props) => (props.isLoop ? "#acacac" : "#fff")};
+    stroke: ${(props) => (props.$isLoop ? "#acacac" : "#fff")};
   }
 `
 
