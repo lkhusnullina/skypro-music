@@ -112,7 +112,8 @@ export default function AuthPage({ isLoginMode = false }) {
       }
       setError(text ? text : "Неизвестная ошибка регистрации");
     } else {
-      setEmail(user.email)
+      setEmail(user.email);
+      login(email);
     }
 
     setIsLoading(false);

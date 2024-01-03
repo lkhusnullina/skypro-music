@@ -3,7 +3,7 @@ import { MainPage } from "./pages/main/MainPage";
 import { MyPlaylistPage } from "./pages/favorites/PlaylistPage";
 import { CategoryPage } from "./pages/category/CategoryPage";
 import { NotFound } from "./pages/not-found";
-import { RegistationPage } from "./pages/register/RegisterPage.jsx";
+// import { RegistationPage } from "./pages/register/RegisterPage.jsx";
 // import { LoginPage } from "./pages/login/LoginPage.jsx";
 import { ProtectedRoute } from "./components/protected-route/index.jsx";
 import AuthPage from "./pages/authpage/AuthPage.jsx";
@@ -11,7 +11,7 @@ import { useUserContext } from "./context/user.js";
 
 export const AppRoutes = ({ setUser }) => {
     const {user} = useUserContext();
-
+    
     return(
         <Routes>
             <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>

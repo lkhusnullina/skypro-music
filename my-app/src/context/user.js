@@ -11,7 +11,6 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
     const login = (user) => {
-        // console.log(user);
         localStorage.setItem('user', JSON.stringify(user))
         setUser(user);
         navigate('/');
