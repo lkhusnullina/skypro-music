@@ -1,9 +1,11 @@
-import { useRef, useState } from 'react'
-import { useEffect } from 'react'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import * as S from './AudioPlayer.styles'
-import { BtnIcon } from '../../App.styles'
+import { useRef, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNextTrack, setPrevTrack, startStop, shuffleTracks } from '../../store/musicSlice';
+
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import * as S from './AudioPlayer.styles';
+import { BtnIcon } from '../../App.styles';
 
 function secondsToTimeString(seconds) {
   return (
@@ -16,27 +18,32 @@ function secondsToTimeString(seconds) {
 }
 
 function AudioPlayer({track}) {
+  const isPlaying = useSelector(state => state.music.isPlaying);
+  const isShuffled = useSelector(state => state.music.isShuffle);
+  const currentTrack = useSelector(state => state.music.currnetTrack);
+  const dispatch = useDispatch();
+
+
   const [isLoading, setIsLoading] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(true);
   const [isLoop, setIsLoop] = useState(false);
   const [volume, setVolume] = useState(30)
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef(null);
 
-  const Realize = () => {
+  const realize = () => {
     alert('Еще не реализовано!')
   }
 
   const handleStart = () => {
     audioRef.current.play();
-    setIsPlaying(true);
+    dispatch(startStop({play: true}));
     setDuration(audioRef.current.duration);
   };
 
   const handleStop = () => {
     audioRef.current.pause();
-    setIsPlaying(false);
+    dispatch(startStop({play: false}));
   };
 
   const togglePlay = isPlaying ? handleStop : handleStart;
@@ -101,7 +108,7 @@ function AudioPlayer({track}) {
           <S.BarPlayer>
             <S.PlayerControls>
               <S.PlayerBtnPrev>
-                <S.PlayerBtnPrevSvg alt="prev" onClick={Realize}>
+                <S.PlayerBtnPrevSvg alt="prev" onClick={() => dispatch(setPrevTrack())}>
                   <use xlinkHref="img/icon/sprite.svg#icon-prev" />
                 </S.PlayerBtnPrevSvg>
               </S.PlayerBtnPrev>
@@ -114,7 +121,7 @@ function AudioPlayer({track}) {
                 </S.PlayerBtnPlaySvg>
               </S.PlayerBtnPlay>
               <S.PlayerBtnNext>
-                <S.PlayerBtnNextSvg alt="next" onClick={Realize}>
+                <S.PlayerBtnNextSvg alt="next" onClick={() => dispatch(setNextTrack())}>
                   <use xlinkHref="img/icon/sprite.svg#icon-next" />
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtnNext>
@@ -124,7 +131,7 @@ function AudioPlayer({track}) {
                 </S.PlayerBtnRepeatSvg>
               </BtnIcon>
               <BtnIcon>
-                <S.PlayerBtnShuffleSvg alt="shuffle" onClick={Realize}>
+                <S.PlayerBtnShuffleSvg alt="shuffle" onClick={() => dispatch(shuffleTracks())} $isEnabled={isShuffled}>
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
                 </S.PlayerBtnShuffleSvg>
               </BtnIcon>
