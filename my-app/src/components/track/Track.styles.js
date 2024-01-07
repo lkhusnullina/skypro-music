@@ -143,7 +143,7 @@ const animationDot = props =>
 
 export const Playingdot = styled.div`
   width: 15px;
-  height: 9px;
+  height: 15px;
   background-color: #b672ff;
   border-radius: 50%;
   display: block;

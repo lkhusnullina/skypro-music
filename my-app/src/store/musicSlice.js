@@ -17,21 +17,32 @@ const musicSlice = createSlice({
         isPlaying: false,
     },
     reducers: {
-        // handleStart(state, action) {},
-        // handleStop(state, action) {},
-        // handleOnLoop(state, action) {},
         setNextTrack(state, action){
-            state.currentTrackIndex++;
+            const newIndex = state.currentTrackIndex + 1;
+            const len = state.playingTracks.length - 1;
+            if (newIndex > len) {
+                return;
+            } 
+            state.currentTrackIndex = newIndex;
             state.currentTrack = state.playingTracks[state.currentTrackIndex];
         },
         setPrevTrack(state, action){
-            state.currentTrackIndex--;
+            const newIndex = state.currentTrackIndex - 1;
+            if (newIndex <  0) {
+                return;
+            }
+            state.currentTrackIndex = newIndex;
             state.currentTrack = state.playingTracks[state.currentTrackIndex];
         },
         shuffleTracks(state, action){
             state.isShuffle = !state.isShuffle;
             if (state.isShuffle) {
                 state.playingTracks = shuffle(state.playingTracks);
+                if (state.currentTrack != null) {
+                    const i = state.playingTracks.findIndex(track => track.id == state.currentTrack.id);
+                    state.currentTrackIndex = i;
+
+                }
             } else {
                 state.playingTracks = [...state.tracks];
             }
@@ -49,6 +60,9 @@ const musicSlice = createSlice({
             if (index == -1) return;
             state.currentTrackIndex = index;
             state.currentTrack = state.playingTracks[index];
+        },
+        repeatTracks(state, action) {
+            state.isRepeat = !state.isRepeat;
         }
     },
 });

@@ -31,9 +31,9 @@ function AudioPlayer({track}) {
   const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef(null);
 
-  const realize = () => {
-    alert('Еще не реализовано!')
-  }
+  // const realize = () => {
+  //   alert('Еще не реализовано!')
+  // }
 
   const handleStart = () => {
     audioRef.current.play();
