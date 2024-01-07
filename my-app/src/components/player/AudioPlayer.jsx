@@ -1,8 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNextTrack, setPrevTrack, startStop, shuffleTracks } from '../../store/musicSlice';
-
-import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from './AudioPlayer.styles';
 import { BtnIcon } from '../../App.styles';
@@ -20,20 +18,15 @@ function secondsToTimeString(seconds) {
 function AudioPlayer({track}) {
   const isPlaying = useSelector(state => state.music.isPlaying);
   const isShuffled = useSelector(state => state.music.isShuffle);
-  const currentTrack = useSelector(state => state.music.currnetTrack);
+  // const currentTrack = useSelector(state => state.music.currnetTrack);
   const dispatch = useDispatch();
 
 
-  const [isLoading, setIsLoading] = useState(false)
   const [isLoop, setIsLoop] = useState(false);
   const [volume, setVolume] = useState(30)
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef(null);
-
-  // const realize = () => {
-  //   alert('Еще не реализовано!')
-  // }
 
   const handleStart = () => {
     audioRef.current.play();
@@ -74,6 +67,9 @@ function AudioPlayer({track}) {
     audioRef.current.addEventListener('loadedmetadata',() => {
       handleStart();
     });
+    audioRef.current.onended = () => {
+      dispatch(setNextTrack());
+    };
   }, []);
 
   const handleVolumeChange = (event) => {
@@ -81,12 +77,6 @@ function AudioPlayer({track}) {
     audioRef.current.volume = newVolume;
     setVolume(newVolume);
   }
-  
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false)
-  //   }, 5000)
-  // }, [])
 
   return (
     <>
@@ -145,24 +135,16 @@ function AudioPlayer({track}) {
                 </S.TrackPlayImage>
                 <S.TrackPlayAuthor>
                   <div>
-                    {isLoading ? (
-                      <Skeleton />
-                    ) : (
-                      <S.TrackPlayAuthorLink href="http://">
-                        {track.name}
-                      </S.TrackPlayAuthorLink>
-                    )}
+                    <S.TrackPlayAuthorLink href="http://">
+                      {track.name}
+                    </S.TrackPlayAuthorLink>
                   </div>
                 </S.TrackPlayAuthor>
                 <S.TrackplayAlbum>
                   <div>
-                    {isLoading ? (
-                      <Skeleton />
-                    ) : (
-                      <S.TrackPlayAlbumLink href="http://">
-                        {track.author}
-                      </S.TrackPlayAlbumLink>
-                    )}
+                    <S.TrackPlayAlbumLink href="http://">
+                      {track.author}
+                    </S.TrackPlayAlbumLink>
                   </div>
                 </S.TrackplayAlbum>
               </S.TrackPlayContain>
