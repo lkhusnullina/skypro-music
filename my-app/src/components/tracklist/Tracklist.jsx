@@ -8,7 +8,7 @@ import AudioPlayer from '../player/AudioPlayer';
 
 function Tracklist(props) {
   const dispatch = useDispatch();
-  const tracks = useSelector(state => state.music.playingTracks);
+  const tracks = useSelector(state => state.music.tracks);
   const currentTrack = useSelector(state => state.music.currentTrack);
 
   let i = 0;
