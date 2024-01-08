@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled, keyframes, css } from 'styled-components'
 
 export const PlaylistItem = styled.div`
   width: 100%;
@@ -124,4 +124,28 @@ export const SkeletAuthor = styled.div`
 
 export const SkeletBlock = styled.div`
   flex: 1;
+`
+
+const bubble_out = keyframes`
+  0%,
+  to {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1);
+  }
+`
+
+const animationDot = props =>
+  css`
+  ${bubble_out} 0.6s ease-in-out infinite both;
+`
+
+export const Playingdot = styled.div`
+  width: 15px;
+  height: 15px;
+  background-color: #b672ff;
+  border-radius: 50%;
+  display: block;
+  animation: ${(props) => (props.$isPlaying ? animationDot : "none")};
 `

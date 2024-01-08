@@ -1,22 +1,31 @@
+import { useSelector } from 'react-redux'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './Track.styles'
 
-
 function Track(props) {
-  const time = props.track.duration_in_seconds;
-  const minutes = Math.trunc(time / 60);
-  const seconds = time - (minutes * 60);
-  const timeTrack = `${minutes <= 9 ? '0' + minutes : minutes}:${seconds <= 9 ? '0' + seconds : seconds}`
-  
+  const time = props.track.duration_in_seconds
+  const minutes = Math.trunc(time / 60)
+  const seconds = time - minutes * 60
+  const timeTrack = `${minutes <= 9 ? '0' + minutes : minutes}:${
+    seconds <= 9 ? '0' + seconds : seconds
+  }`
+
+  const currentTrack = useSelector((state) => state.music.currentTrack)
+  const isPlaying = useSelector((state) => state.music.isPlaying)
+
   return (
     <S.PlaylistItem onClick={props.onClick}>
       <S.PlaylistTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>
-            <S.TrackTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
-            </S.TrackTitleSvg>
+            {currentTrack != null && props.track.id == currentTrack.id ? (
+              <S.Playingdot $isPlaying={isPlaying}></S.Playingdot>
+            ) : (
+              <S.TrackTitleSvg alt="music">
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              </S.TrackTitleSvg>
+            )}
           </S.TrackTitleImage>
           {props.isLoading ? (
             <S.SkeletAuthor>
@@ -24,7 +33,7 @@ function Track(props) {
             </S.SkeletAuthor>
           ) : (
             <div>
-              <S.TrackTitleLink href='#'>
+              <S.TrackTitleLink href="#">
                 {props.track.name}
                 <S.TrackTitleSpan>
                   {props.track.trackTitlespan}
@@ -39,9 +48,7 @@ function Track(props) {
               <Skeleton />
             </S.SkeletBlock>
           ) : (
-            <S.TrackAuthorLink href='#'>
-              {props.track.author}
-            </S.TrackAuthorLink>
+            <S.TrackAuthorLink href="#">{props.track.author}</S.TrackAuthorLink>
           )}
         </S.TrackAuthor>
         <S.TrackAlbum>
