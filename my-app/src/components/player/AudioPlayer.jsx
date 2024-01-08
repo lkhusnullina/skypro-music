@@ -18,7 +18,6 @@ function secondsToTimeString(seconds) {
 function AudioPlayer({track}) {
   const isPlaying = useSelector(state => state.music.isPlaying);
   const isShuffled = useSelector(state => state.music.isShuffle);
-  // const currentTrack = useSelector(state => state.music.currnetTrack);
   const dispatch = useDispatch();
 
 
