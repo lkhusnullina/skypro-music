@@ -1,4 +1,5 @@
-
+import { useDispatch } from 'react-redux';
+import { clearStore } from '../store/musicSlice';
 import { createContext, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -8,6 +9,7 @@ export const useUserContext = () => {
 }
 
 export const UserProvider = ({ children }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate()
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
@@ -18,8 +20,9 @@ export const UserProvider = ({ children }) => {
   }
 
   const logout = () => {
-    setUser(null)
-    localStorage.removeItem('user')
+    setUser(null);
+    localStorage.removeItem('user');
+    dispatch(clearStore());
   }
 
   return (
