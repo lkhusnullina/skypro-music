@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import * as S from './NavMenu.styles'
-import { useNavigate } from "react-router-dom";
-import { useUserContext } from '../../context/user';
+import { useNavigate } from 'react-router-dom'
+import { useUserContext } from '../../context/user'
 
-function OpenMenu({ isOpen}) {
-  const {logout} = useUserContext();
+function OpenMenu({ isOpen }) {
+  const { logout } = useUserContext()
 
   const handleLogout = () => {
-    logout();
-  };
+    logout()
+  }
 
   if (isOpen) {
     return (
@@ -30,7 +30,7 @@ function OpenMenu({ isOpen}) {
   return ''
 }
 
-function NavMenu({user}) {
+function NavMenu({ user }) {
   const [open, setOpen] = useState(false)
 
   const toggleVisibility = () => {
