@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
-
 import { setCurrentTrack } from '../../store/musicSlice'
 import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
 import * as S from './Tracklist.styles'
 import AudioPlayer from '../player/AudioPlayer'
+import Skeleton from 'react-loading-skeleton'
 
-function Tracklist(props) {
+function Tracklist({isLoading, tracks, error}) {
   const dispatch = useDispatch()
-  const tracks = useSelector((state) => state.music.tracks)
+  // const tracks = useSelector((state) => state.music.tracks)
   const currentTrack = useSelector((state) => state.music.currentTrack)
 
   let i = 0
@@ -37,11 +37,24 @@ function Tracklist(props) {
             </S.PlaylistTitleSvg>
           </S.Col04>
         </S.ContentTitle>
-        {props.error ? (
-          <p>Не удалось загрузить плейлист, попробуйте позже: {props.error}</p>
+        {error ? (
+          <p>Не удалось загрузить плейлист, попробуйте позже: {error}</p>
         ) : (
           <S.ContentPlaylist>
-            {tracks.map((track) => {
+            {isLoading ? <Skeleton /> : tracks.map((track) => {
+              return (
+                <Track
+                  key={`${track.id}${i++}`}
+                  onClick={() => {
+                    trackClick(track)
+                    console.log(currentTrack);
+                  }}
+                  track={track}
+                  isLoading={isLoading}
+                />
+              )
+            })}
+            {/* {props.tracks.map((track) => {
               return (
                 <Track
                   key={`${track.id}${i++}`}
@@ -52,7 +65,7 @@ function Tracklist(props) {
                   isLoading={props.isLoading}
                 />
               )
-            })}
+            })} */}
           </S.ContentPlaylist>
         )}
       </S.CenterblockContent>

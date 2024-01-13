@@ -6,29 +6,31 @@ import { getTrackAll } from '../../api'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loadTracks } from '../../store/musicSlice'
+import { useGetAllTracksQuery } from '../../service/getTracks'
 
 export const MainPage = ({ user }) => {
   const dispatch = useDispatch()
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    getTrackAll()
-      .then((all) => {
-        dispatch(loadTracks({ tracks: all }))
-        setIsLoading(false)
-        //throw new Error("Ошибка!")
-      })
-      .catch((error) => {
-        setError(error.message)
-      })
-  }, [])
+  //const [isLoading, setIsLoading] = useState(true)
+  //const [error, setError] = useState(null)
+  const {data: tracks, isLoading, error} = useGetAllTracksQuery();
+  
+  // useEffect(() => {
+  //   getTrackAll()
+  //     .then((all) => {
+  //       dispatch(loadTracks({ tracks: all }))
+  //       setIsLoading(false)
+  //       //throw new Error("Ошибка!")
+  //     })
+  //     .catch((error) => {
+  //       setError(error.message)
+  //     })
+  // }, [])
 
   return (
     <>
       <S.Main>
         <NavMenu user={user} />
-        <Tracklist isLoading={isLoading} error={error} />
+        <Tracklist tracks={tracks} isLoading={isLoading} error={error} />
         <Sidebar isLoading={isLoading} />
       </S.Main>
       <footer className="footer" />
