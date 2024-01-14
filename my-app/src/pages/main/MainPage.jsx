@@ -13,7 +13,7 @@ export const MainPage = ({ user }) => {
   //const [isLoading, setIsLoading] = useState(true)
   //const [error, setError] = useState(null)
   const {data: tracks, isLoading, error} = useGetAllTracksQuery();
-  
+ 
   // useEffect(() => {
   //   getTrackAll()
   //     .then((all) => {

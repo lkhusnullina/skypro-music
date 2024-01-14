@@ -33,7 +33,7 @@ export default function AuthPage({ isLoginMode = false }) {
       email: email,
       password: password,
     });
-
+    console.log(user);
     if (user.error) {
       setError("Пользователь с таким email или паролем не найден");
     } else {
@@ -41,20 +41,7 @@ export default function AuthPage({ isLoginMode = false }) {
       login(email);
     }
 
-
     setIsLoading(false);
-     
-    //   console.log(user);
-    //   isLoginMode = true;
-    //   setEmail(user.email);
-    //   login(email);
-    // }).catch((error) => {
-    //   console.log(error);
-    //   // alert(`Выполняется вход: ${email} ${password}`);
-    //   setError(error.detail ? error.detail : "Неизвестная ошибка входа");
-    // }).finally(() => {
-    //   setIsLoading(false);
-    // })
   };
 
   const handleRegister = async ({ email, password, username }) => {

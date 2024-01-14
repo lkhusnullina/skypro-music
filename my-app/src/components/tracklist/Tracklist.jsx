@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentTrack } from '../../store/musicSlice'
+import { setCurrentTrack, loadTracks } from '../../store/musicSlice'
 import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
 import * as S from './Tracklist.styles'
@@ -9,12 +9,9 @@ import Skeleton from 'react-loading-skeleton'
 function Tracklist({isLoading, tracks, error}) {
   const dispatch = useDispatch()
   // const tracks = useSelector((state) => state.music.tracks)
-  const currentTrack = useSelector((state) => state.music.currentTrack)
-
+  const currentTrack = useSelector((state) => state.music.currentTrack);
+  if (tracks) dispatch(loadTracks({ tracks }))
   let i = 0
-  const trackClick = (track) => {
-    dispatch(setCurrentTrack({ id: track.id }))
-  }
 
   return (
     <S.MainCenterblock>
@@ -46,8 +43,7 @@ function Tracklist({isLoading, tracks, error}) {
                 <Track
                   key={`${track.id}${i++}`}
                   onClick={() => {
-                    trackClick(track)
-                    console.log(currentTrack);
+                    dispatch(setCurrentTrack({ id: track.id }))
                   }}
                   track={track}
                   isLoading={isLoading}
