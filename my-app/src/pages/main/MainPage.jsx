@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loadTracks } from '../../store/musicSlice'
 import { useGetAllTracksQuery } from '../../service/getTracks'
+import AudioPlayer from '../../components/player/AudioPlayer'
 
 export const MainPage = ({ user }) => {
   const dispatch = useDispatch()
@@ -26,14 +27,24 @@ export const MainPage = ({ user }) => {
   //     })
   // }, [])
 
+  // return (
+  //   <>
+  //     <S.Main>
+  //       <NavMenu user={user} />
+  //       <Tracklist tracks={tracks} isLoading={isLoading} error={error} />
+  //       <Sidebar isLoading={isLoading} />
+  //     </S.Main>
+  //     {/* {currentTrack ? <AudioPlayer track={currentTrack} /> : null} */}
+  //     <footer className="footer" />
+  //   </>
+  // )
   return (
     <>
       <S.Main>
-        <NavMenu user={user} />
         <Tracklist tracks={tracks} isLoading={isLoading} error={error} />
-        <Sidebar isLoading={isLoading} />
       </S.Main>
-      <footer className="footer" />
+      {/* {currentTrack ? <AudioPlayer track={currentTrack} /> : null} */}
+    
     </>
   )
 }

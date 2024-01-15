@@ -50,18 +50,6 @@ function Tracklist({isLoading, tracks, error}) {
                 />
               )
             })}
-            {/* {props.tracks.map((track) => {
-              return (
-                <Track
-                  key={`${track.id}${i++}`}
-                  onClick={() => {
-                    trackClick(track)
-                  }}
-                  track={track}
-                  isLoading={props.isLoading}
-                />
-              )
-            })} */}
           </S.ContentPlaylist>
         )}
       </S.CenterblockContent>

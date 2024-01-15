@@ -10,11 +10,8 @@ export const FavoritesPage = ({ user }) => {
     return (
         <>
           <S.Main>
-            <NavMenu user={user} />
             <Tracklist tracks={tracks} isLoading={isLoading} error={error} />
-            <Sidebar isLoading={isLoading} />
           </S.Main>
-          <footer className="footer" />
         </>
       )
     // return (
