@@ -1,16 +1,16 @@
-import NavMenu from '../../components/menu/NavMenu'
-import Sidebar from '../../components/sidebar/Sidebar'
+// import NavMenu from '../../components/menu/NavMenu'
+// import Sidebar from '../../components/sidebar/Sidebar'
 import Tracklist from '../../components/tracklist/Tracklist'
 import * as S from '../../App.styles'
-import { getTrackAll } from '../../api'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+// import { getTrackAll } from '../../api'
+// import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadTracks } from '../../store/musicSlice'
 import { useGetAllTracksQuery } from '../../service/getTracks'
-import AudioPlayer from '../../components/player/AudioPlayer'
 
-export const MainPage = ({ user }) => {
-  const dispatch = useDispatch()
+
+export const MainPage = ({ currentTrack }) => {
+  const dispatch = useDispatch();
   //const [isLoading, setIsLoading] = useState(true)
   //const [error, setError] = useState(null)
   const {data: tracks, isLoading, error} = useGetAllTracksQuery();
@@ -43,8 +43,6 @@ export const MainPage = ({ user }) => {
       <S.Main>
         <Tracklist tracks={tracks} isLoading={isLoading} error={error} />
       </S.Main>
-      {/* {currentTrack ? <AudioPlayer track={currentTrack} /> : null} */}
-    
     </>
   )
 }

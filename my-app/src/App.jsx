@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { UserProvider } from './context/user'
 
 function App() {
-  const [user, setUser] = useState(localStorage.getItem('token'))
+  const [user, setUser] = useState(localStorage.getItem('token'));
 
   return (
     <>

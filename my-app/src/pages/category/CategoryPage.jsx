@@ -1,3 +1,4 @@
+import AudioPlayer from '../../components/player/AudioPlayer.jsx';
 import { Categories } from '../../constans.js'
 import { useParams } from "react-router-dom";
 

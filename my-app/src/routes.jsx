@@ -3,14 +3,12 @@ import { MainPage } from "./pages/main/MainPage";
 import { FavoritesPage } from "./pages/favoritesPage/FavoritesPage.jsx";
 import { CategoryPage } from "./pages/category/CategoryPage";
 import { NotFound } from "./pages/not-found";
-// import { RegistationPage } from "./pages/register/RegisterPage.jsx";
-// import { LoginPage } from "./pages/login/LoginPage.jsx";
 import { ProtectedRoute } from "./components/protected-route/index.jsx";
 import AuthPage from "./pages/authpage/AuthPage.jsx";
 import { useUserContext } from "./context/user.js";
 import { PageLayout } from "./pages/layout/Layout.jsx";
 
-export const AppRoutes = ({ setUser }) => {
+export const AppRoutes = () => {
     const {user} = useUserContext();
     
     return(

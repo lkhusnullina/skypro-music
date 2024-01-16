@@ -9,7 +9,7 @@ import Skeleton from 'react-loading-skeleton'
 function Tracklist({isLoading, tracks, error}) {
   const dispatch = useDispatch()
   // const tracks = useSelector((state) => state.music.tracks)
-  const currentTrack = useSelector((state) => state.music.currentTrack);
+  // const currentTrack = useSelector((state) => state.music.currentTrack);
   if (tracks) dispatch(loadTracks({ tracks }))
   let i = 0
 
@@ -53,7 +53,7 @@ function Tracklist({isLoading, tracks, error}) {
           </S.ContentPlaylist>
         )}
       </S.CenterblockContent>
-      {currentTrack ? <AudioPlayer track={currentTrack} /> : null}
+      {/* {currentTrack ? <AudioPlayer track={currentTrack} /> : null} */}
     </S.MainCenterblock>
   )
 }
