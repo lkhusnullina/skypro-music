@@ -19,7 +19,7 @@ const logHost = 'https://skypro-music-api.skyeng.tech/user/'
 //   return data
 // }
 
-export const getToken = async ({email, password}) => {
+export const getToken = async ({ email, password }) => {
   const response = await fetch('https://skypro-music-api.skyeng.tech/user/token/', {
     method: 'POST',
     body: JSON.stringify({

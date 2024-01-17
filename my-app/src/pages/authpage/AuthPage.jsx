@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import * as S from "./AuthPage.styles";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../context/user";
-import { loginUser, registerUser } from "../../api";
+import { getToken, loginUser, registerUser } from "../../api";
 
 export default function AuthPage({ isLoginMode = false }) {
   const {login} = useUserContext();
@@ -39,6 +39,10 @@ export default function AuthPage({ isLoginMode = false }) {
     } else {
       setEmail(user.email);
       login(email);
+      getToken( {email, password}).then((res) => {
+        console.log(res);
+        localStorage.setItem('token', JSON.stringify(res))
+      })
     }
 
     setIsLoading(false);
@@ -106,7 +110,6 @@ export default function AuthPage({ isLoginMode = false }) {
     setIsLoading(false);
   };
 
-  // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
   useEffect(() => {
     setError(null);
   }, [isLoginMode, email, password, repeatPassword]);

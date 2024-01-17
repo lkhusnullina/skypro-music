@@ -9,8 +9,8 @@ import { loadTracks } from '../../store/musicSlice'
 import { useGetAllTracksQuery } from '../../service/getTracks'
 
 
-export const MainPage = ({ currentTrack }) => {
-  const dispatch = useDispatch();
+export const MainPage = () => {
+  //const dispatch = useDispatch();
   //const [isLoading, setIsLoading] = useState(true)
   //const [error, setError] = useState(null)
   const {data: tracks, isLoading, error} = useGetAllTracksQuery();

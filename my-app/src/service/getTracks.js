@@ -17,22 +17,28 @@ export const getTracks = createApi({
       query: () => ({
         url: 'catalog/track/favorite/all/',
         headers: {
-          Authorizations: 'tralala', //Bearer ${token}
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('token')).access}`
         },
       }),
       providesTags: ['Tracks'],
     }),
     addFavoriteTrack: builder.mutation({
       query: ({ id }) => ({
-        url: 'catalog/track/${id}/favorite/',
+        url: `catalog/track/${id}/favorite/`,
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('token')).access}`
+        },
       }),
       invalidatesTags: ['Tracks'],
     }),
     deleteFavoriteTrack: builder.mutation({
       query: ({ id }) => ({
-        url: '/catalog/track/<id>/favorite/',
+        url: `/catalog/track/${id}/favorite/`,
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('token')).access}`
+        },
       }),
       invalidatesTags: ['Tracks'],
     }),

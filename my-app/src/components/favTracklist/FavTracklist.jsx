@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentTrack, loadTracks } from '../../store/musicSlice'
 import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
-import * as S from './Tracklist.styles'
+import * as S from './FavTracklist.styles'
 import AudioPlayer from '../player/AudioPlayer'
 import Skeleton from 'react-loading-skeleton'
 
-function Tracklist({ isLoading, tracks, error }) {
+function FavTracklist({ isLoading, tracks, error }) {
   const dispatch = useDispatch()
   // const tracks = useSelector((state) => state.music.tracks)
   // const currentTrack = useSelector((state) => state.music.currentTrack);
@@ -21,8 +21,8 @@ function Tracklist({ isLoading, tracks, error }) {
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterblockSearch>
-      <S.CenterblockH>Треки</S.CenterblockH>
-      <FilterBlock />
+      <S.CenterblockH>Мои треки</S.CenterblockH>
+      {/* <FilterBlock /> */}
       <S.CenterblockContent>
         <S.ContentTitle>
           <S.Col01>Трек</S.Col01>
@@ -57,4 +57,4 @@ function Tracklist({ isLoading, tracks, error }) {
   )
 }
 
-export default Tracklist
+export default FavTracklist
