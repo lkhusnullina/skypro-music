@@ -7,33 +7,42 @@ import {
   useDeleteFavoriteTrackMutation,
 } from '../../service/getTracks'
 import { getToken } from '../../api'
-// import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function Track(props) {
-  const time = props.track.duration_in_seconds
-  const minutes = Math.trunc(time / 60)
-  const seconds = time - minutes * 60
+  const time = props.track.duration_in_seconds;
+  const minutes = Math.trunc(time / 60);
+  const seconds = time - minutes * 60;
   const timeTrack = `${minutes <= 9 ? '0' + minutes : minutes}:${
     seconds <= 9 ? '0' + seconds : seconds
   }`;
 
+  const [isLike, setIsLike] = useState(true);
   const [addTrack] = useAddFavoriteTrackMutation();
   const [deleteTrack] = useDeleteFavoriteTrackMutation();
-  // console.log(props.track);
-  const currentTrack = useSelector((state) => state.music.currentTrack)
-  const isPlaying = useSelector((state) => state.music.isPlaying)
+  const currentTrack = useSelector((state) => state.music.currentTrack);
+  const isPlaying = useSelector((state) => state.music.isPlaying);
 
-  const handleAddTrack = async (id) => {
-      console.log(id);
-      addTrack({ id });
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const handleAddTrack = async () => {
+    addTrack({ id: props.track.id });
+    setIsLike(true)
   }
 
-  const handleDeleteTrack = async (id) => {
-    console.log(id);
-    deleteTrack({ id });
-}
+  const handleDeleteTrack = async () => {
+    deleteTrack({ id: props.track.id });
+    setIsLike(false);
+  }
 
-  //const toggleLike = isLike ? handleDeleteTrack : handleAddTrack
+  useEffect(() => {
+    if (props.track.stared_user) {
+      const findUser = props.track.stared_user.find((t) => t.email == user);
+      const liked = findUser == null ? false : true;
+      setIsLike(liked);
+    }
+  }, [])
+  const toggleLike = isLike ? handleDeleteTrack : handleAddTrack;
 
   return (
     <S.PlaylistItem onClick={props.onClick}>
@@ -84,10 +93,11 @@ function Track(props) {
           )}
         </S.TrackAlbum>
         <div>
-          <S.TrackTimeSvg onClick={() => handleAddTrack(props.track.id)} alt="time">
-            
-              <use xlinkHref="img/icon/sprite.svg#icon-like" />
-            
+          <S.TrackTimeSvg
+            onClick={toggleLike}
+            alt="time"
+          >
+            {isLike ? (<use xlinkHref="img/icon/sprite.svg#icon-liked" />) : (<use xlinkHref="img/icon/sprite.svg#icon-like" />)}
           </S.TrackTimeSvg>
           {props.isLoading ? (
             <S.TrackTimeText>00:00</S.TrackTimeText>

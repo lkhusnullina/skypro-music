@@ -5,23 +5,24 @@ import { useNavigate } from 'react-router-dom'
 
 export const UserContext = createContext(null);
 export const useUserContext = () => {
-  return useContext(UserContext)
+  return useContext(UserContext);
 }
 
 export const UserProvider = ({ children }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+  const navigate = useNavigate();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   const login = (user) => {
-    localStorage.setItem('user', JSON.stringify(user))
-    setUser(user)
-    navigate('/')
+    localStorage.setItem('user', JSON.stringify(user));
+    setUser(user);
+    navigate('/');
   }
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     dispatch(clearStore());
   }
 
