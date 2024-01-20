@@ -15,6 +15,7 @@ export const FavoritesPage = () => {
         dispatch(setFavorite({tracks}));
       }
     }, [tracks])
+    
     return (
       <>
         <S.Main>
