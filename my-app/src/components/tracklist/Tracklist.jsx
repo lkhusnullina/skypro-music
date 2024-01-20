@@ -3,15 +3,12 @@ import { setCurrentTrack, loadTracks } from '../../store/musicSlice'
 import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
 import * as S from './Tracklist.styles'
-import AudioPlayer from '../player/AudioPlayer'
 import Skeleton from 'react-loading-skeleton'
 
 function Tracklist({ isLoading, tracks, error }) {
-  const dispatch = useDispatch()
-  // const tracks = useSelector((state) => state.music.tracks)
-  // const currentTrack = useSelector((state) => state.music.currentTrack);
-  if (tracks) dispatch(loadTracks({ tracks }))
-  let i = 0
+  const dispatch = useDispatch();
+  if (tracks) dispatch(loadTracks({ tracks }));
+  let i = 0;
 
   return (
     <S.MainCenterblock>

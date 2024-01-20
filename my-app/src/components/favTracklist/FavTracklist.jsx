@@ -7,10 +7,8 @@ import AudioPlayer from '../player/AudioPlayer'
 import Skeleton from 'react-loading-skeleton'
 
 function FavTracklist({ isLoading, tracks, error }) {
-  const dispatch = useDispatch()
-  // const tracks = useSelector((state) => state.music.tracks)
-  // const currentTrack = useSelector((state) => state.music.currentTrack);
-  if (tracks) dispatch(loadTracks({ tracks }))
+  const dispatch = useDispatch();
+  if (tracks) dispatch(loadTracks({ tracks }));
   let i = 0
 
   return (
@@ -22,7 +20,6 @@ function FavTracklist({ isLoading, tracks, error }) {
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterblockSearch>
       <S.CenterblockH>Мои треки</S.CenterblockH>
-      {/* <FilterBlock /> */}
       <S.CenterblockContent>
         <S.ContentTitle>
           <S.Col01>Трек</S.Col01>
@@ -34,9 +31,7 @@ function FavTracklist({ isLoading, tracks, error }) {
             </S.PlaylistTitleSvg>
           </S.Col04>
         </S.ContentTitle>
-        {error ? (
-          <p>Не удалось загрузить плейлист, попробуйте позже: {error}</p>
-        ) : (
+        {tracks && tracks.length > 0 ? (
           <S.ContentPlaylist>
             {isLoading ? <Skeleton /> : tracks.map((track) => {
               return (
@@ -51,6 +46,8 @@ function FavTracklist({ isLoading, tracks, error }) {
               )
             })}
           </S.ContentPlaylist>
+        ) : (
+          <p>В этом плейтисте нет треков</p>
         )}
       </S.CenterblockContent>
     </S.MainCenterblock>

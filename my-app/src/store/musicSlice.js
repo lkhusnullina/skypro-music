@@ -66,6 +66,9 @@ const musicSlice = createSlice({
     repeatTracks(state, action) {
       state.isRepeat = !state.isRepeat
     },
+    setFavorite(state, action) {
+      state.playingTracks = action.payload.tracks;
+    },
     clearStore(state, action) {
       state.currentTrack = null;
       state.currentTrackIndex = null;
@@ -86,5 +89,6 @@ export const {
   loadTracks,
   clearStore,
   setCurrentTrack,
+  setFavorite
 } = musicSlice.actions
 export default musicSlice.reducer

@@ -1,23 +1,4 @@
 const logHost = 'https://skypro-music-api.skyeng.tech/user/'
-// Апи пользователя
-// в данном апи произвожу операции с пользователем(создание/вход/ в будущем токен)
-
-// export async function getTrackAll() {
-//   const response = await fetch(
-//     'https://skypro-music-api.skyeng.tech/catalog/track/all/',
-//     {
-//       headers: {
-//         Authorization: ``,
-//       },
-//     },
-//   )
-
-//   if (!response.ok) {
-//     throw new Error('ошибка сервера')
-//   }
-//   const data = await response.json();
-//   return data
-// }
 
 export const getToken = async ({ email, password }) => {
   const response = await fetch('https://skypro-music-api.skyeng.tech/user/token/', {

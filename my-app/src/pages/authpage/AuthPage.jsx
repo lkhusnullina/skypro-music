@@ -33,7 +33,7 @@ export default function AuthPage({ isLoginMode = false }) {
       email: email,
       password: password,
     });
-    console.log(user);
+
     if (user.error) {
       setError("Пользователь с таким email или паролем не найден");
     } else {
@@ -87,8 +87,6 @@ export default function AuthPage({ isLoginMode = false }) {
       password: password, 
       username: username,
     });
-
-    // isLoginMode(true);
 
     if (user.error) {
       let text = "";

@@ -6,7 +6,6 @@ import {
   useAddFavoriteTrackMutation,
   useDeleteFavoriteTrackMutation,
 } from '../../service/getTracks'
-import { getToken } from '../../api'
 import { useEffect, useState } from 'react'
 
 function Track(props) {
