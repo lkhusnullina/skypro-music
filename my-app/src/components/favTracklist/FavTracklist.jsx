@@ -6,7 +6,7 @@ import * as S from './FavTracklist.styles'
 import AudioPlayer from '../player/AudioPlayer'
 import Skeleton from 'react-loading-skeleton'
 
-function FavTracklist({ isLoading, tracks, error }) {
+function FavTracklist({ isLoading, tracks, error, playlistId }) {
   const dispatch = useDispatch();
   if (tracks) dispatch(loadTracks({ tracks }));
   let i = 0
@@ -38,10 +38,11 @@ function FavTracklist({ isLoading, tracks, error }) {
                 <Track
                   key={`${track.id}${i++}`}
                   onClick={() => {
-                    dispatch(setCurrentTrack({ id: track.id }))
+                    dispatch(setCurrentTrack({ id: track.id, playlistId }))
                   }}
                   track={track}
                   isLoading={isLoading}
+                  playlistId={playlistId}
                 />
               )
             })}

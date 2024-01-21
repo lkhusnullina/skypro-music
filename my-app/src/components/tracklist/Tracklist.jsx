@@ -5,7 +5,7 @@ import Track from '../track/Track'
 import * as S from './Tracklist.styles'
 import Skeleton from 'react-loading-skeleton'
 
-function Tracklist({ isLoading, tracks, error }) {
+function Tracklist({ isLoading, tracks, error, playlistId }) {
   const dispatch = useDispatch();
   if (tracks) dispatch(loadTracks({ tracks }));
   let i = 0;
@@ -40,10 +40,11 @@ function Tracklist({ isLoading, tracks, error }) {
                 <Track
                   key={`${track.id}${i++}`}
                   onClick={() => {
-                    dispatch(setCurrentTrack({ id: track.id }))
+                    dispatch(setCurrentTrack({ id: track.id, playlistId }))
                   }}
                   track={track}
                   isLoading={isLoading}
+                  playlistId={playlistId}
                 />
               )
             })}

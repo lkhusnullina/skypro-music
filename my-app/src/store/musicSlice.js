@@ -11,6 +11,7 @@ const musicSlice = createSlice({
     currentTrackIndex: null,
     tracks: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     playingTracks: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+    playlistId: null,
 
     isRepeat: false,
     isShuffle: false,
@@ -50,12 +51,16 @@ const musicSlice = createSlice({
     },
     startStop(state, action) {
       state.isPlaying = action.payload.play;
+
     },
     loadTracks(state, action) {
       state.tracks = action.payload.tracks;
-      state.playingTracks = [...action.payload.tracks];
     },
     setCurrentTrack(state, action) {
+      if (action.payload.playlistId !== state.playlistId) {
+        state.playingTracks = [...state.tracks];
+        state.playlistId = action.payload.playlistId;
+      }
       const index = state.playingTracks.findIndex(
         (track) => track.id == action.payload.id,
       )

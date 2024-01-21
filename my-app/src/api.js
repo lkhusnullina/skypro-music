@@ -13,8 +13,6 @@ export const getToken = async ({ email, password }) => {
   });
 
   if (response.status === 401) {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
     throw new Error("Токен недействителен или просрочен");
   }
   return response.json();
