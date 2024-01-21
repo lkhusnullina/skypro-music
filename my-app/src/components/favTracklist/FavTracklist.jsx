@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentTrack, loadTracks } from '../../store/musicSlice'
-import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
 import * as S from './FavTracklist.styles'
-import AudioPlayer from '../player/AudioPlayer'
 import Skeleton from 'react-loading-skeleton'
 
 function FavTracklist({ isLoading, tracks, error, playlistId }) {
