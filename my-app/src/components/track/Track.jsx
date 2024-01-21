@@ -27,7 +27,6 @@ function Track(props) {
   const currentTrack = useSelector((state) => state.music.currentTrack);
   const isPlaying = useSelector((state) => state.music.isPlaying);
   
-
   const user = JSON.parse(localStorage.getItem('user'));
 
   if (error || delError)  {

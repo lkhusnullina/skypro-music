@@ -77,6 +77,7 @@ const musicSlice = createSlice({
     clearStore(state, action) {
       state.currentTrack = null;
       state.currentTrackIndex = null;
+      state.playlistId = null;
       state.tracks = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
       state.playingTracks = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
       state.isRepeat = false;
