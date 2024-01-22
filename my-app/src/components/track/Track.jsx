@@ -35,13 +35,13 @@ function Track(props) {
   }
 
   const handleAddTrack = async (e) => {
-    e.preventDefault();
+    e.stopPropagation();
     addTrack({ id: props.track.id });
     setIsLike(true);
   }
 
   const handleDeleteTrack = async (e) => {
-    e.preventDefault();
+    e.stopPropagation();
     deleteTrack({ id: props.track.id });
     setIsLike(false);
   }
