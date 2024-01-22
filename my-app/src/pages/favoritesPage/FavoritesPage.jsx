@@ -1,6 +1,6 @@
 import * as S from '../../App.styles'
 import {  useGetFavoritesTracksQuery } from '../../service/getTracks'
-import FavTracklist from '../../components/favTracklist/FavTracklist';
+import Tracklist from '../../components/tracklist/Tracklist'
 import { useEffect } from 'react';
 import { setFavorite } from '../../store/musicSlice';
 import { useDispatch } from 'react-redux';
@@ -20,7 +20,7 @@ export const FavoritesPage = () => {
       }
     }, [tracks])
 
-    if (error)  {
+    if (error && error.status == 401)  {
       logout();
       navigate('/login');
     }
@@ -28,7 +28,7 @@ export const FavoritesPage = () => {
     return (
       <>
         <S.Main>
-          <FavTracklist tracks={tracks} isLoading={isLoading} error={error} playlistId={'favPlaylistId'}/>
+          <Tracklist tracks={tracks} isLoading={isLoading} error={error} playlistId={'favPlaylistId'} showFilters={false}/>
         </S.Main>
       </>
     )

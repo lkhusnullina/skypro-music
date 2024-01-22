@@ -29,7 +29,7 @@ function Track(props) {
   
   const user = JSON.parse(localStorage.getItem('user'));
 
-  if (error || delError)  {
+  if ((error && error.status == 401) || (delError && delError.status == 401))  {
     logout();
     navigate('/login');
   }
