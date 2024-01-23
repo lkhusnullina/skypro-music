@@ -5,7 +5,7 @@ import Track from '../track/Track'
 import * as S from './Tracklist.styles'
 import Skeleton from 'react-loading-skeleton'
 
-function Tracklist({ isLoading, tracks, error, playlistId, showFilters }) {
+function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlistName }) {
   const dispatch = useDispatch();
   if (tracks) dispatch(loadTracks({ tracks }));
   let i = 0;
@@ -18,7 +18,7 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters }) {
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterblockSearch>
-      <S.CenterblockH>Треки</S.CenterblockH>
+      <S.CenterblockH>{playlistName}</S.CenterblockH>
       { showFilters ? (<FilterBlock />) : ('')}
       <S.CenterblockContent>
         <S.ContentTitle>

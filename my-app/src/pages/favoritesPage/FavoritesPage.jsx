@@ -28,7 +28,7 @@ export const FavoritesPage = () => {
     return (
       <>
         <S.Main>
-          <Tracklist tracks={tracks} isLoading={isLoading} error={error} playlistId={'favPlaylistId'} showFilters={false}/>
+          <Tracklist tracks={tracks} isLoading={isLoading} error={error} playlistId={'favPlaylistId'} showFilters={false} playlistName={'Мои треки'}/>
         </S.Main>
       </>
     )

@@ -18,7 +18,7 @@ export const MainPage = () => {
   return (
     <>
       <S.Main>
-        <Tracklist tracks={tracks} isLoading={isLoading} error={error} playlistId={'mainPlaylistId'} showFilters={true}/>
+        <Tracklist tracks={tracks} isLoading={isLoading} error={error} playlistId={'mainPlaylistId'} showFilters={true} playlistName={'Треки'}/>
       </S.Main>
     </>
   )
