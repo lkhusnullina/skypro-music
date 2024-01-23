@@ -28,6 +28,9 @@ function AudioPlayer({track}) {
   const audioRef = useRef(null);
 
   const handleStart = () => {
+    if(!audioRef.current) {
+      return;
+    }
     audioRef.current.play();
     dispatch(startStop({play: true}));
     setDuration(audioRef.current.duration);

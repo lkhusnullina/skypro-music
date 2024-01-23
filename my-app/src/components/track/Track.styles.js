@@ -104,6 +104,7 @@ export const TrackAlbumLink = styled.a`
   color: #696969;
 `
 export const TrackTimeSvg = styled.svg`
+  z-index: 100;
   width: 14px;
   height: 12px;
   margin-right: 17px;

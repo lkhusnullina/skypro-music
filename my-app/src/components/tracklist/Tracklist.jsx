@@ -1,20 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux'
-
-import { setCurrentTrack } from '../../store/musicSlice'
+import { useDispatch } from 'react-redux'
+import { setCurrentTrack, loadTracks } from '../../store/musicSlice'
 import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
 import * as S from './Tracklist.styles'
-import AudioPlayer from '../player/AudioPlayer'
+import Skeleton from 'react-loading-skeleton'
 
-function Tracklist(props) {
-  const dispatch = useDispatch()
-  const tracks = useSelector((state) => state.music.tracks)
-  const currentTrack = useSelector((state) => state.music.currentTrack)
-
-  let i = 0
-  const trackClick = (track) => {
-    dispatch(setCurrentTrack({ id: track.id }))
-  }
+function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlistName }) {
+  const dispatch = useDispatch();
+  if (tracks) dispatch(loadTracks({ tracks }));
+  let i = 0;
 
   return (
     <S.MainCenterblock>
@@ -24,8 +18,8 @@ function Tracklist(props) {
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterblockSearch>
-      <S.CenterblockH>Треки</S.CenterblockH>
-      <FilterBlock />
+      <S.CenterblockH>{playlistName}</S.CenterblockH>
+      { showFilters ? (<FilterBlock />) : ('')}
       <S.CenterblockContent>
         <S.ContentTitle>
           <S.Col01>Трек</S.Col01>
@@ -37,26 +31,28 @@ function Tracklist(props) {
             </S.PlaylistTitleSvg>
           </S.Col04>
         </S.ContentTitle>
-        {props.error ? (
-          <p>Не удалось загрузить плейлист, попробуйте позже: {props.error}</p>
-        ) : (
+        {error ? (
+          <p>Не удалось загрузить плейлист, попробуйте позже: {error}</p>
+        ) : tracks && tracks.length > 0 ? (
           <S.ContentPlaylist>
-            {tracks.map((track) => {
+            {isLoading ? <Skeleton /> : tracks.map((track) => {
               return (
                 <Track
                   key={`${track.id}${i++}`}
                   onClick={() => {
-                    trackClick(track)
+                    dispatch(setCurrentTrack({ id: track.id, playlistId }))
                   }}
                   track={track}
-                  isLoading={props.isLoading}
+                  isLoading={isLoading}
+                  playlistId={playlistId}
                 />
               )
             })}
           </S.ContentPlaylist>
+        ) : (
+          <p>В этом плейтисте нет треков</p>
         )}
       </S.CenterblockContent>
-      {currentTrack ? <AudioPlayer track={currentTrack} /> : null}
     </S.MainCenterblock>
   )
 }

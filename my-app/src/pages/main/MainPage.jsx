@@ -1,37 +1,25 @@
-import NavMenu from '../../components/menu/NavMenu'
-import Sidebar from '../../components/sidebar/Sidebar'
 import Tracklist from '../../components/tracklist/Tracklist'
 import * as S from '../../App.styles'
-import { getTrackAll } from '../../api'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { loadTracks } from '../../store/musicSlice'
+import { useGetAllTracksQuery } from '../../service/getTracks'
+import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../../context/user';
 
-export const MainPage = ({ user }) => {
-  const dispatch = useDispatch()
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
 
-  useEffect(() => {
-    getTrackAll()
-      .then((all) => {
-        dispatch(loadTracks({ tracks: all }))
-        setIsLoading(false)
-        //throw new Error("Ошибка!")
-      })
-      .catch((error) => {
-        setError(error.message)
-      })
-  }, [])
+export const MainPage = () => {
+  const navigate = useNavigate();
+  const { logout } = useUserContext();
+  const {data: tracks, isLoading, error} = useGetAllTracksQuery();
+
+  if (error && error.status == 401)  {
+    logout();
+    navigate('/login');
+  }
 
   return (
     <>
       <S.Main>
-        <NavMenu user={user} />
-        <Tracklist isLoading={isLoading} error={error} />
-        <Sidebar isLoading={isLoading} />
+        <Tracklist tracks={tracks} isLoading={isLoading} error={error} playlistId={'mainPlaylistId'} showFilters={true} playlistName={'Треки'}/>
       </S.Main>
-      <footer className="footer" />
     </>
   )
 }
