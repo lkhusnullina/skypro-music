@@ -2,6 +2,7 @@ import { useState } from 'react'
 import List from '../listFilter/List'
 import * as S from './FilterBlock.styles'
 import { BtnText } from '../../App.styles'
+import { useSelector } from 'react-redux'
 
 const authors = [
   {
@@ -60,11 +61,17 @@ const genres = [
   },
 ]
 
-function FilterBlock() {
+function FilterBlock({ tracks }) {
+
   const [visibleFilter, setVisibleFilter] = useState(null)
   const toggleVisibleFilter = (filter) => {
     setVisibleFilter(visibleFilter === filter ? null : filter)
   }
+
+  const authors = tracks?.map((track) => track.author);
+  const genres = [...new Set(tracks?.map((track) => track.genge))];
+  const modes = ['По умолчанию','Сначала новые','Сначала старые'];
+
 
   return (
     <S.CentralblockFilter>

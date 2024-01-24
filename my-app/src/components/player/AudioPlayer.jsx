@@ -101,7 +101,7 @@ function AudioPlayer({track}) {
             <S.PlayerControls>
               <S.PlayerBtnPrev>
                 <S.PlayerBtnPrevSvg alt="prev" onClick={() => dispatch(setPrevTrack())}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-prev" />
+                  <use xlinkHref="/img/icon/sprite.svg#icon-prev" />
                 </S.PlayerBtnPrevSvg>
               </S.PlayerBtnPrev>
               <S.PlayerBtnPlay>
@@ -109,22 +109,22 @@ function AudioPlayer({track}) {
                   {isPlaying ? (<svg xmlns="http://www.w3.org/2000/svg" width="15" height="19" viewBox="0 0 15 19" fill="none">
                                   <rect width="5" height="19" fill="#D9D9D9"/>
                                   <rect x="10" width="5" height="19" fill="#D9D9D9"/>
-                                </svg>) : (<use xlinkHref="img/icon/sprite.svg#icon-play" />)}
+                                </svg>) : (<use xlinkHref="/img/icon/sprite.svg#icon-play" />)}
                 </S.PlayerBtnPlaySvg>
               </S.PlayerBtnPlay>
               <S.PlayerBtnNext>
                 <S.PlayerBtnNextSvg alt="next" onClick={() => dispatch(setNextTrack())}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-next" />
+                  <use xlinkHref="/img/icon/sprite.svg#icon-next" />
                 </S.PlayerBtnNextSvg>
               </S.PlayerBtnNext>
               <BtnIcon>
                 <S.PlayerBtnRepeatSvg alt="repeat"  onClick={toggleLoop} $isLoop={isLoop}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+                  <use xlinkHref="/img/icon/sprite.svg#icon-repeat" />
                 </S.PlayerBtnRepeatSvg>
               </BtnIcon>
               <BtnIcon>
                 <S.PlayerBtnShuffleSvg alt="shuffle" onClick={() => dispatch(shuffleTracks())} $isEnabled={isShuffled}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
+                  <use xlinkHref="/img/icon/sprite.svg#icon-shuffle" />
                 </S.PlayerBtnShuffleSvg>
               </BtnIcon>
             </S.PlayerControls>
@@ -132,7 +132,7 @@ function AudioPlayer({track}) {
               <S.TrackPlayContain>
                 <S.TrackPlayImage>
                   <S.TrackPlaySvg alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                    <use xlinkHref="/img/icon/sprite.svg#icon-note" />
                   </S.TrackPlaySvg>
                 </S.TrackPlayImage>
                 <S.TrackPlayAuthor>
@@ -154,12 +154,12 @@ function AudioPlayer({track}) {
               <S.TrackPlayLikeDis>
                 <BtnIcon>
                   <S.TrackPlayLikeSvg alt="like">
-                    <use xlinkHref="img/icon/sprite.svg#icon-like" />
+                    <use xlinkHref="/img/icon/sprite.svg#icon-like" />
                   </S.TrackPlayLikeSvg>
                 </BtnIcon>
                 <BtnIcon>
                   <S.TrackPlayDislikeSvg alt="dislike">
-                    <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
+                    <use xlinkHref="/img/icon/sprite.svg#icon-dislike" />
                   </S.TrackPlayDislikeSvg>
                 </BtnIcon>
               </S.TrackPlayLikeDis>
@@ -169,7 +169,7 @@ function AudioPlayer({track}) {
             <S.VolumeContent>
               <S.VolumeImage>
                 <S.VolumeSvg alt="volume">
-                <use xlinkHref="img/icon/sprite.svg#icon-volume" />
+                <use xlinkHref="/img/icon/sprite.svg#icon-volume" />
                 </S.VolumeSvg>
               </S.VolumeImage>
               <S.VolumeProgress>

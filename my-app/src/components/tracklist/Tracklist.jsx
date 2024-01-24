@@ -14,12 +14,12 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
     <S.MainCenterblock>
       <S.CenterblockSearch>
         <S.SearchSvg>
-          <use xlinkHref="img/icon/sprite.svg#icon-search" />
+          <use xlinkHref="/img/icon/sprite.svg#icon-search" />
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterblockSearch>
       <S.CenterblockH>{playlistName}</S.CenterblockH>
-      { showFilters ? (<FilterBlock />) : ('')}
+      { showFilters ? (<FilterBlock tracks={tracks} />) : ('')}
       <S.CenterblockContent>
         <S.ContentTitle>
           <S.Col01>Трек</S.Col01>
@@ -27,7 +27,7 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
           <S.Col03>АЛЬБОМ</S.Col03>
           <S.Col04>
             <S.PlaylistTitleSvg alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-watch" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-watch" />
             </S.PlaylistTitleSvg>
           </S.Col04>
         </S.ContentTitle>

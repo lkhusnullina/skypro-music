@@ -1,8 +1,16 @@
-import * as S from './List.styles'
+import { useDispatch } from 'react-redux';
+import * as S from './List.styles';
 
-function List({ items }) {
+function List({ items, mode }) {
+  const dispatch = useDispatch()
+  const handleFilter = (item) => {
+    dispatch(setFilter({ filter: mode, value: item }))
+  }
+
   const list = items.map((item) => (
-    <S.PopupItem key={item.id}>{item.name}</S.PopupItem>
+    <S.PopupItem onClick={() => handleFilter(item)} key={index}>
+      {item}
+    </S.PopupItem>
   ))
   return (
     <S.PopupBlock>

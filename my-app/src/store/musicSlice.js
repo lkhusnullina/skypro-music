@@ -12,12 +12,27 @@ const musicSlice = createSlice({
     tracks: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     playingTracks: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     playlistId: null,
-
+    filters: {
+      genre: [],
+      authors: []
+    },
+    order: 'По умолчанию',
     isRepeat: false,
     isShuffle: false,
     isPlaying: false,
   },
   reducers: {
+    setFilter(state, action) {
+      let {filter, value} = action.payload;
+      console.log(filter);
+      value = value.toLowerCase();
+      if (state.filters[filter].includes(value)) {
+        state.filters[filter] = state.filters[filter].filter((elem) => elem !== elem)
+      } else {
+        console.log(filter);
+        state.filters[filter].push(value);
+      }
+    },
     setNextTrack(state, action) {
       const newIndex = state.currentTrackIndex + 1;
       const len = state.playingTracks.length - 1;

@@ -12,7 +12,7 @@ function Sidebar(props) {
         <S.SidebarName>{user}</S.SidebarName>
         <S.SidebarIcon onClick={logout}>
           <svg alt="logout">
-            <use xlinkHref="img/icon/sprite.svg#logout" />
+            <use xlinkHref="/img/icon/sprite.svg#logout" />
           </svg>
         </S.SidebarIcon>
       </S.SidebarPersonal>

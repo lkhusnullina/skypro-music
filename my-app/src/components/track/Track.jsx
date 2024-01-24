@@ -65,7 +65,7 @@ function Track(props) {
               <S.Playingdot $isPlaying={isPlaying}></S.Playingdot>
             ) : (
               <S.TrackTitleSvg alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                <use xlinkHref="/img/icon/sprite.svg#icon-note" />
               </S.TrackTitleSvg>
             )}
           </S.TrackTitleImage>
@@ -109,7 +109,7 @@ function Track(props) {
             onClick={toggleLike}
             alt="time"
           >
-            {isLike ? (<use xlinkHref="img/icon/sprite.svg#icon-liked" />) : (<use xlinkHref="img/icon/sprite.svg#icon-like" />)}
+            {isLike ? (<use xlinkHref="/img/icon/sprite.svg#icon-liked" />) : (<use xlinkHref="/img/icon/sprite.svg#icon-like" />)}
           </S.TrackTimeSvg>
           {props.isLoading ? (
             <S.TrackTimeText>00:00</S.TrackTimeText>
