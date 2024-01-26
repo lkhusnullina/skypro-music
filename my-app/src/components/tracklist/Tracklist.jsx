@@ -1,14 +1,48 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentTrack, loadTracks } from '../../store/musicSlice'
 import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
 import * as S from './Tracklist.styles'
 import Skeleton from 'react-loading-skeleton'
+import { useEffect } from 'react'
 
 function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlistName }) {
   const dispatch = useDispatch();
-  if (tracks) dispatch(loadTracks({ tracks }));
+  const { filters, order} = useSelector(state => state.music);
+  useEffect(() => {
+    if (tracks) dispatch(loadTracks({ tracks }));
+  }, [tracks]);
   let i = 0;
+
+  let filtredTracks = tracks;
+
+  function filterTracks() {
+    if (filters.author?.length) {
+      filtredTracks = filtredTracks.filter((track) => filters.author.includes(track.author.toLowerCase()));
+    }
+    if (filters.genre?.length) {
+      filtredTracks = filtredTracks.filter((track) => filters.genre.includes(track.genre.toLowerCase()));
+    }
+    // написать еще один  иф (проверка филтр.жанр тоже самое)
+    //проверка если ордер не по уполчанию(делаю сортировку), sort из каждого элемента дату 
+  }
+
+  // const filteredAndSortTracks = () => {
+  //   if (order === "Сначала новые") {
+  //     return searchLetter
+  //       .sort((a, b) => parseFloat(a.release_date) - parseFloat(b.release_date))
+  //       .reverse()
+  //   }
+  //   if (sortTrackFilter === "Сначала старые") {
+  //     return searchLetter
+  //       .sort((a, b) => parseFloat(a.release_date) - parseFloat(b.release_date))
+  //       .reverse()
+  //   }
+  //   if (sortTrackFilter === "По умолчанию" || !setSortTrackFilter) {
+  //     return searchLetter
+  //   }
+  // }
+  filterTracks();
 
   return (
     <S.MainCenterblock>
@@ -33,9 +67,9 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
         </S.ContentTitle>
         {error ? (
           <p>Не удалось загрузить плейлист, попробуйте позже: {error}</p>
-        ) : tracks && tracks.length > 0 ? (
+        ) : filtredTracks && filtredTracks.length > 0 ? (
           <S.ContentPlaylist>
-            {isLoading ? <Skeleton /> : tracks.map((track) => {
+            {isLoading ? <Skeleton /> : filtredTracks.map((track) => {
               return (
                 <Track
                   key={`${track.id}${i++}`}

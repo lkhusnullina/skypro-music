@@ -5,6 +5,7 @@ export const PopupItem = styled.li`
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+  color: ${props => props.$isActive ? "#b672ff" : "FFF" };
 
   &:hover {
     color: #b672ff;
@@ -12,16 +13,10 @@ export const PopupItem = styled.li`
   }
 
   &:active {
-    color: #b672ff;
-    color: ${props => props.$isActive ? "FFF" : "#b672ff"};
     cursor: pointer;
     text-decoration-line: none;
   }
-  // &:active {
-  //   border-color: ${props => props.$isActive ? "#AD61FF" : "#d9b6ff"};
-  //   color: ${props => props.$isActive ? "#AD61FF" : "#d9b6ff"};
-  //   cursor: pointer;
-  // }
+  
 `
 export const Popup = styled.ul`
   max-height: 180px;

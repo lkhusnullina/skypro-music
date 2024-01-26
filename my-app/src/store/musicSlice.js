@@ -25,7 +25,7 @@ const musicSlice = createSlice({
     setFilter(state, action) {
       let { filter, value } = action.payload;
       value = value.toLowerCase();
-      console.log(value, filter);
+      // console.log(value, filter);
       if (filter === 'order'){
         state.order = value;
       } else {
