@@ -82,7 +82,6 @@ function FilterBlock({ tracks }) {
 
   return (
     <S.CentralblockFilter>
-      
         <S.FilterTitle>Искать по:
           <BtnText onClick={() => toggleVisibleFilter('author')} $isActive={visibleFilter === 'author' || (authCount > 0)}>
             исполнителю 

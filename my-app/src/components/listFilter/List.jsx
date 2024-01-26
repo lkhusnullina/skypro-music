@@ -6,12 +6,13 @@ function List({ items, mode, selectedItems = [] }) {
   console.log(selectedItems)
   const dispatch = useDispatch();
   const handleFilter = (item) => {
+    console.log(item, mode);
     dispatch(setFilter({ filter: mode, value: item }))
   };
   const unicItems = [...new Set(items)];
   const list = unicItems.map((item, index) => (
     <S.PopupItem onClick={() => handleFilter(item)} key={item+index} $isActive={selectedItems.find(it => it == item.toLowerCase())}>
-      {item} {selectedItems.find(it => it == item.toLowerCase()) ? "+" : ""}
+      {item} 
     </S.PopupItem>
   ));
   return (

@@ -20,7 +20,6 @@ export const CategoryPage = () => {
 
   return (
     <div>
-      {/* <h1>{`Category Page ${categoryId}`} </h1> */}
       <Tracklist tracks={pl.items} isLoading={isLoading} error={error} playlistId={pl.name} showFilters={false} playlistName={pl.name}></Tracklist>
     </div>
   )

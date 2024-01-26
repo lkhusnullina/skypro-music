@@ -25,13 +25,18 @@ const musicSlice = createSlice({
     setFilter(state, action) {
       let { filter, value } = action.payload;
       value = value.toLowerCase();
-      if (state.filters[filter] && state.filters[filter].includes(value)) {
-        state.filters[filter] = state.filters[filter].filter(
-          (elem) => elem !== value)
+      console.log(value, filter);
+      if (filter === 'order'){
+        state.order = value;
       } else {
-        if (!state.filters[filter])
-          state.filters[filter] = [];
-        state.filters[filter].push(value);
+        if (state.filters[filter] && state.filters[filter].includes(value)) {
+          state.filters[filter] = state.filters[filter].filter(
+            (elem) => elem !== value)
+        } else {
+          if (!state.filters[filter])
+            state.filters[filter] = [];
+          state.filters[filter].push(value);
+        }
       }
     },
     setNextTrack(state, action) {
