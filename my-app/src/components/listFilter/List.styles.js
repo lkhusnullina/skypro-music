@@ -10,6 +10,18 @@ export const PopupItem = styled.li`
     color: #b672ff;
     text-decoration-line: underline;
   }
+
+  &:active {
+    color: #b672ff;
+    color: ${props => props.$isActive ? "FFF" : "#b672ff"};
+    cursor: pointer;
+    text-decoration-line: none;
+  }
+  // &:active {
+  //   border-color: ${props => props.$isActive ? "#AD61FF" : "#d9b6ff"};
+  //   color: ${props => props.$isActive ? "#AD61FF" : "#d9b6ff"};
+  //   cursor: pointer;
+  // }
 `
 export const Popup = styled.ul`
   max-height: 180px;

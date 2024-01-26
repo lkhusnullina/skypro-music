@@ -23,13 +23,14 @@ const musicSlice = createSlice({
   },
   reducers: {
     setFilter(state, action) {
-      let {filter, value} = action.payload;
-      console.log(filter);
+      let { filter, value } = action.payload;
       value = value.toLowerCase();
-      if (state.filters[filter].includes(value)) {
-        state.filters[filter] = state.filters[filter].filter((elem) => elem !== elem)
+      if (state.filters[filter] && state.filters[filter].includes(value)) {
+        state.filters[filter] = state.filters[filter].filter(
+          (elem) => elem !== value)
       } else {
-        console.log(filter);
+        if (!state.filters[filter])
+          state.filters[filter] = [];
         state.filters[filter].push(value);
       }
     },
@@ -103,6 +104,7 @@ const musicSlice = createSlice({
 })
 
 export const {
+  setFilter,
   setNextTrack,
   setPrevTrack,
   shuffleTracks,

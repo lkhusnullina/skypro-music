@@ -63,32 +63,47 @@ const genres = [
 
 function FilterBlock({ tracks }) {
 
+  const filters = useSelector((state) => state.music.filters);
+
   const [visibleFilter, setVisibleFilter] = useState(null)
   const toggleVisibleFilter = (filter) => {
     setVisibleFilter(visibleFilter === filter ? null : filter)
   }
 
   const authors = tracks?.map((track) => track.author);
-  const genres = [...new Set(tracks?.map((track) => track.genge))];
+  const genres = [...new Set(tracks?.map((track) => track.genre))];
   const modes = ['По умолчанию','Сначала новые','Сначала старые'];
 
+  const auth = filters && filters['author'] ? filters['author'] : [];
+  const authCount = auth.length;
+
+  const gen = filters && filters['genre'] ? filters['genre'] : [];
+  const genCount = gen.length;
 
   return (
     <S.CentralblockFilter>
-      <S.FilterTitle>Искать по:</S.FilterTitle>
-      <BtnText onClick={() => toggleVisibleFilter('author')} $isActive={visibleFilter === 'author'}>
-        исполнителю
-      </BtnText> 
-      {visibleFilter === 'author' && <List items={authors}></List>}
-      <BtnText onClick={() => toggleVisibleFilter('year')} $isActive={visibleFilter === 'year'}>
-        году выпуска
-      </BtnText>
-      {visibleFilter === 'year' && <List items={years}></List>}
+      
+        <S.FilterTitle>Искать по:
+          <BtnText onClick={() => toggleVisibleFilter('author')} $isActive={visibleFilter === 'author' || (authCount > 0)}>
+            исполнителю 
+            <S.Counter>{authCount > 0 ? authCount : ""}</S.Counter>
+          </BtnText> 
+          {visibleFilter === 'author' && <List items={authors} mode={"author"} selectedItems={auth}></List>}
 
-      <BtnText onClick={() => toggleVisibleFilter('genre')} $isActive={visibleFilter === 'genre'}>
-        жанру
-      </BtnText>
-      {visibleFilter === 'genre' && <List items={genres}></List>}
+          <BtnText onClick={() => toggleVisibleFilter('genre')} $isActive={visibleFilter === 'genre'|| (genCount > 0)}>
+            жанру 
+            <S.Counter>{genCount > 0 ? genCount : ""}</S.Counter>
+          </BtnText>
+        {visibleFilter === 'genre' && <List items={genres} mode={'genre'} selectedItems={gen}></List>}
+        </S.FilterTitle>
+      
+      <S.FilterTitle>Сортировка:
+        <BtnText onClick={() => toggleVisibleFilter('mode')} $isActive={visibleFilter === 'mode'}>
+          По умолчанию 
+          <S.Counter></S.Counter>
+        </BtnText> 
+        {visibleFilter === 'mode' && <List items={modes} mode={"mode"}></List>}
+      </S.FilterTitle>
     </S.CentralblockFilter>
   )
 }
