@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { orderFilter } from '../constans';
-import { useUserContext } from '../context/user';
 
 const shuffle = (arr) => {
   return arr.sort(() => Math.random() - 0.5)
@@ -103,9 +102,10 @@ const musicSlice = createSlice({
       const findUser = track.stared_user.find((t) => t.email == user);
       if (!findUser) {
         track.stared_user[track.stared_user.length] = {email: user};
-        
       }
-      // я ищу  в треках трек по этому айди и если в старедюзер меня нету добавляю себя
+      if (trackId == state.currentTrackIndex) {
+        state.currentTrack.stared_user.push({email: user})
+      }
     },
     dislikeTrack(state, action) {
       const trackId = action.payload.id;
@@ -116,7 +116,9 @@ const musicSlice = createSlice({
       if (findUser != -1) {
         track.stared_user.splice(findUser, 1);
       }
-      //track id в пэйлоуде я ищу  в треках трек по этому айди и если в старедюзер я есть удаляю себя
+      if (trackId == state.currentTrackIndex) {
+        state.currentTrack = state.currentTrack.stared_user.splice(findUser, 1);
+      }
     },
     clearStore(state, action) {
       state.currentTrack = null;

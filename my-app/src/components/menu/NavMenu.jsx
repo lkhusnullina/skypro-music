@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import * as S from './NavMenu.styles'
-import { useNavigate } from 'react-router-dom'
 import { useUserContext } from '../../context/user'
 
 function OpenMenu({ isOpen }) {

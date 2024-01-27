@@ -110,15 +110,6 @@ function AudioPlayer({track}) {
 
   const toggleLike = !isLike ? handleAddLike : handleDeleteLike;
 
-  // useEffect(() => {
-  //   if (track.stared_user) {
-  //     const findUser = track.stared_user.find((t) => t.email == user);
-  //     const liked = findUser == null ? false : true;
-  //     setIsLiked(liked);
-  //   }
-  // }, []);
-
-
   const handleVolumeChange = (event) => {
     let newVolume = event.target.value;
     audioRef.current.volume = newVolume;

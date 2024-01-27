@@ -31,12 +31,7 @@ export const Content = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
 `
-// export const BarPlayerProgress = styled.input`
-//   cursor: pointer;
-//   width: 100%;
-//   height: 5px;
-//   background: #B672FF;
-// `
+
 export const BarPlayerBlock = styled.div`
   height: 73px;
   display: -webkit-box;

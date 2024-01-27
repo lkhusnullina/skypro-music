@@ -9,10 +9,10 @@ import { useUserContext } from '../../context/user'
 
 
 export const FavoritesPage = () => {
-    const {data: tracks, isLoading, error} = useGetFavoritesTracksQuery();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { logout } = useUserContext();
+    const {data: tracks, isLoading, error} = useGetFavoritesTracksQuery();
 
     useEffect(() => {
       if (tracks) {

@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './Track.styles'
@@ -9,9 +9,11 @@ import {
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUserContext } from '../../context/user'
+import { dislikeTrack, likeTrack } from '../../store/musicSlice'
 
 function Track(props) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { logout } = useUserContext();
 
   const time = props.track.duration_in_seconds;
@@ -37,12 +39,14 @@ function Track(props) {
   const handleAddTrack = async (e) => {
     e.stopPropagation();
     addTrack({ id: props.track.id });
+    dispatch(likeTrack({id: props.track.id}))
     setIsLike(true);
   }
 
   const handleDeleteTrack = async (e) => {
     e.stopPropagation();
     deleteTrack({ id: props.track.id });
+    dispatch(dislikeTrack({id: props.track.id}))
     setIsLike(false);
   }
 
