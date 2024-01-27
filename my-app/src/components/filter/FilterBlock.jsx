@@ -3,63 +3,9 @@ import List from '../listFilter/List'
 import * as S from './FilterBlock.styles'
 import { BtnText } from '../../App.styles'
 import { useSelector } from 'react-redux'
+import { orderFilter } from '../../constans'
+import OrderList from '../orderList/orderList'
 
-const authors = [
-  {
-    id: 1,
-    name: 'Nero',
-  },
-  {
-    id: 2,
-    name: 'Dynoro, Outwork, Mr. Gee',
-  },
-  {
-    id: 3,
-    name: 'Ali Bakgor',
-  },
-  {
-    id: 4,
-    name: 'Стоункат, Psychopath',
-  },
-  {
-    id: 5,
-    name: 'Jaded, Will Clarke, AR/CO',
-  },
-]
-
-const years = [
-  {
-    id: 1,
-    name: '1997',
-  },
-  {
-    id: 2,
-    name: '1998',
-  },
-  {
-    id: 3,
-    name: '1999',
-  },
-]
-
-const genres = [
-  {
-    id: 1,
-    name: 'hip-hop',
-  },
-  {
-    id: 2,
-    name: 'rock',
-  },
-  {
-    id: 3,
-    name: 'jazz',
-  },
-  {
-    id: 4,
-    name: 'electro',
-  },
-]
 
 function FilterBlock({ tracks }) {
 
@@ -73,14 +19,14 @@ function FilterBlock({ tracks }) {
 
   const authors = tracks?.map((track) => track.author);
   const genres = [...new Set(tracks?.map((track) => track.genre))];
-  const modes = ['По умолчанию','Сначала новые','Сначала старые'];
-  console.log(order);
 
   const auth = filters && filters['author']?.length ? filters['author'] : [];
   const authCount = auth.length;
 
   const gen = filters && filters['genre']?.length ? filters['genre'] : [];
   const genCount = gen.length;
+
+
 
   // const mod = filters && filters['order']?.length ? filters['order'] : [];
   // const modCount = mod.length;
@@ -104,10 +50,10 @@ function FilterBlock({ tracks }) {
       
       <S.FilterTitle>Сортировка:
         <BtnText onClick={() => toggleVisibleFilter('mode')} $isActive={visibleFilter === 'mode'}>
-          {/* По умолчанию { modCount ? <S.Counter>{modCount > 0 ? modCount : ""}</S.Counter> : ''} */}
+          {order.name} 
         </BtnText> 
-        
-        {visibleFilter === 'mode' && <List items={modes} mode={"order"}></List>}
+        {/* {  ? <S.Counter>{modCount > 0 ? modCount : ""}</S.Counter> : ''} */}
+        {visibleFilter === 'mode' && <OrderList items={orderFilter}></OrderList>}
       </S.FilterTitle>
     </S.CentralblockFilter>
   )

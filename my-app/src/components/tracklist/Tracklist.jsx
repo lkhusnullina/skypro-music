@@ -12,8 +12,6 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
   useEffect(() => {
     if (tracks) dispatch(loadTracks({ tracks }));
   }, [tracks]);
-  let i = 0;
-
   let filtredTracks = tracks;
 
   function filterTracks() {
@@ -23,25 +21,22 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
     if (filters.genre?.length) {
       filtredTracks = filtredTracks.filter((track) => filters.genre.includes(track.genre.toLowerCase()));
     }
-    // написать еще один  иф (проверка филтр.жанр тоже самое)
-    //проверка если ордер не по уполчанию(делаю сортировку), sort из каждого элемента дату 
-  }
 
-  // const filteredAndSortTracks = () => {
-  //   if (order === "Сначала новые") {
-  //     return searchLetter
-  //       .sort((a, b) => parseFloat(a.release_date) - parseFloat(b.release_date))
-  //       .reverse()
-  //   }
-  //   if (sortTrackFilter === "Сначала старые") {
-  //     return searchLetter
-  //       .sort((a, b) => parseFloat(a.release_date) - parseFloat(b.release_date))
-  //       .reverse()
-  //   }
-  //   if (sortTrackFilter === "По умолчанию" || !setSortTrackFilter) {
-  //     return searchLetter
-  //   }
-  // }
+    const defaultOrder = filtredTracks ? [...filtredTracks] : [];
+    switch (order.value) {
+      case 2:
+        let x = [...filtredTracks].sort((a, b) => new Date(b.release_date) -  new Date(a.release_date));
+        filtredTracks = x;
+        break;
+      case 3: 
+        let y = [...filtredTracks].sort((a, b) => new Date(a.release_date) -  new Date(b.release_date))
+        filtredTracks = y;
+        break;
+      default:
+        filtredTracks = defaultOrder;
+        break;
+    }
+  }
   filterTracks();
 
   return (
@@ -69,10 +64,10 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
           <p>Не удалось загрузить плейлист, попробуйте позже: {error}</p>
         ) : filtredTracks && filtredTracks.length > 0 ? (
           <S.ContentPlaylist>
-            {isLoading ? <Skeleton /> : filtredTracks.map((track) => {
+            {isLoading ? <Skeleton /> : filtredTracks.map((track, index) => {
               return (
                 <Track
-                  key={`${track.id}${i++}`}
+                  key={`${track.id}${index}`}
                   onClick={() => {
                     dispatch(setCurrentTrack({ id: track.id, playlistId }))
                   }}

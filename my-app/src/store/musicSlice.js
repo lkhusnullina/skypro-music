@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { orderFilter } from '../constans';
 
 const shuffle = (arr) => {
   return arr.sort(() => Math.random() - 0.5)
@@ -16,27 +17,25 @@ const musicSlice = createSlice({
       genre: [],
       authors: []
     },
-    order: 'По умолчанию',
+    order: orderFilter.find(of => of.value === 1),
     isRepeat: false,
     isShuffle: false,
     isPlaying: false,
   },
   reducers: {
+    setOrder(state, action) {
+      state.order = action.payload.value;
+    },
     setFilter(state, action) {
       let { filter, value } = action.payload;
       value = value.toLowerCase();
-      // console.log(value, filter);
-      if (filter === 'order'){
-        state.order = value;
+      if (state.filters[filter] && state.filters[filter].includes(value)) {
+        state.filters[filter] = state.filters[filter].filter(
+          (elem) => elem !== value)
       } else {
-        if (state.filters[filter] && state.filters[filter].includes(value)) {
-          state.filters[filter] = state.filters[filter].filter(
-            (elem) => elem !== value)
-        } else {
-          if (!state.filters[filter])
-            state.filters[filter] = [];
-          state.filters[filter].push(value);
-        }
+        if (!state.filters[filter])
+          state.filters[filter] = [];
+        state.filters[filter].push(value);
       }
     },
     setNextTrack(state, action) {
@@ -117,6 +116,7 @@ export const {
   loadTracks,
   clearStore,
   setCurrentTrack,
-  setFavorite
+  setFavorite,
+  setOrder
 } = musicSlice.actions
 export default musicSlice.reducer

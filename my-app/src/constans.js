@@ -15,3 +15,18 @@ export const Categories = [
     img: 'img/playlist03.png',
   },
 ]
+
+export const orderFilter = [
+  {
+    value: 1,
+    name: 'По умолчанию'
+  },
+  {
+    value: 2,
+    name: 'Сначала новые'
+  },
+  {
+    value: 3,
+    name: 'Сначала старые'
+  },
+]
