@@ -3,7 +3,6 @@ import { setFilter } from '../../store/musicSlice';
 import * as S from './List.styles';
 
 function List({ items, mode, selectedItems = [] }) {
-  // console.log(selectedItems)
   const dispatch = useDispatch();
   const { filters } = useSelector(state => state.music);
 

@@ -4,15 +4,17 @@ import FilterBlock from '../filter/FilterBlock'
 import Track from '../track/Track'
 import * as S from './Tracklist.styles'
 import Skeleton from 'react-loading-skeleton'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlistName }) {
   const dispatch = useDispatch();
-  const { filters, order} = useSelector(state => state.music);
+  const filters = useSelector(state => state.music.filters);
+  const order = useSelector(state => state.music.order);
   useEffect(() => {
     if (tracks) dispatch(loadTracks({ tracks }));
   }, [tracks]);
-  let filtredTracks = tracks;
+  let filtredTracks = tracks ? tracks : [];
+  const [searchText, setSearchText] = useState('');
 
   function filterTracks() {
     if (filters.author?.length) {
@@ -20,6 +22,10 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
     }
     if (filters.genre?.length) {
       filtredTracks = filtredTracks.filter((track) => filters.genre.includes(track.genre.toLowerCase()));
+    }
+
+    if (searchText) {
+      filtredTracks = filtredTracks.filter((track) => track.name.toLowerCase().includes(searchText.toLowerCase()));
     }
 
     const defaultOrder = filtredTracks ? [...filtredTracks] : [];
@@ -45,7 +51,7 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
         <S.SearchSvg>
           <use xlinkHref="/img/icon/sprite.svg#icon-search" />
         </S.SearchSvg>
-        <S.SearchText type="search" placeholder="Поиск" name="search" />
+        <S.SearchText type="search" placeholder="Поиск" name="search" value={searchText} onChange={e => setSearchText(e.target.value)}/>
       </S.CenterblockSearch>
       <S.CenterblockH>{playlistName}</S.CenterblockH>
       { showFilters ? (<FilterBlock tracks={tracks} />) : ('')}
