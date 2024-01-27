@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { orderFilter } from '../constans';
+import { useUserContext } from '../context/user';
 
 const shuffle = (arr) => {
   return arr.sort(() => Math.random() - 0.5)
 }
+const user = JSON.parse(localStorage.getItem('user'));
 
 const musicSlice = createSlice({
   name: 'music',
@@ -94,6 +96,25 @@ const musicSlice = createSlice({
     setFavorite(state, action) {
       state.playingTracks = action.payload.tracks;
     },
+    likeTrack(state, action) {
+      const trackId = action.payload.id;
+      console.log(trackId);
+
+      const track = state.tracks.find((track) => track.id === trackId);
+      console.log(track.stared_user.find((t) => t.email == user));
+
+      const findUser = track.stared_user.find((t) => t.email == user);
+      if (!findUser) {
+        track.stared_user.push({email: user});
+      }
+      // я ищу  в треках трек по этому айди и если в старедюзер меня нету добавляю себя
+    },
+    dislikeTrack(state, action) {
+      const trackId = action.payload.id;
+      const track = state.tracks.find((track) => track.id === trackId);
+      console.log(track);
+      //track id в пэйлоуде я ищу  в треках трек по этому айди и если в старедюзер я есть удаляю себя
+    },
     clearStore(state, action) {
       state.currentTrack = null;
       state.currentTrackIndex = null;
@@ -103,6 +124,11 @@ const musicSlice = createSlice({
       state.isRepeat = false;
       state.isShuffle = false;
       state.isPlaying = false;
+      state.filters = {
+        genre: [],
+        authors: []
+      };
+      state.order = orderFilter.find(of => of.value === 1);
     }
   },
 })
@@ -117,6 +143,8 @@ export const {
   clearStore,
   setCurrentTrack,
   setFavorite,
-  setOrder
+  setOrder,
+  likeTrack,
+  dislikeTrack,
 } = musicSlice.actions
 export default musicSlice.reducer

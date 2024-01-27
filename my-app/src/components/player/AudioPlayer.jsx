@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setNextTrack, setPrevTrack, startStop, shuffleTracks } from '../../store/musicSlice';
+import { setNextTrack, setPrevTrack, startStop, shuffleTracks, likeTrack, dislikeTrack } from '../../store/musicSlice';
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from './AudioPlayer.styles';
 import { BtnIcon } from '../../App.styles';
@@ -20,13 +20,14 @@ function AudioPlayer({track}) {
   const isShuffled = useSelector(state => state.music.isShuffle);
   const dispatch = useDispatch();
 
-
   const [isLoop, setIsLoop] = useState(false);
   const [volume, setVolume] = useState(30)
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [isLike, setIsLiked] = useState(false);
   const audioRef = useRef(null);
 
+  // const user = JSON.parse(localStorage.getItem('user'));
   const handleStart = () => {
     if(!audioRef.current) {
       return;
@@ -62,9 +63,8 @@ function AudioPlayer({track}) {
 
   useEffect(() => {
     audioRef.current.load();
-  }, [track])
+  }, [track]);
   
-
   useEffect(() => {
     audioRef.current.addEventListener('loadedmetadata',() => {
       handleStart();
@@ -74,11 +74,33 @@ function AudioPlayer({track}) {
     };
   }, []);
 
+  const handleAddLike = () => {
+    setIsLiked(true);
+    console.log(track.id);
+    dispatch(likeTrack({id: track.id}));
+  }
+
+  
+  const handleDeleteLike = () => {
+    setIsLiked(false);
+    console.log(track.id);
+    dispatch(dislikeTrack({id: track.id}));
+  }
+
+  // useEffect(() => {
+  //   if (track.stared_user) {
+  //     const findUser = track.stared_user.find((t) => t.email == user);
+  //     const liked = findUser == null ? false : true;
+  //     setIsLiked(liked);
+  //   }
+  // }, []);
+
   const handleVolumeChange = (event) => {
     let newVolume = event.target.value;
     audioRef.current.volume = newVolume;
     setVolume(newVolume);
   }
+  
 
   return (
     <>
@@ -152,12 +174,12 @@ function AudioPlayer({track}) {
               </S.TrackPlayContain>
 
               <S.TrackPlayLikeDis>
-                <BtnIcon>
+                <BtnIcon onClick={() => {dispatch(likeTrack({id: track.id}))}}>
                   <S.TrackPlayLikeSvg alt="like">
                     <use xlinkHref="/img/icon/sprite.svg#icon-like" />
                   </S.TrackPlayLikeSvg>
                 </BtnIcon>
-                <BtnIcon>
+                <BtnIcon onClick={() => {handleDeleteLike()}}>
                   <S.TrackPlayDislikeSvg alt="dislike">
                     <use xlinkHref="/img/icon/sprite.svg#icon-dislike" />
                   </S.TrackPlayDislikeSvg>

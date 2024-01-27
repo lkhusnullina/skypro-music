@@ -26,14 +26,6 @@ function FilterBlock({ tracks }) {
   const gen = filters && filters['genre']?.length ? filters['genre'] : [];
   const genCount = gen.length;
 
-
-
-  // const mod = filters && filters['order']?.length ? filters['order'] : [];
-  // const modCount = mod.length;
-  // console.log(modCount);
-  //const modCount = mod.length;
-  
-
   return (
     <S.CentralblockFilter>
         <S.FilterTitle>Искать по:
@@ -52,7 +44,6 @@ function FilterBlock({ tracks }) {
         <BtnText onClick={() => toggleVisibleFilter('mode')} $isActive={visibleFilter === 'mode'}>
           {order.name} 
         </BtnText> 
-        {/* {  ? <S.Counter>{modCount > 0 ? modCount : ""}</S.Counter> : ''} */}
         {visibleFilter === 'mode' && <OrderList items={orderFilter}></OrderList>}
       </S.FilterTitle>
     </S.CentralblockFilter>

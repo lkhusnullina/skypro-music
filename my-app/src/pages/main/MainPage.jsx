@@ -9,6 +9,7 @@ export const MainPage = () => {
   const navigate = useNavigate();
   const { logout } = useUserContext();
   const {data: tracks, isLoading, error} = useGetAllTracksQuery();
+  console.log(tracks);
 
   if (error && error.status == 401)  {
     logout();
