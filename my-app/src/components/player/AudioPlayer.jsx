@@ -4,6 +4,9 @@ import { setNextTrack, setPrevTrack, startStop, shuffleTracks, likeTrack, dislik
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from './AudioPlayer.styles';
 import { BtnIcon } from '../../App.styles';
+import { useAddFavoriteTrackMutation, useDeleteFavoriteTrackMutation } from '../../service/getTracks';
+import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../../context/user';
 
 function secondsToTimeString(seconds) {
   return (
@@ -16,6 +19,8 @@ function secondsToTimeString(seconds) {
 }
 
 function AudioPlayer({track}) {
+  const navigate = useNavigate();
+  const { logout } = useUserContext();
   const isPlaying = useSelector(state => state.music.isPlaying);
   const isShuffled = useSelector(state => state.music.isShuffle);
   const dispatch = useDispatch();
@@ -24,10 +29,27 @@ function AudioPlayer({track}) {
   const [volume, setVolume] = useState(30)
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [isLike, setIsLiked] = useState(false);
-  const audioRef = useRef(null);
+  const [isLike, setIsLike] = useState(true);
 
-  // const user = JSON.parse(localStorage.getItem('user'));
+  const [addTrack, { error }] = useAddFavoriteTrackMutation();
+  const [deleteTrack, {error: delError}] = useDeleteFavoriteTrackMutation();
+  const audioRef = useRef(null);
+  
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  useEffect(() => {
+    if (track.stared_user) {
+      const findUser = track.stared_user.find((t) => t.email == user);
+      const liked = findUser == null ? false : true;
+      setIsLike(liked);
+    }
+  }, [track]);
+
+  if ((error && error.status == 401) || (delError && delError.status == 401))  {
+    logout();
+    navigate('/login');
+  }
+
   const handleStart = () => {
     if(!audioRef.current) {
       return;
@@ -75,17 +97,18 @@ function AudioPlayer({track}) {
   }, []);
 
   const handleAddLike = () => {
-    setIsLiked(true);
-    console.log(track.id);
-    dispatch(likeTrack({id: track.id}));
+    addTrack({ id: track.id })
+    dispatch(likeTrack({id: track.id}))
+    setIsLike(true);
   }
 
-  
   const handleDeleteLike = () => {
-    setIsLiked(false);
-    console.log(track.id);
-    dispatch(dislikeTrack({id: track.id}));
+    deleteTrack({ id: track.id })
+    dispatch(dislikeTrack({id: track.id}))
+    setIsLike(false);
   }
+
+  const toggleLike = !isLike ? handleAddLike : handleDeleteLike;
 
   // useEffect(() => {
   //   if (track.stared_user) {
@@ -94,6 +117,7 @@ function AudioPlayer({track}) {
   //     setIsLiked(liked);
   //   }
   // }, []);
+
 
   const handleVolumeChange = (event) => {
     let newVolume = event.target.value;
@@ -174,16 +198,12 @@ function AudioPlayer({track}) {
               </S.TrackPlayContain>
 
               <S.TrackPlayLikeDis>
-                <BtnIcon onClick={() => {dispatch(likeTrack({id: track.id}))}}>
-                  <S.TrackPlayLikeSvg alt="like">
-                    <use xlinkHref="/img/icon/sprite.svg#icon-like" />
-                  </S.TrackPlayLikeSvg>
-                </BtnIcon>
-                <BtnIcon onClick={() => {handleDeleteLike()}}>
-                  <S.TrackPlayDislikeSvg alt="dislike">
-                    <use xlinkHref="/img/icon/sprite.svg#icon-dislike" />
-                  </S.TrackPlayDislikeSvg>
-                </BtnIcon>
+                <S.TrackPlayLikeSvg
+                  onClick={toggleLike}
+                  alt="time"
+                >
+                  {isLike ? (<use xlinkHref="/img/icon/sprite.svg#icon-liked" />) : (<use xlinkHref="/img/icon/sprite.svg#icon-like" />)}
+                </S.TrackPlayLikeSvg>
               </S.TrackPlayLikeDis>
             </S.PlayerTrackPlay>
           </S.BarPlayer>

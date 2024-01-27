@@ -10,10 +10,13 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
   const dispatch = useDispatch();
   const filters = useSelector(state => state.music.filters);
   const order = useSelector(state => state.music.order);
+  const storedTracks = useSelector(state => state.music.tracks);
+
   useEffect(() => {
     if (tracks) dispatch(loadTracks({ tracks }));
   }, [tracks]);
-  let filtredTracks = tracks ? tracks : [];
+
+  let filtredTracks = storedTracks ? storedTracks : [];
   const [searchText, setSearchText] = useState('');
 
   function filterTracks() {
@@ -43,6 +46,8 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
         break;
     }
   }
+
+
   filterTracks();
 
   return (

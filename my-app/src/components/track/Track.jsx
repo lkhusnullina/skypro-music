@@ -52,7 +52,7 @@ function Track(props) {
       const liked = findUser == null ? false : true;
       setIsLike(liked);
     }
-  }, []);
+  }, [props.track]);
 
   const toggleLike = isLike ? handleDeleteTrack : handleAddTrack;
 

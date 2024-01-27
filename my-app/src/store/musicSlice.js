@@ -98,21 +98,24 @@ const musicSlice = createSlice({
     },
     likeTrack(state, action) {
       const trackId = action.payload.id;
-      console.log(trackId);
-
       const track = state.tracks.find((track) => track.id === trackId);
-      console.log(track.stared_user.find((t) => t.email == user));
-
+      if (!track) return;
       const findUser = track.stared_user.find((t) => t.email == user);
       if (!findUser) {
-        track.stared_user.push({email: user});
+        track.stared_user[track.stared_user.length] = {email: user};
+        
       }
       // я ищу  в треках трек по этому айди и если в старедюзер меня нету добавляю себя
     },
     dislikeTrack(state, action) {
       const trackId = action.payload.id;
+      console.log(trackId);
       const track = state.tracks.find((track) => track.id === trackId);
-      console.log(track);
+      if (!track) return;
+      const findUser = track.stared_user.findIndex((t) => t.email == user);
+      if (findUser != -1) {
+        track.stared_user.splice(findUser, 1);
+      }
       //track id в пэйлоуде я ищу  в треках трек по этому айди и если в старедюзер я есть удаляю себя
     },
     clearStore(state, action) {

@@ -168,7 +168,13 @@ export const TrackPlayLikeSvg = styled.svg`
   width: 14px;
   height: 12px;
   fill: transparent;
-  stroke: #696969;
+  stroke: ${(props) => (props.$isLike ? "#fff" : "#696969")};
+  &:hover {
+    stroke: ${(props) => (props.$isLike ? "#fff" : "#acacac")};
+  }
+  &:active {
+    stroke: ${(props) => (props.$isLike ? "#acacac" : "#fff")};
+  }
 `
 export const TrackPlayDislike = styled.div`
   margin-left: 28.5px;
@@ -179,7 +185,13 @@ export const TrackPlayDislikeSvg = styled.svg`
   width: 14.34px;
   height: 13px;
   fill: transparent;
-  stroke: #696969;
+  stroke: ${(props) => (props.$isLike ? "#fff" : "#696969")};
+  &:hover {
+    stroke: ${(props) => (props.$isLike ? "#fff" : "#acacac")};
+  }
+  &:active {
+    stroke: ${(props) => (props.$isLike ? "#acacac" : "#fff")};
+  }
 `
 export const BarVolumeBlock = styled.div`
   width: auto;
