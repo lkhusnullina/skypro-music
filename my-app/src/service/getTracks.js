@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+const user = JSON.parse(localStorage.getItem('user'));
 
 export const getTracks = createApi({
   reducerPath: 'getTracks',
@@ -20,6 +21,13 @@ export const getTracks = createApi({
           Authorization: `Bearer ${JSON.parse(localStorage.getItem('token')).access}`
         },
       }),
+      transformResponse: (response) => {
+        const tracks = response.map((track) => ({
+          ...track,
+          stared_user: [{email: user}],
+        }));
+        return tracks;
+      },
       providesTags: ['Tracks'],
     }),
     addFavoriteTrack: builder.mutation({

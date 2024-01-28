@@ -23,13 +23,13 @@ function AudioPlayer({track}) {
   const { logout } = useUserContext();
   const isPlaying = useSelector(state => state.music.isPlaying);
   const isShuffled = useSelector(state => state.music.isShuffle);
+  const liked = useSelector(state => state.music.currentTrackLiked);
   const dispatch = useDispatch();
 
   const [isLoop, setIsLoop] = useState(false);
   const [volume, setVolume] = useState(30)
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [isLike, setIsLike] = useState(true);
 
   const [addTrack, { error }] = useAddFavoriteTrackMutation();
   const [deleteTrack, {error: delError}] = useDeleteFavoriteTrackMutation();
@@ -37,13 +37,15 @@ function AudioPlayer({track}) {
   
   const user = JSON.parse(localStorage.getItem('user'));
 
-  useEffect(() => {
-    if (track.stared_user) {
-      const findUser = track.stared_user.find((t) => t.email == user);
-      const liked = findUser == null ? false : true;
-      setIsLike(liked);
-    }
-  }, [track]);
+  // useEffect(() => {
+  //   if (track.stared_user) {
+  //     const findUser = track.stared_user.find((t) => t.email == user);
+  //     const liked = findUser == null ? false : true;
+  //     setIsLike(liked);
+  //   }
+  //   if (playlistId === "favPlaylistId")
+  //     setIsLike(true)
+  // }, [track]);
 
   if ((error && error.status == 401) || (delError && delError.status == 401))  {
     logout();
@@ -99,16 +101,14 @@ function AudioPlayer({track}) {
   const handleAddLike = () => {
     addTrack({ id: track.id })
     dispatch(likeTrack({id: track.id}))
-    setIsLike(true);
   }
 
   const handleDeleteLike = () => {
     deleteTrack({ id: track.id })
     dispatch(dislikeTrack({id: track.id}))
-    setIsLike(false);
   }
 
-  const toggleLike = !isLike ? handleAddLike : handleDeleteLike;
+  const toggleLike = !liked ? handleAddLike : handleDeleteLike;
 
   const handleVolumeChange = (event) => {
     let newVolume = event.target.value;
@@ -193,7 +193,7 @@ function AudioPlayer({track}) {
                   onClick={toggleLike}
                   alt="time"
                 >
-                  {isLike ? (<use xlinkHref="/img/icon/sprite.svg#icon-liked" />) : (<use xlinkHref="/img/icon/sprite.svg#icon-like" />)}
+                  {liked ? (<use xlinkHref="/img/icon/sprite.svg#icon-liked" />) : (<use xlinkHref="/img/icon/sprite.svg#icon-like" />)}
                 </S.TrackPlayLikeSvg>
               </S.TrackPlayLikeDis>
             </S.PlayerTrackPlay>

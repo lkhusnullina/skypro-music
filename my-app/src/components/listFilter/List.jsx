@@ -7,7 +7,6 @@ function List({ items, mode, selectedItems = [] }) {
   const { filters } = useSelector(state => state.music);
 
   const handleFilter = (item) => {
-    console.log(item, mode);
     dispatch(setFilter({ filter: mode, value: item }))
   };
   const unicItems = [...new Set(items)];

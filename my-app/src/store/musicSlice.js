@@ -11,6 +11,7 @@ const musicSlice = createSlice({
   initialState: {
     currentTrack: null,
     currentTrackIndex: null,
+    currentTrackLiked: false,
     tracks: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     playingTracks: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     playlistId: null,
@@ -47,6 +48,7 @@ const musicSlice = createSlice({
       }
       state.currentTrackIndex = newIndex;
       state.currentTrack = state.playingTracks[state.currentTrackIndex];
+      state.currentTrackLiked = GetIsLiked(state.currentTrack);
     },
     setPrevTrack(state, action) {
       const newIndex = state.currentTrackIndex - 1;
@@ -55,6 +57,7 @@ const musicSlice = createSlice({
       }
       state.currentTrackIndex = newIndex;
       state.currentTrack = state.playingTracks[state.currentTrackIndex];
+      state.currentTrackLiked = GetIsLiked(state.currentTrack);
     },
     shuffleTracks(state, action) {
       state.isShuffle = !state.isShuffle;
@@ -88,6 +91,7 @@ const musicSlice = createSlice({
       if (index == -1) return
       state.currentTrackIndex = index;
       state.currentTrack = state.playingTracks[index];
+      state.currentTrackLiked = GetIsLiked(state.currentTrack);
     },
     repeatTracks(state, action) {
       state.isRepeat = !state.isRepeat;
@@ -97,32 +101,37 @@ const musicSlice = createSlice({
     },
     likeTrack(state, action) {
       const trackId = action.payload.id;
+
       const track = state.tracks.find((track) => track.id === trackId);
       if (!track) return;
       const findUser = track.stared_user.find((t) => t.email == user);
       if (!findUser) {
         track.stared_user[track.stared_user.length] = {email: user};
       }
-      if (trackId == state.currentTrackIndex) {
-        state.currentTrack.stared_user.push({email: user})
+      if (state.currentTrack && state.currentTrack.id === trackId) {
+        state.currentTrackLiked = true;
       }
     },
     dislikeTrack(state, action) {
       const trackId = action.payload.id;
-      console.log(trackId);
       const track = state.tracks.find((track) => track.id === trackId);
       if (!track) return;
       const findUser = track.stared_user.findIndex((t) => t.email == user);
       if (findUser != -1) {
         track.stared_user.splice(findUser, 1);
       }
-      if (trackId == state.currentTrackIndex) {
-        state.currentTrack = state.currentTrack.stared_user.splice(findUser, 1);
+      if (state.currentTrack && state.currentTrack.id === trackId) {
+        state.currentTrackLiked = false;
+
+        if (state.playlistId === "favPlaylistId") {
+          setNextTrack()
+        }
       }
     },
     clearStore(state, action) {
       state.currentTrack = null;
       state.currentTrackIndex = null;
+      state.currentTrackLiked = false;
       state.playlistId = null;
       state.tracks = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
       state.playingTracks = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
@@ -137,6 +146,15 @@ const musicSlice = createSlice({
     }
   },
 })
+
+const GetIsLiked = (track, playlist) => {
+  if (!track) return false;
+  if (track.stared_user) {
+    const findUser = track.stared_user.find((t) => t.email == user);
+    return findUser == null ? false : true;
+  }
+  return false;
+}
 
 export const {
   setFilter,
