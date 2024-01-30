@@ -102,6 +102,9 @@ export default function AuthPage({ isLoginMode = false }) {
     } else {
       setEmail(user.email);
       login(email);
+      getToken( {email, password}).then((res) => {
+        localStorage.setItem('token', JSON.stringify(res))
+      })
     }
 
     setIsLoading(false);
