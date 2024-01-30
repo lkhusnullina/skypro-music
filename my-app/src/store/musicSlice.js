@@ -101,28 +101,48 @@ const musicSlice = createSlice({
     },
     likeTrack(state, action) {
       const trackId = action.payload.id;
-
+    
       const track = state.tracks.find((track) => track.id === trackId);
-      if (!track) return;
-      const findUser = track.stared_user.find((t) => t.email == user);
-      if (!findUser) {
-        track.stared_user[track.stared_user.length] = {email: user};
+      if (track) {
+        const findUser = track.stared_user.find((t) => t.email == user);
+        if (!findUser) {
+          track.stared_user[track.stared_user.length] = {email: user};
+        }
       }
+    
+      const pTrack = state.playingTracks.find((track) => track.id === trackId);
+      if (pTrack) {
+        const findUser = pTrack.stared_user.find((t) => t.email.toLowerCase() == user.toLowerCase());
+        if (!findUser) {
+          pTrack.stared_user[pTrack.stared_user.length] = {email: user};
+        }
+      }
+    
       if (state.currentTrack && state.currentTrack.id === trackId) {
         state.currentTrackLiked = true;
       }
-    },
+    },    
     dislikeTrack(state, action) {
       const trackId = action.payload.id;
+      
       const track = state.tracks.find((track) => track.id === trackId);
-      if (!track) return;
-      const findUser = track.stared_user.findIndex((t) => t.email == user);
-      if (findUser != -1) {
-        track.stared_user.splice(findUser, 1);
+      if (track) {
+        const findUser = track.stared_user.findIndex((t) => t.email == user);
+        if (findUser != -1) {
+          track.stared_user.splice(findUser, 1);
+        }
       }
+    
+      const pTrack = state.playingTracks.find((track) => track.id === trackId);
+      if (pTrack) {
+        const findUser = pTrack.stared_user.findIndex((t) => t.email == user);
+        if (findUser != -1) {
+          pTrack.stared_user.splice(findUser, 1);
+        }
+      }
+    
       if (state.currentTrack && state.currentTrack.id === trackId) {
         state.currentTrackLiked = false;
-
         if (state.playlistId === "favPlaylistId") {
           setNextTrack()
         }

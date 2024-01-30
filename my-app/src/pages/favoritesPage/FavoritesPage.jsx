@@ -12,7 +12,8 @@ export const FavoritesPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { logout } = useUserContext();
-    const {data: tracks, isLoading, error} = useGetFavoritesTracksQuery();
+    const {data: tracks, isLoading, error} = useGetFavoritesTracksQuery({refetchOnMountOrArgChange: true});
+
 
     useEffect(() => {
       if (tracks) {
@@ -28,7 +29,7 @@ export const FavoritesPage = () => {
     return (
       <>
         <S.Main>
-          <Tracklist tracks={tracks} isLoading={isLoading} error={error} playlistId={'favPlaylistId'} showFilters={false} playlistName={'Мои треки'}/>
+          <Tracklist tracks={tracks ? tracks: []} isLoading={isLoading} error={error} playlistId={'favPlaylistId'} showFilters={false} playlistName={'Мои треки'}/>
         </S.Main>
       </>
     )
