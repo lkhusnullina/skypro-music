@@ -59,7 +59,7 @@ function Tracklist({ isLoading, tracks, error, playlistId, showFilters, playlist
         <S.SearchText type="search" placeholder="Поиск" name="search" value={searchText} onChange={e => setSearchText(e.target.value)}/>
       </S.CenterblockSearch>
       <S.CenterblockH>{playlistName}</S.CenterblockH>
-      { showFilters ? (<FilterBlock tracks={tracks} />) : ('')}
+      { showFilters ? (<FilterBlock tracks={tracks ? tracks : []} />) : ('')}
       <S.CenterblockContent>
         <S.ContentTitle>
           <S.Col01>Трек</S.Col01>

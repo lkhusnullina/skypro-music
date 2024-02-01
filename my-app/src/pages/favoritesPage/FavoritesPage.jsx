@@ -2,7 +2,7 @@ import * as S from '../../App.styles'
 import {  useGetFavoritesTracksQuery } from '../../service/getTracks'
 import Tracklist from '../../components/tracklist/Tracklist'
 import { useEffect } from 'react';
-import { setFavorite } from '../../store/musicSlice';
+import { setFavorite, loadTracks } from '../../store/musicSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../context/user'
@@ -14,12 +14,12 @@ export const FavoritesPage = () => {
     const { logout } = useUserContext();
     const {data: tracks, isLoading, error} = useGetFavoritesTracksQuery({refetchOnMountOrArgChange: true});
 
-
     useEffect(() => {
       if (tracks) {
-        dispatch(setFavorite({tracks}));
+        dispatch(loadTracks({tracks}));
       }
-    }, [tracks])
+      
+    }, [tracks]);
 
     if (error && error.status == 401)  {
       logout();
@@ -29,7 +29,7 @@ export const FavoritesPage = () => {
     return (
       <>
         <S.Main>
-          <Tracklist tracks={tracks ? tracks: []} isLoading={isLoading} error={error} playlistId={'favPlaylistId'} showFilters={false} playlistName={'Мои треки'}/>
+          <Tracklist tracks={tracks} isLoading={isLoading} error={error} playlistId={'favPlaylistId'} showFilters={false} playlistName={'Мои треки'}/>
         </S.Main>
       </>
     )
