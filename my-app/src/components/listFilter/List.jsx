@@ -1,9 +1,20 @@
-import * as S from './List.styles'
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from '../../store/musicSlice';
+import * as S from './List.styles';
 
-function List({ items }) {
-  const list = items.map((item) => (
-    <S.PopupItem key={item.id}>{item.name}</S.PopupItem>
-  ))
+function List({ items, mode, selectedItems = [] }) {
+  const dispatch = useDispatch();
+  const { filters } = useSelector(state => state.music);
+
+  const handleFilter = (item) => {
+    dispatch(setFilter({ filter: mode, value: item }))
+  };
+  const unicItems = [...new Set(items)];
+  const list = unicItems.map((item, index) => (
+    <S.PopupItem onClick={() => handleFilter(item)} key={item+index} $isActive={ filters[mode]?.find((el) => el === item.toLowerCase()) }>
+      {item} 
+    </S.PopupItem>
+  ));
   return (
     <S.PopupBlock>
       <S.PopupContainer>

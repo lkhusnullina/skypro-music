@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './Track.styles'
@@ -9,9 +9,11 @@ import {
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useUserContext } from '../../context/user'
+import { dislikeTrack, likeTrack } from '../../store/musicSlice'
 
 function Track(props) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { logout } = useUserContext();
 
   const time = props.track.duration_in_seconds;
@@ -37,12 +39,14 @@ function Track(props) {
   const handleAddTrack = async (e) => {
     e.stopPropagation();
     addTrack({ id: props.track.id });
+    dispatch(likeTrack({id: props.track.id}))
     setIsLike(true);
   }
 
   const handleDeleteTrack = async (e) => {
     e.stopPropagation();
     deleteTrack({ id: props.track.id });
+    dispatch(dislikeTrack({id: props.track.id}))
     setIsLike(false);
   }
 
@@ -52,7 +56,7 @@ function Track(props) {
       const liked = findUser == null ? false : true;
       setIsLike(liked);
     }
-  }, []);
+  }, [props.track]);
 
   const toggleLike = isLike ? handleDeleteTrack : handleAddTrack;
 
@@ -65,7 +69,7 @@ function Track(props) {
               <S.Playingdot $isPlaying={isPlaying}></S.Playingdot>
             ) : (
               <S.TrackTitleSvg alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                <use xlinkHref="/img/icon/sprite.svg#icon-note" />
               </S.TrackTitleSvg>
             )}
           </S.TrackTitleImage>
@@ -109,7 +113,7 @@ function Track(props) {
             onClick={toggleLike}
             alt="time"
           >
-            {isLike ? (<use xlinkHref="img/icon/sprite.svg#icon-liked" />) : (<use xlinkHref="img/icon/sprite.svg#icon-like" />)}
+            {isLike ? (<use xlinkHref="/img/icon/sprite.svg#icon-liked" />) : (<use xlinkHref="/img/icon/sprite.svg#icon-like" />)}
           </S.TrackTimeSvg>
           {props.isLoading ? (
             <S.TrackTimeText>00:00</S.TrackTimeText>

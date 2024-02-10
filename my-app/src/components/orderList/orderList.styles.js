@@ -37,7 +37,6 @@ export const Popup = styled.ul`
     border: 3px solid #ffffff;
   }
 `
-
 export const PopupContainer = styled.div`
   width: 248px;
   position: absolute;

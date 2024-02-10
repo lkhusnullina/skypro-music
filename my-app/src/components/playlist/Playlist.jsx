@@ -9,7 +9,7 @@ function Playlist(props) {
         {props.isLoading ? (
           <S.SkeletonAudioPlayer />
         ) : (
-          <S.SidebarImg src={props.category.img} alt={props.category.name} />
+          <S.SidebarImg src={`/${props.category.img}`} alt={props.category.name} />
         )}
       </S.SidebarLink>
     </S.SidebarItem>
