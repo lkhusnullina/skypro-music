@@ -2,6 +2,8 @@
 
 ## Деплой проекта: 
 
+![image](https://github.com/lkhusnullina/skypro-music/assets/101172468/d1e5a044-6778-452f-9a60-1f94b5adea08)
+
 ### Реализованы:
 
 - Возможность регистрации, входа, выхода
